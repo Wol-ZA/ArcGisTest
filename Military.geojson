@@ -1,0 +1,10 @@
+{"type":"FeatureCollection", "features":[
+{"type":"Feature","geometry":{"type":"Point","coordinates":[31.0504,-24.35462083333333,0]},"properties":{"name":"FAHS","description":"Hoedspruit"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[29.70150277777777,-23.15945277777778,0]},"properties":{"name":"FALM","description":"Makhado"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[18.16526111111111,-32.96881111111112,0]},"properties":{"name":"FALW","description":"Langebaanweg"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[30.87281276770671,-24.54762850904284,0]},"properties":{"name":"FAMR","description":"Mariepskop Military"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[20.24912222222222,-34.55811666666666,0]},"properties":{"name":"FAOB","description":"Overberg"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[28.16697138888889,-25.80893972222223,0]},"properties":{"name":"FASK","description":"Swartkop (MIL)","altitudeMode":"clampToSeaFloor"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[28.22089166666667,-25.82769027777778,0]},"properties":{"name":"FAWK","description":"Waterkloof"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[18.49748888888889,-33.90098888888889,0]},"properties":{"name":"FAYP","description":"Ysterplaat"}}
+]}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D Flight Path from George to Bloemfontein</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.26/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.26/"></script>
+    <style>
+        html, body {
+            height: 100%; /* Ensure the HTML and body elements are 100% height */
+            margin: 0;    /* Remove default margin */
+            overflow: hidden; /* Prevent scrolling */
+        }
+        #viewDiv {
+            height: 100%; /* Set height of the viewDiv to fill the screen */
+            width: 100%;  /* Set width of the viewDiv to fill the screen */
+        }
+    </style>
+</head>
+<body>
+    <div id="viewDiv">
+        <button onclick="startFlightSimulation()">Start Flight</button>
+    </div>
+    
+    <script src="Trip.js"></script>
+</body>
+</html>

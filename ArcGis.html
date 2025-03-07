@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>2D ArcGIS Map with Toggleable GeoJSON Layers</title>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://js.arcgis.com/4.28/"></script>
+  <style>
+    html, body, #viewDiv {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      overflow: hidden;
+    }
+    /* Styling for layer toggle panel */
+    .layer-toggle {
+      position: absolute;
+      top: 60px;
+      left: 10px;
+      background: white;
+      padding: 10px;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      display: none; /* Initially hidden */
+      z-index: 10; /* Ensure it is above other elements */
+    }
+    /* Button to toggle the layer panel */
+    .toggle-button {
+      position: absolute;
+      top: 10px;
+      left: 120px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 10; /* Ensure it is above other elements */
+    }
+
+      .layer-toggle {
+      padding: 10px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 200px;
+  }
+
+  .layer-toggle h3 {
+      margin-top: 10px;
+      margin-bottom: 5px;
+      font-size: 16px;
+      color: #333;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+  }
+
+  .layer-toggle label {
+      display: flex;
+      align-items: center;
+      margin: 5px 0;
+  }
+
+  .layer-toggle img {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+  }
+
+  .layer-toggle input[type="checkbox"] {
+      margin-right: 8px;
+  }
+#custom-popup {
+    position: absolute;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    max-width: 300px;
+    z-index: 1000;
+}
+
+#custom-popup h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #444;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+#custom-popup .content {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+#custom-popup .input-group {
+    margin: 10px 0;
+}
+
+#custom-popup input[type="text"] {
+    width: calc(100% - 10px);
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+#custom-popup button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-right: 5px;
+}
+
+#custom-popup button.cancel {
+    background-color: #dc3545;
+}
+
+#custom-popup button:hover {
+    background-color: #0056b3;
+}
+
+#custom-popup button.cancel:hover {
+    background-color: #c82333;
+}
+
+/* Tags for POIs */
+#custom-popup .poi-tags {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+#custom-popup .poi-tag {
+    display: inline-flex;
+    align-items: center;
+    background-color: #e0f7fa;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #00796b;
+    border: 1px solid #00796b;
+}
+
+#custom-popup .poi-tag img {
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+@media (max-width: 600px) {
+    #custom-popup {
+        width: 90%;  /* Make popup smaller on small screens */
+        max-width: 400px; /* Prevent it from getting too large */
+    }
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+#custom-popup button.delete-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between icon and text */
+    margin-left: auto; /* Pushes the button to the right */
+}
+
+.delete-button:hover {
+    background-color: darkred;
+}
+
+.delete-button i {
+    font-size: 16px;
+}
+    
+  </style>
+</head>
+<body>
+  <!-- Map container -->
+  <div id="viewDiv"></div>
+
+  <!-- Button to toggle the layer control panel -->
+
+  <!-- Toggle Panel for layers -->
+  <div class="layer-toggle" id="layerTogglePanel">
+    <!-- Section for airspace polygon layers -->
+    <h3>Airspaces</h3>
+    <label><input type="checkbox" id="accfisLayerToggle" checked> ACCFIS</label>
+    <label><input type="checkbox" id="atzCtrLayerToggle" checked> ATZ_CTR</label>
+    <label><input type="checkbox" id="ctaLayerToggle" checked> CTA</label>
+    <label><input type="checkbox" id="tmaLayerToggle" checked> TMA</label>
+    <label><input type="checkbox" id="fadFapFarLayerToggle" checked> FAD_FAP_FAR</label>
+    
+    <!-- Divider between sections -->
+    <h3>Points of Interest</h3>
+    
+    <!-- Section for point icon layers with icons displayed next to labels -->
+    <label><img src="sacaa.png" alt="SACAA Icon"><input type="checkbox" id="sacaaLayerToggle" checked> SACAA</label>
+    <label><img src="aip.png" alt="Aerodrome AIP Icon"><input type="checkbox" id="aerodromeAipLayerToggle" checked> Aerodrome AIP</label>
+    <label><img src="aic.png" alt="Aerodrome AIC Icon"><input type="checkbox" id="aerodromeAicLayerToggle" checked> Aerodrome AIC</label>
+    <label><img src="unlicensed.png" alt="Un-Licensed Icon"><input type="checkbox" id="unlicensedLayerToggle" checked> Un-Licensed</label>
+    <label><img src="atns.png" alt="ATNS Icon"><input type="checkbox" id="atnsLayerToggle" checked> ATNS</label>
+    <label><img src="military.png" alt="Military Icon"><input type="checkbox" id="militaryLayerToggle" checked> Military</label>
+    <label><img src="helistops.png" alt="Helistops Icon"><input type="checkbox" id="helistopsLayerToggle" checked> Helistops</label>
+
+    <h3>Waypoints</h3>
+    
+    <!-- Section for point icon layers with icons displayed next to labels -->
+    <label><img src="ENR.png" alt="ENR Icon"><input type="checkbox" id="ENRLayerToggle" checked> Reporting</label>
+    <label><img src="Iorra.png" alt="Iorra Icon"><input type="checkbox" id="IORRALayerToggle" checked> IORRA</label>
+    <label><img src="Rnav.png" alt=" Icon"><input type="checkbox" id="RNAVLayerToggle" checked> RNAV</label>
+</div>
+  <div id="mapContainer" style="position: relative; width: 100%; height: 500px;">
+    <div id="viewDiv" style="position: relative; width: 100%; height: 100%;"></div>
+    <!-- UI Elements Overlay -->
+    <div id="overlayUI" style="position: absolute; top: 10px; right: 10px; z-index: 1100; background: rgba(255, 255, 255, 0.8); padding: 10px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+        <label for="layerSelect">Choose Overlay:</label>
+        <select id="layerSelect">
+            <option value="wind">Wind</option>
+            <option value="clouds">Clouds</option>
+            <option value="rain">Rain</option>
+            <option value="temp">Temperature</option>
+        </select>
+        <button onclick="applyLayer()">Apply</button>
+    </div>
+</div>
+  <!-- Link to the JavaScript file -->
+  <script src="Flight.js"></script>
+</body>
+</html>

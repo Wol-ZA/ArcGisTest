@@ -1,0 +1,20 @@
+{"type":"FeatureCollection", "features":[
+{"type":"Feature","geometry":{"type":"Point","coordinates":[15,-29.83333333333334,5944]},"properties":{"name":"ANTOM","extrude":true,"altitudeMode":"relativeToSeaFloor"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[33.10961944444445,-31.16096388888889,5944]},"properties":{"name":"ANVED","extrude":true,"altitudeMode":"relativeToSeaFloor"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[34.42555555555556,-28.87027777777778,5944]},"properties":{"name":"APLUK","extrude":true,"altitudeMode":"relativeToSeaFloor","description":"&nbsp;"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[60.09666666666666,-21.46333333333333,5944]},"properties":{"name":"ATLOP","extrude":true,"altitudeMode":"relativeToSeaFloor"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[26,-37,5944]},"properties":{"name":"AVANA","extrude":true,"altitudeMode":"relativeToSeaFloor"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[50,-25.905,5944]},"properties":{"name":"AXOTA","extrude":true,"altitudeMode":"relativeToSeaFloor"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[34.69205,-28.39220833333333,5944]},"properties":{"name":"EGSOX","extrude":true,"altitudeMode":"relativeToSeaFloor"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[31.02944444444444,-34.04694444444444,5944]},"properties":{"name":"EGVOL","extrude":true,"altitudeMode":"relativeToSeaFloor"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[23.98444444444445,-37.00944444444445,5944]},"properties":{"name":"EPNET","extrude":true,"altitudeMode":"relativeToSeaFloor"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[27.71166666666667,-37.00138888888889,5944]},"properties":{"name":"ETBOR","extrude":true,"altitudeMode":"relativeToSeaFloor"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[18.51166666666667,-37.01138888888889,5944]},"properties":{"name":"GEPAB","extrude":true,"altitudeMode":"relativeToSeaFloor"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[29.98666666666667,-35.07833333333333,5944]},"properties":{"name":"GEPEV","extrude":true,"altitudeMode":"relativeToSeaFloor"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[33.96043333333333,-29.69374722222222,5944]},"properties":{"name":"GEVIS","extrude":true,"altitudeMode":"relativeToSeaFloor"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[15.00861111111111,-31.23894444444445,5944]},"properties":{"name":"IMKAM","extrude":true,"altitudeMode":"relativeToSeaFloor"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[112.7516666666667,-30.06666666666667,5944]},"properties":{"name":"MERIB","extrude":true,"altitudeMode":"relativeToSeaFloor"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[32.46194444444445,-32.26416666666667,5944]},"properties":{"name":"NEPUM","extrude":true,"altitudeMode":"relativeToSeaFloor"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[29.02777777777778,-36.01861111111111,5944]},"properties":{"name":"NERAX","extrude":true,"altitudeMode":"relativeToSeaFloor"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[113.42,-31.81333333333333,5944]},"properties":{"name":"STUGE","extrude":true,"altitudeMode":"relativeToSeaFloor"}}
+]}
