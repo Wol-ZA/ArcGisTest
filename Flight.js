@@ -267,7 +267,7 @@ window.loadGeoJSONAndDisplay = function (url, opacity = 0.7, view) {
         .then(geojson => {
             // Iterate through the GeoJSON features and create individual graphics
             geojson.features.forEach((feature, index) => {
-		Console.log(feature)    
+		console.log(feature);    
                 const color = colorSequences[index % colorSequences.length];  // Cycle color
                 const graphic = createGeoJSONGraphic(feature, color, opacity);  // Apply color with alpha and opacity
                 
