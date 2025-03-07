@@ -145,36 +145,29 @@ window.createGeoJSONLayer = function (url, colorHTML, alpha) {
     return layer;
 };
 
-
-
-view.on("click", function (event) {
+ view.on("click", function (event) {
         view.hitTest(event).then(function (response) {
-            let names = [];
-
             if (response.results.length > 0) {
                 response.results.forEach((result) => {
-                    if (result.graphic && result.graphic.layer === layer) {
+                    if (result.graphic) {
                         const attributes = result.graphic.attributes;
                         if (attributes && attributes.name) {
-                            names.push(attributes.name);
+                            console.log("Clicked Layer:", result.layer.title || "Unknown Layer");
+                            WL.Execute("GetSectorName", attributes.name);
+                        } else {
+                            console.log("Feature has no 'name' property.");
                         }
                     }
                 });
-            }
-
-            if (names.length > 0) {
-                console.log("Feature Names:", names);
-		WL.Execute("GetSectorName", attributes.name);
             } else {
-                console.log("No feature with 'name' property clicked.");
+                console.log("No feature clicked.");
             }
-
-            return names; // Returns the array of found names
         }).catch(error => {
             console.error("Error in hitTest:", error);
-            return [];
         });
-    });	
+    });
+
+
  // Function to create a GeoJSONLayer with a specific icon for points
  window.createIconGeoJSONLayer = function(url, iconUrl) {
     const layer = new GeoJSONLayer({
@@ -274,6 +267,7 @@ window.loadGeoJSONAndDisplay = function (url, opacity = 0.7, view) {
         .then(geojson => {
             // Iterate through the GeoJSON features and create individual graphics
             geojson.features.forEach((feature, index) => {
+		Console.log(feature)    
                 const color = colorSequences[index % colorSequences.length];  // Cycle color
                 const graphic = createGeoJSONGraphic(feature, color, opacity);  // Apply color with alpha and opacity
                 
