@@ -145,27 +145,35 @@ window.createGeoJSONLayer = function (url, colorHTML, alpha) {
     return layer;
 };
 
+window.setupLayerClickEvent = function(view) {
     view.on("click", function (event) {
         view.hitTest(event).then(function (response) {
+            let names = [];
+
             if (response.results.length > 0) {
                 response.results.forEach((result) => {
                     if (result.graphic) {
                         const attributes = result.graphic.attributes;
                         if (attributes && attributes.name) {
-                            console.log("Clicked Layer:", result.layer.title || "Unknown Layer");
-			    WL.Execute("GetSectorName", attributes.name);
-                        } else {
-                            console.log("Feature has no 'name' property.");
+                            names.push(attributes.name);
                         }
                     }
                 });
-            } else {
-                console.log("No feature clicked.");
             }
+
+            if (names.length > 0) {
+                console.log("Feature Names:", names);
+            } else {
+                console.log("No feature with 'name' property clicked.");
+            }
+
+            return names; // Returns the array of found names
         }).catch(error => {
             console.error("Error in hitTest:", error);
+            return [];
         });
-    });	
+    });
+}
  // Function to create a GeoJSONLayer with a specific icon for points
  window.createIconGeoJSONLayer = function(url, iconUrl) {
     const layer = new GeoJSONLayer({
