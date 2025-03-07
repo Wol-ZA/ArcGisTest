@@ -153,6 +153,19 @@ window.createGeoJSONLayer = function (url, colorHTML, alpha) {
 
     return layer;
 };
+
+view.on("click", function (event) {
+    view.hitTest(event).then(function (response) {
+        if (response.results.length > 0) {
+            response.results.forEach((result) => {
+                if (result.graphic && result.graphic.attributes) {
+                    console.log("Clicked Layer:", result.layer.title);
+                    console.log("Feature Name:", result.graphic.attributes.name);
+                }
+            });
+        }
+    });
+});	
  // Function to create a GeoJSONLayer with a specific icon for points
  window.createIconGeoJSONLayer = function(url, iconUrl) {
     const layer = new GeoJSONLayer({
