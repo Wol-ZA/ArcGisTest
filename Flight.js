@@ -242,32 +242,43 @@ window.updateMapLayers= function(layerStates) {
     }
 }
     
- window.loadGeoJSONAndDisplay = function(url, opacity = 0.7) {
-         const graphicsLayer = new GraphicsLayer({
-            title: "GeoJSON Layer"
-        });
+window.loadGeoJSONAndDisplay = function(url, opacity = 0.7) {
+    const graphicsLayer = new GraphicsLayer({
+        title: "GeoJSON Layer"
+    });
 
-        fetch(url)
-            .then(response => response.json())
-            .then(geojson => {
-                // Iterate through the GeoJSON features and create individual graphics
-                geojson.features.forEach((feature, index) => {
-                    const color = colorSequences[index % colorSequences.length];  // Cycle color
-                    const graphic = createGeoJSONGraphic(feature, color, opacity);  // Apply color with alpha and opacity
-                    
-                    if (feature.geometry.type === "Polygon" || feature.geometry.type === "MultiPolygon") {
+    fetch(url)
+        .then(response => response.json())
+        .then(geojson => {
+            // Iterate through the GeoJSON features and create individual graphics
+            geojson.features.forEach((feature, index) => {
+                const color = colorSequences[index % colorSequences.length]; // Cycle color
+                const graphic = createGeoJSONGraphic(feature, color, opacity); // Apply color with alpha and opacity
+                
+                if (feature.geometry.type === "Polygon" || feature.geometry.type === "MultiPolygon") {
                     const name = feature.properties.name || `Polygon ${index + 1}`; // Use `name` property or a default name
-                     geoJSONPolygons.push({ geometry: graphic.geometry, feature });
+                    geoJSONPolygons.push({ geometry: graphic.geometry, feature });
                 }
-                    // Add the graphic to the layer
-                    graphicsLayer.add(graphic);
-                });
-            })
-            .catch(error => console.error('Error loading GeoJSON:', error));
 
-        // Return the newly created GraphicsLayer
-        return graphicsLayer;
-    };
+                // Store properties in the graphic attributes
+                graphic.attributes = feature.properties;
+
+                // Add the graphic to the layer
+                graphicsLayer.add(graphic);
+            });
+        })
+        .catch(error => console.error('Error loading GeoJSON:', error));
+
+    // Add a click event listener to log the "name" property
+    graphicsLayer.on("click", function(event) {
+        if (event.graphic) {
+            console.log("Clicked Layer Name:", event.graphic.attributes.name);
+        }
+    });
+
+    // Return the newly created GraphicsLayer
+    return graphicsLayer;
+};
 
     // Define point layers and add to the map
    // const sacaaLayer = createIconGeoJSONLayer("SACAA.geojson", "SACAA_1.png");
