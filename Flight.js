@@ -225,24 +225,26 @@ window.createGeoJSONLayer = function (url, colorHTML, alpha) {
     }
 
     // Function to create the GeoJSON graphic for each polygon
-    function createGeoJSONGraphic(feature, colorHTML, alpha) {
-        // Here, alpha is applied directly to the RGBA color array for the polygon's fill
-        const color = htmlToRGBA(colorHTML, alpha);  // Color with transparency
-        const outlineColor = darkenColor(colorHTML, 1);  // Darken for outline
-        const geometry = convertGeoJSONGeometry(feature.geometry);
+function createGeoJSONGraphic(feature, colorHTML, alpha) {
+    // Convert HTML color to RGBA with transparency
+    const color = htmlToRGBA(colorHTML, alpha);
+    const outlineColor = darkenColor(colorHTML, 1);
+    const geometry = convertGeoJSONGeometry(feature.geometry);
 
-        return new Graphic({
-            geometry: geometry,
-            symbol: {
-                type: "simple-fill",
-                color: color,  // Apply color with alpha transparency
-                outline: {
-                    color: outlineColor,  // Darken for outline
-                    width: 2
-                }
+    return new Graphic({
+        geometry: geometry,
+        symbol: {
+            type: "simple-fill",
+            color: color,  // Apply color with alpha transparency
+            outline: {
+                color: outlineColor,
+                width: 2
             }
-        });
-    }
+        },
+        attributes: feature.properties // Attach properties to attributes
+    });
+}
+
 
 window.updateMapLayers= function(layerStates) {
     for (const [layerToggleId, isVisible] of Object.entries(layerStates)) {
@@ -266,8 +268,7 @@ window.loadGeoJSONAndDisplay = function (url, opacity = 0.7, view) {
         .then(response => response.json())
         .then(geojson => {
             // Iterate through the GeoJSON features and create individual graphics
-            geojson.features.forEach((feature, index) => {
-		console.log(feature);    
+            geojson.features.forEach((feature, index) => {    
                 const color = colorSequences[index % colorSequences.length];  // Cycle color
                 const graphic = createGeoJSONGraphic(feature, color, opacity);  // Apply color with alpha and opacity
                 
