@@ -153,22 +153,6 @@ window.createGeoJSONLayer = function (url, colorHTML, alpha) {
 
     return layer;
 };
-  view.on("click", function (event) {
-        view.hitTest(event).then(function (response) {
-            if (response.results.length > 0) {
-                response.results.forEach((result) => {
-                    if (result.graphic && result.graphic.attributes) {
-                        console.log("Clicked Layer:", result.layer.title || "Unknown Layer");
-                        console.log("Feature Name:", result.graphic.attributes.name || "No name property found");
-                    }
-                });
-            } else {
-                console.log("No feature clicked.");
-            }
-        }).catch(error => {
-            console.error("Error in hitTest:", error);
-        });
-    });	
  // Function to create a GeoJSONLayer with a specific icon for points
  window.createIconGeoJSONLayer = function(url, iconUrl) {
     const layer = new GeoJSONLayer({
@@ -272,7 +256,7 @@ window.updateMapLayers= function(layerStates) {
                     const graphic = createGeoJSONGraphic(feature, color, opacity);  // Apply color with alpha and opacity
                     
                     if (feature.geometry.type === "Polygon" || feature.geometry.type === "MultiPolygon") {
-                    const name = feature.properties.name || Polygon ${index + 1}; // Use name property or a default name
+                    const name = feature.properties.name || `Polygon ${index + 1}`; // Use `name` property or a default name
                      geoJSONPolygons.push({ geometry: graphic.geometry, feature });
                 }
                     // Add the graphic to the layer
@@ -284,6 +268,7 @@ window.updateMapLayers= function(layerStates) {
         // Return the newly created GraphicsLayer
         return graphicsLayer;
     };
+
     // Define point layers and add to the map
    // const sacaaLayer = createIconGeoJSONLayer("SACAA.geojson", "SACAA_1.png");
 	//const aerodromeAipLayer = createIconGeoJSONLayer("Aerodrome_AIP.geojson", "AIP_1.png");
