@@ -153,7 +153,7 @@ window.createGeoJSONLayer = function (url, colorHTML, alpha) {
                         const attributes = result.graphic.attributes;
                         if (attributes && attributes.name) {
                             console.log("Clicked Layer:", result.layer.title || "Unknown Layer");
-                            console.log("Feature Name:", attributes.name);
+			    WL.Execute("GetSectorName", attributes.name);
                         } else {
                             console.log("Feature has no 'name' property.");
                         }
