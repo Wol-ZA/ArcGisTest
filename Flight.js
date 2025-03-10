@@ -145,33 +145,27 @@ window.createGeoJSONLayer = function (url, colorHTML, alpha) {
     return layer;
 };
 
- view.on("click", function (event) {
-    view.hitTest(event).then(function (response) {
-        if (response.results.length > 0) {
-            let layerNames = new Set(); // Use a Set to avoid duplicate names
-
-            response.results.forEach((result) => {
-                if (result.graphic) {
-                    const attributes = result.graphic.attributes;
-                    if (attributes && attributes.name) {
-                        layerNames.add(result.layer.title || "Unknown Layer");
+view.on("click", function (event) {
+        view.hitTest(event).then(function (response) {
+            if (response.results.length > 0) {
+                response.results.forEach((result) => {
+                    if (result.graphic) {
+                        const attributes = result.graphic.attributes;
+                        if (attributes && attributes.name) {
+                            console.log("Clicked Layer:", result.layer.title || "Unknown Layer");
+                            WL.Execute("GetSectorName", attributes.name);
+                        } else {
+                            console.log("Feature has no 'name' property.");
+                        }
                     }
-                }
-            });
-
-            if (layerNames.size > 0) {
-                console.log("Clicked Layers:", Array.from(layerNames));
-                WL.Execute("GetSectorName", Array.from(layerNames)); // Send array to backend
+                });
             } else {
-                console.log("Features clicked, but none had a 'name' property.");
+                console.log("No feature clicked.");
             }
-        } else {
-            console.log("No feature clicked.");
-        }
-    }).catch(error => {
-        console.error("Error in hitTest:", error);
+        }).catch(error => {
+            console.error("Error in hitTest:", error);
+        });
     });
-});
 
 
  // Function to create a GeoJSONLayer with a specific icon for points
