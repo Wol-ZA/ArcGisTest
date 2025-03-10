@@ -14,7 +14,7 @@
       overflow: hidden;
     }
     /* Styling for layer toggle panel */
-    #titleBar {
+   #titleBar {
     position: fixed;
     bottom: 0;
     left: 50%;
@@ -41,19 +41,33 @@
     transition: bottom 0.3s ease-in-out;
     z-index: 9999;
     padding: 20px;
+    overflow-y: auto; /* Enable scrolling */
+    max-height: 80vh; /* Prevent it from getting too large */
+    border-radius: 15px 15px 0 0;
+}
+
+/* Ensures content doesn't overflow */
+.sliding-window::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sliding-window::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
 }
 
 /* Close button */
 .close-btn {
     position: absolute;
-    top: 5px;
-    right: 50px;
+    top: 10px;
+    right: 20px;
     background-color: red;
     color: white;
     border: none;
-    padding: 20px;
+    padding: 10px;
     cursor: pointer;
-    font-size: 9px;
+    font-size: 14px;
+    border-radius: 5px;
 }
     
     .layer-toggle {
