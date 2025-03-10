@@ -160,8 +160,9 @@ view.on("click", function (event) {
             });
 
             if (layerNames.size > 0) {
-                console.log("Clicked Layers:", Array.from(layerNames));
-                WL.Execute("GetSectorName", Array.from(layerNames)); // Send array to backend
+                const layerData = { layers: Array.from(layerNames) }; // Create JSON object
+                console.log("Clicked Layers:", layerData);
+                WL.Execute("GetSectorName", JSON.stringify(layerData)); // Send JSON string
             } else {
                 console.log("Features clicked, but none had a 'name' property.");
             }
@@ -172,6 +173,7 @@ view.on("click", function (event) {
         console.error("Error in hitTest:", error);
     });
 });
+
 
 
  // Function to create a GeoJSONLayer with a specific icon for points
