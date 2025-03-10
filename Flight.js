@@ -146,26 +146,32 @@ window.createGeoJSONLayer = function (url, colorHTML, alpha) {
 };
 
  view.on("click", function (event) {
-        view.hitTest(event).then(function (response) {
-            if (response.results.length > 0) {
-                response.results.forEach((result) => {
-                    if (result.graphic) {
-                        const attributes = result.graphic.attributes;
-                        if (attributes && attributes.name) {
-                            console.log("Clicked Layer:", result.layer.title || "Unknown Layer");
-                            WL.Execute("GetSectorName", attributes.name);
-                        } else {
-                            console.log("Feature has no 'name' property.");
-                        }
+    view.hitTest(event).then(function (response) {
+        if (response.results.length > 0) {
+            let layerNames = new Set(); // Use a Set to avoid duplicate names
+
+            response.results.forEach((result) => {
+                if (result.graphic) {
+                    const attributes = result.graphic.attributes;
+                    if (attributes && attributes.name) {
+                        layerNames.add(result.layer.title || "Unknown Layer");
                     }
-                });
+                }
+            });
+
+            if (layerNames.size > 0) {
+                console.log("Clicked Layers:", Array.from(layerNames));
+                WL.Execute("GetSectorName", Array.from(layerNames)); // Send array to backend
             } else {
-                console.log("No feature clicked.");
+                console.log("Features clicked, but none had a 'name' property.");
             }
-        }).catch(error => {
-            console.error("Error in hitTest:", error);
-        });
+        } else {
+            console.log("No feature clicked.");
+        }
+    }).catch(error => {
+        console.error("Error in hitTest:", error);
     });
+});
 
 
  // Function to create a GeoJSONLayer with a specific icon for points
