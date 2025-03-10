@@ -160,7 +160,7 @@ window.showInfoPanel = function(features) {
         featureDetailsHtml += `
             <div class="feature">
                 <h3>${feature.sName}</h3>
-                <p><strong>Altitude:</strong> ${feature.nMinalt} ft </strong> ${feature.nMaxalt} ft</p>
+                <p><strong>Altitude:</strong> ${feature.nMinalt} ft - </strong> ${feature.nMaxalt} ft</p>
                 <p><strong>Frequency:</strong> ${feature.sFreq}</p>
             </div>
             <hr>
