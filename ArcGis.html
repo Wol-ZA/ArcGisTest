@@ -14,6 +14,48 @@
       overflow: hidden;
     }
     /* Styling for layer toggle panel */
+    #titleBar {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    background-color: #000;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+/* Sliding Info Panel */
+.sliding-window {
+    position: fixed;
+    bottom: -400px; /* Hidden initially */
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    transition: bottom 0.3s ease-in-out;
+    z-index: 9999;
+    padding: 20px;
+}
+
+/* Close button */
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 50px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 20px;
+    cursor: pointer;
+    font-size: 9px;
+}
+    
     .layer-toggle {
       position: absolute;
       top: 60px;
