@@ -145,6 +145,81 @@ window.createGeoJSONLayer = function (url, colorHTML, alpha) {
     return layer;
 };
 
+let isPanelOpen = false;
+let startY = 0;
+let panelHeight = 300;
+
+const infoPanel = document.getElementById('infoPanel');
+const titleBar = document.getElementById('titleBar');
+titleBar.style.display = 'none';
+
+function showInfoPanel(features) {
+    let featureDetailsHtml = "";
+
+    features.forEach(feature => {
+        featureDetailsHtml += `
+            <div class="feature">
+                <h3>${feature.sName}</h3>
+                <p><strong>Min Altitude:</strong> ${feature.nMinalt} ft</p>
+                <p><strong>Max Altitude:</strong> ${feature.nMaxalt} ft</p>
+                <p><strong>Frequency:</strong> ${feature.sFreq}</p>
+            </div>
+            <hr>
+        `;
+    });
+
+    document.getElementById('featureDetails').innerHTML = featureDetailsHtml;
+    infoPanel.style.bottom = '0';
+    titleBar.style.display = 'none';
+    isPanelOpen = true;
+}
+
+function hideInfoPanel() {
+    infoPanel.style.bottom = '-400px';
+    isPanelOpen = false;
+}
+
+document.getElementById('closeBtn').addEventListener('click', hideInfoPanel);
+
+// Click on title bar opens the panel
+view.on("click", function () {
+    if (isPanelOpen) {
+        hideInfoPanel();
+    } else {
+        const sampleData = [
+            {"sName":"FAGG TMA B:", "nMinalt":4500, "nMaxalt":14500, "sFreq":"128.20 MHz"},
+            {"sName":"FAGG CTR:", "nMinalt":0, "nMaxalt":4500, "sFreq":"118.90 MHz"}
+        ];
+        showInfoPanel(sampleData);
+    }
+});
+
+// Drag to close functionality
+infoPanel.addEventListener('mousedown', function (e) {
+    if (isPanelOpen) {
+        startY = e.clientY;
+        document.addEventListener('mousemove', dragPanel);
+        document.addEventListener('mouseup', stopDragging);
+    }
+});
+
+function dragPanel(e) {
+    const deltaY = e.clientY - startY;
+    const newBottom = Math.max(-panelHeight, Math.min(0, panelHeight - deltaY));
+    infoPanel.style.bottom = newBottom + 'px';
+}
+
+function stopDragging() {
+    document.removeEventListener('mousemove', dragPanel);
+    document.removeEventListener('mouseup', stopDragging);
+    const currentBottom = parseInt(infoPanel.style.bottom, 10);
+    if (currentBottom < -150) {
+        hideInfoPanel();
+    } else {
+        infoPanel.style.bottom = '0';
+    }
+}
+	
 view.on("click", function (event) {
     view.hitTest(event).then(function (response) {
         if (response.results.length > 0) {
