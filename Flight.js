@@ -153,7 +153,7 @@ const infoPanel = document.getElementById('infoPanel');
 const titleBar = document.getElementById('titleBar');
 titleBar.style.display = 'none';
 
-function showInfoPanel(features) {
+window.showInfoPanel = function(features) {
     let featureDetailsHtml = "";
 
     features.forEach(feature => {
