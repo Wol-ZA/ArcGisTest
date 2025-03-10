@@ -186,11 +186,7 @@ view.on("click", function () {
     if (isPanelOpen) {
         hideInfoPanel();
     } else {
-        const sampleData = [
-            {"sName":"FAGG TMA B:", "nMinalt":4500, "nMaxalt":14500, "sFreq":"128.20 MHz"},
-            {"sName":"FAGG CTR:", "nMinalt":0, "nMaxalt":4500, "sFreq":"118.90 MHz"}
-        ];
-        showInfoPanel(sampleData);
+        
     }
 });
 
