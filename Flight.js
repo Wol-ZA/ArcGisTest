@@ -190,11 +190,11 @@ view.on("click", function () {
 });
 
 // Drag to close functionality
-infoPanel.addEventListener('mousedown', function (e) {
+infoPanel.addEventListener('pointerdown', function (e) {
     if (isPanelOpen) {
         startY = e.clientY;
-        document.addEventListener('mousemove', dragPanel);
-        document.addEventListener('mouseup', stopDragging);
+        document.addEventListener('pointermove', dragPanel);
+        document.addEventListener('pointerup', stopDragging);
     }
 });
 
@@ -205,8 +205,8 @@ function dragPanel(e) {
 }
 
 function stopDragging() {
-    document.removeEventListener('mousemove', dragPanel);
-    document.removeEventListener('mouseup', stopDragging);
+    document.removeEventListener('pointermove', dragPanel);
+    document.removeEventListener('pointerup', stopDragging);
     const currentBottom = parseInt(infoPanel.style.bottom, 10);
     if (currentBottom < -150) {
         hideInfoPanel();
@@ -215,7 +215,7 @@ function stopDragging() {
     }
 }
 	
-view.on("click", function (event) {
+view.on("touchend", function (event) {
     view.hitTest(event).then(function (response) {
         if (response.results.length > 0) {
             let layerNames = new Set(); // Use a Set to avoid duplicate names
