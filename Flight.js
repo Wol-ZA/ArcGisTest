@@ -154,23 +154,52 @@ const titleBar = document.getElementById('titleBar');
 titleBar.style.display = 'none';
 
 window.showInfoPanel = function(features) {
+    alert("showInfoPanel called!"); // Debugging step
+
+    if (!features || features.length === 0) {
+        alert("No features received");
+        return;
+    }
+
     let featureDetailsHtml = "";
+
     features.forEach(feature => {
         featureDetailsHtml += `
             <div class="feature">
                 <h3>${feature.sName}</h3>
-                <p><strong>Altitude:</strong> ${feature.nMinalt} ft - </strong> ${feature.nMaxalt} ft</p>
+                <p><strong>Altitude:</strong> ${feature.nMinalt} ft - ${feature.nMaxalt} ft</p>
                 <p><strong>Frequency:</strong> ${feature.sFreq}</p>
             </div>
             <hr>
         `;
     });
 
-    document.getElementById('featureDetails').innerHTML = featureDetailsHtml;
-    infoPanel.style.bottom = '0';
-    titleBar.style.display = 'none';
-    isPanelOpen = true;
-}
+    // Move UI updates off the main thread to avoid iOS throttling
+    setTimeout(() => {
+        let featureDetailsEl = document.getElementById('featureDetails');
+
+        if (!featureDetailsEl) {
+            alert("featureDetails element not found!");
+            return;
+        }
+
+        featureDetailsEl.innerHTML = featureDetailsHtml;
+
+        // Ensure infoPanel exists before updating styles
+        if (typeof infoPanel !== "undefined" && infoPanel) {
+            infoPanel.style.display = "block";  // Ensure it becomes visible
+            infoPanel.style.bottom = "0";
+        } else {
+            alert("infoPanel not defined!");
+        }
+
+        if (typeof titleBar !== "undefined" && titleBar) {
+            titleBar.style.display = "none";
+        }
+
+        isPanelOpen = true;
+    }, 0); // Asynchronous execution to prevent iOS Safari throttling
+};
 
 function hideInfoPanel() {
     infoPanel.style.bottom = '-400px';
