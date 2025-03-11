@@ -190,7 +190,7 @@ view.on("click", function () {
 });
 
 // Drag to close functionality
-infoPanel.addEventListener('click', function (e) {
+infoPanel.addEventListener('mousedown', function (e) {
     if (isPanelOpen) {
         startY = e.clientY;
         document.addEventListener('pointermove', dragPanel);
@@ -215,7 +215,7 @@ function stopDragging() {
     }
 }
 	
-view.on("click", function (event) {
+view.on("mousedown", function (event) {
     view.hitTest(event).then(function (response) {
         if (response.results.length > 0) {
             let layerNames = new Set();
