@@ -154,7 +154,6 @@ const titleBar = document.getElementById('titleBar');
 titleBar.style.display = 'none';
 
 window.showInfoPanel = function(features) {
-    alert("showInfoPanel called!");
     console.log("showInfoPanel called with:", features);
     
     let featureDetailsHtml = "";
