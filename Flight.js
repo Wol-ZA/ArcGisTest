@@ -154,17 +154,20 @@ const titleBar = document.getElementById('titleBar');
 titleBar.style.display = 'none';
 
 window.showInfoPanel = function(features) {
+    alert("showInfoPanel called!");
+    console.log("showInfoPanel called with:", features);
+    
     let featureDetailsHtml = "";
 
     features.forEach(feature => {
-        featureDetailsHtml += 
+        featureDetailsHtml += `
             <div class="feature">
                 <h3>${feature.sName}</h3>
-                <p><strong>Altitude:</strong> ${feature.nMinalt} ft - </strong> ${feature.nMaxalt} ft</p>
+                <p><strong>Altitude:</strong> ${feature.nMinalt} ft - ${feature.nMaxalt} ft</p>
                 <p><strong>Frequency:</strong> ${feature.sFreq}</p>
             </div>
             <hr>
-        ;
+        `;
     });
 
     document.getElementById('featureDetails').innerHTML = featureDetailsHtml;
@@ -172,7 +175,6 @@ window.showInfoPanel = function(features) {
     titleBar.style.display = 'none';
     isPanelOpen = true;
 }
-
 function hideInfoPanel() {
     infoPanel.style.bottom = '-400px';
     isPanelOpen = false;
