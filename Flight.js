@@ -155,7 +155,7 @@ titleBar.style.display = 'none';
 
 window.showInfoPanel = function(features) {
     let featureDetailsHtml = "";
-
+    alert(features);
     features.forEach(feature => {
         featureDetailsHtml += `
             <div class="feature">
@@ -233,7 +233,6 @@ function handleClick(event) {
 
             if (layerNames.size > 0) {
                 const layerData = { layers: Array.from(layerNames) };
-               alert("Clicked Layers:", layerData);
                 WL.Execute("GetSectorName", JSON.stringify(layerData));
             } else {
                 console.log("Features clicked, but none had a 'name' property.");
