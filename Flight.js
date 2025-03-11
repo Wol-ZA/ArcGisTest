@@ -215,10 +215,10 @@ function stopDragging() {
     }
 }
 	
-view.on("touchstart", function (event) {
+view.on("pointerdown", function (event) {
     view.hitTest(event).then(function (response) {
         if (response.results.length > 0) {
-            let layerNames = new Set(); // Use a Set to avoid duplicate names
+            let layerNames = new Set();
 
             response.results.forEach((result) => {
                 if (result.graphic) {
@@ -230,9 +230,9 @@ view.on("touchstart", function (event) {
             });
 
             if (layerNames.size > 0) {
-                const layerData = { layers: Array.from(layerNames) }; // Create JSON object
+                const layerData = { layers: Array.from(layerNames) };
                 console.log("Clicked Layers:", layerData);
-                WL.Execute("GetSectorName", JSON.stringify(layerData)); // Send JSON string
+                WL.Execute("GetSectorName", JSON.stringify(layerData));
             } else {
                 console.log("Features clicked, but none had a 'name' property.");
             }
