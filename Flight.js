@@ -223,7 +223,7 @@ function handleClick(event) {
     view.hitTest(event).then(function (response) {
         if (response.results.length > 0) {
             let layerNames = new Set();
-		alert("Hit2")
+		alert("Hit2");
             response.results.forEach((result) => {
                 if (result.graphic) {
                     const attributes = result.graphic.attributes;
