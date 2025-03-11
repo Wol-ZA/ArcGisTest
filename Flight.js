@@ -219,10 +219,11 @@ view.on("click", handleClick);
 view.on("pointer-down", handleClick);  // Adds support for iOS touch events
 
 function handleClick(event) {
+	alert("Hit1");
     view.hitTest(event).then(function (response) {
         if (response.results.length > 0) {
             let layerNames = new Set();
-
+		alert("Hit2")
             response.results.forEach((result) => {
                 if (result.graphic) {
                     const attributes = result.graphic.attributes;
