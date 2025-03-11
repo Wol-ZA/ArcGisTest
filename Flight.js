@@ -215,7 +215,10 @@ function stopDragging() {
     }
 }
 	
-view.on("click", function (event) {
+view.on("click", handleClick);
+view.on("pointer-down", handleClick);  // Adds support for iOS touch events
+
+function handleClick(event) {
     view.hitTest(event).then(function (response) {
         if (response.results.length > 0) {
             let layerNames = new Set();
@@ -242,8 +245,7 @@ view.on("click", function (event) {
     }).catch(error => {
         console.error("Error in hitTest:", error);
     });
-});
-
+}
 
 
  // Function to create a GeoJSONLayer with a specific icon for points
