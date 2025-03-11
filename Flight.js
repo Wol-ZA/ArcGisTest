@@ -216,13 +216,11 @@ function stopDragging() {
     }
 }
 	
-view.on("click", handleClick);
-view.on("pointer-down", handleClick);  // Adds support for iOS touch events
-
-function handleClick(event) {
+view.on("click", function (event) {
     view.hitTest(event).then(function (response) {
         if (response.results.length > 0) {
-            let layerNames = new Set();
+            let layerNames = new Set(); // Use a Set to avoid duplicate names
+
             response.results.forEach((result) => {
                 if (result.graphic) {
                     const attributes = result.graphic.attributes;
@@ -233,8 +231,9 @@ function handleClick(event) {
             });
 
             if (layerNames.size > 0) {
-                const layerData = { layers: Array.from(layerNames) };  
-                WL.Execute("GetSectorName", JSON.stringify(layerData));
+                const layerData = { layers: Array.from(layerNames) }; // Create JSON object
+                console.log("Clicked Layers:", layerData);
+                WL.Execute("GetSectorName", JSON.stringify(layerData)); // Send JSON string
             } else {
                 console.log("Features clicked, but none had a 'name' property.");
             }
@@ -244,7 +243,7 @@ function handleClick(event) {
     }).catch(error => {
         console.error("Error in hitTest:", error);
     });
-}
+});
 
 
  // Function to create a GeoJSONLayer with a specific icon for points
