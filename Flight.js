@@ -221,7 +221,6 @@ view.on("pointer-down", handleClick);  // Adds support for iOS touch events
 function handleClick(event) {
     view.hitTest(event).then(function (response) {
         if (response.results.length > 0) {
-	alert(response.results);
             let layerNames = new Set();
             response.results.forEach((result) => {
                 if (result.graphic) {
@@ -234,7 +233,7 @@ function handleClick(event) {
 
             if (layerNames.size > 0) {
                 const layerData = { layers: Array.from(layerNames) };
-                console.log("Clicked Layers:", layerData);
+               alert("Clicked Layers:", layerData);
                 WL.Execute("GetSectorName", JSON.stringify(layerData));
             } else {
                 console.log("Features clicked, but none had a 'name' property.");
