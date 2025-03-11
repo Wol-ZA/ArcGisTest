@@ -181,7 +181,7 @@ function hideInfoPanel() {
 document.getElementById('closeBtn').addEventListener('click', hideInfoPanel);
 
 // Click on title bar opens the panel
-view.on("click", function () {
+view.on("touchstart", function () {
     if (isPanelOpen) {
         hideInfoPanel();
     } else {
@@ -190,7 +190,7 @@ view.on("click", function () {
 });
 
 // Drag to close functionality
-infoPanel.addEventListener('pointerdown', function (e) {
+infoPanel.addEventListener('touchstart', function (e) {
     if (isPanelOpen) {
         startY = e.clientY;
         document.addEventListener('pointermove', dragPanel);
@@ -215,7 +215,7 @@ function stopDragging() {
     }
 }
 	
-view.on("touchend", function (event) {
+view.on("touchstart", function (event) {
     view.hitTest(event).then(function (response) {
         if (response.results.length > 0) {
             let layerNames = new Set(); // Use a Set to avoid duplicate names
