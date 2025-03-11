@@ -193,8 +193,8 @@ view.on("click", function () {
 infoPanel.addEventListener('mousedown', function (e) {
     if (isPanelOpen) {
         startY = e.clientY;
-        document.addEventListener('pointermove', dragPanel);
-        document.addEventListener('pointerup', stopDragging);
+        document.addEventListener('mousemove', dragPanel);
+        document.addEventListener('mouseup', stopDragging);
     }
 });
 
@@ -205,8 +205,8 @@ function dragPanel(e) {
 }
 
 function stopDragging() {
-    document.removeEventListener('pointermove', dragPanel);
-    document.removeEventListener('pointerup', stopDragging);
+    document.removeEventListener('mousemove', dragPanel);
+    document.removeEventListener('mouseup', stopDragging);
     const currentBottom = parseInt(infoPanel.style.bottom, 10);
     if (currentBottom < -150) {
         hideInfoPanel();
