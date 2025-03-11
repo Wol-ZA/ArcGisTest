@@ -233,7 +233,8 @@ function handleClick(event) {
 
             if (layerNames.size > 0) {
                 const layerData = { layers: Array.from(layerNames) };
-                WL.Execute("GetSectorName", JSON.stringify(layerData));
+		window.showInfoPanel([{ sName: "Test", nMinalt: 100, nMaxalt: 200, sFreq: "123.45 MHz" }]);    
+                //WL.Execute("GetSectorName", JSON.stringify(layerData));
             } else {
                 console.log("Features clicked, but none had a 'name' property.");
             }
