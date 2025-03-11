@@ -154,10 +154,8 @@ const titleBar = document.getElementById('titleBar');
 titleBar.style.display = 'none';
 
 window.showInfoPanel = function(features) {
-    alert("showInfoPanel called!"); // Debugging step
 
     if (!features || features.length === 0) {
-        alert("No features received");
         return;
     }
 
@@ -179,7 +177,6 @@ window.showInfoPanel = function(features) {
         let featureDetailsEl = document.getElementById('featureDetails');
 
         if (!featureDetailsEl) {
-            alert("featureDetails element not found!");
             return;
         }
 
@@ -190,7 +187,6 @@ window.showInfoPanel = function(features) {
             infoPanel.style.display = "block";  // Ensure it becomes visible
             infoPanel.style.bottom = "0";
         } else {
-            alert("infoPanel not defined!");
         }
 
         if (typeof titleBar !== "undefined" && titleBar) {
