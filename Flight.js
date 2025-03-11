@@ -215,7 +215,7 @@ function stopDragging() {
     }
 }
 	
-view.on("mousedown", function (event) {
+view.on("click", function (event) {
     view.hitTest(event).then(function (response) {
         if (response.results.length > 0) {
             let layerNames = new Set();
