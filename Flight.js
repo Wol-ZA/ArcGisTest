@@ -156,28 +156,33 @@ titleBar.style.display = 'none';
 window.showInfoPanel = function(features) {
     console.log("showInfoPanel called with:", features);
 
-    // Force blur any active input to avoid iOS keyboard issue
+    // Force blur any active input to prevent iOS issues
     document.activeElement?.blur();
 
-    const featureDetailsContainer = document.getElementById('featureDetails');
-    featureDetailsContainer.innerHTML = ''; // Clear previous content
-
-    features.forEach(feature => {
-        const featureHtml = `
-            <div class="feature">
-                <h3>${feature.sName}</h3>
-                <p><strong>Altitude:</strong> ${feature.nMinalt} ft - ${feature.nMaxalt} ft</p>
-                <p><strong>Frequency:</strong> ${feature.sFreq}</p>
-            </div>
-            <hr>
-        `;
-        featureDetailsContainer.insertAdjacentHTML('beforeend', featureHtml);
-    });
-
+    // Slide the panel up first
     infoPanel.style.bottom = '0';
     titleBar.style.display = 'none';
     isPanelOpen = true;
+
+    // Delay the HTML update until the panel is fully visible
+    setTimeout(() => {
+        const featureDetailsContainer = document.getElementById('featureDetails');
+        featureDetailsContainer.innerHTML = ''; // Clear previous content
+
+        features.forEach(feature => {
+            const featureHtml = `
+                <div class="feature">
+                    <h3>${feature.sName}</h3>
+                    <p><strong>Altitude:</strong> ${feature.nMinalt} ft - ${feature.nMaxalt} ft</p>
+                    <p><strong>Frequency:</strong> ${feature.sFreq}</p>
+                </div>
+                <hr>
+            `;
+            featureDetailsContainer.insertAdjacentHTML('beforeend', featureHtml);
+        });
+    }, 300); // Add a 300ms delay (same as your CSS transition time)
 }
+
 	
 function hideInfoPanel() {
     infoPanel.style.bottom = '-400px';
