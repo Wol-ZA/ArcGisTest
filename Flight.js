@@ -188,7 +188,7 @@ view.on("click", function () {
     if (isPanelOpen) {
         hideInfoPanel();
     } else {
-        
+        console.log("Panel closed, waiting for input...");
     }
 });
 
