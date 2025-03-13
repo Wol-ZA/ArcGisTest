@@ -156,32 +156,36 @@ titleBar.style.display = 'none';
 window.showInfoPanel = function(features) {
     console.log("showInfoPanel called with:", features);
 
-    // Force blur any active input to prevent iOS issues
+    // Force blur any active input
     document.activeElement?.blur();
 
-    // Slide the panel up first
-    infoPanel.style.bottom = '0';
-    titleBar.style.display = 'none';
-    isPanelOpen = true;
+    // Force a small delay to let the DOM fully load
+    requestAnimationFrame(() => {
+        // Trigger the panel to slide up
+        infoPanel.style.bottom = '0';
+        titleBar.style.display = 'none';
+        isPanelOpen = true;
 
-    // Delay the HTML update until the panel is fully visible
-    setTimeout(() => {
-        const featureDetailsContainer = document.getElementById('featureDetails');
-        featureDetailsContainer.innerHTML = ''; // Clear previous content
+        // Force a reflow before updating content (iOS WebKit Fix)
+        setTimeout(() => {
+            const featureDetailsContainer = document.getElementById('featureDetails');
+            featureDetailsContainer.innerHTML = ''; // Clear previous content
 
-        features.forEach(feature => {
-            const featureHtml = `
-                <div class="feature">
-                    <h3>${feature.sName}</h3>
-                    <p><strong>Altitude:</strong> ${feature.nMinalt} ft - ${feature.nMaxalt} ft</p>
-                    <p><strong>Frequency:</strong> ${feature.sFreq}</p>
-                </div>
-                <hr>
-            `;
-            featureDetailsContainer.insertAdjacentHTML('beforeend', featureHtml);
-        });
-    }, 300); // Add a 300ms delay (same as your CSS transition time)
+            features.forEach(feature => {
+                const featureHtml = `
+                    <div class="feature">
+                        <h3>${feature.sName}</h3>
+                        <p><strong>Altitude:</strong> ${feature.nMinalt} ft - ${feature.nMaxalt} ft</p>
+                        <p><strong>Frequency:</strong> ${feature.sFreq}</p>
+                    </div>
+                    <hr>
+                `;
+                featureDetailsContainer.insertAdjacentHTML('beforeend', featureHtml);
+            });
+        }, 50); // A small 50ms delay forces iOS to re-render the DOM
+    });
 }
+
 
 	
 function hideInfoPanel() {
