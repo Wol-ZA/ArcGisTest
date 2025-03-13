@@ -156,6 +156,9 @@ titleBar.style.display = 'none';
 window.showInfoPanel = function(features) {
     console.log("showInfoPanel called with:", features);
 
+    // Force blur any active input to avoid iOS keyboard issue
+    document.activeElement?.blur();
+
     const featureDetailsContainer = document.getElementById('featureDetails');
     featureDetailsContainer.innerHTML = ''; // Clear previous content
 
