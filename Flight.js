@@ -155,11 +155,12 @@ titleBar.style.display = 'none';
 
 window.showInfoPanel = function(features) {
     console.log("showInfoPanel called with:", features);
-    
-    let featureDetailsHtml = "";
+
+    const featureDetailsContainer = document.getElementById('featureDetails');
+    featureDetailsContainer.innerHTML = ''; // Clear previous content
 
     features.forEach(feature => {
-        featureDetailsHtml += `
+        const featureHtml = `
             <div class="feature">
                 <h3>${feature.sName}</h3>
                 <p><strong>Altitude:</strong> ${feature.nMinalt} ft - ${feature.nMaxalt} ft</p>
@@ -167,13 +168,14 @@ window.showInfoPanel = function(features) {
             </div>
             <hr>
         `;
+        featureDetailsContainer.insertAdjacentHTML('beforeend', featureHtml);
     });
 
-    document.getElementById('featureDetails').innerHTML = featureDetailsHtml;
     infoPanel.style.bottom = '0';
     titleBar.style.display = 'none';
     isPanelOpen = true;
 }
+	
 function hideInfoPanel() {
     infoPanel.style.bottom = '-400px';
     isPanelOpen = false;
