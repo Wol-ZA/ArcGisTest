@@ -713,8 +713,8 @@ window.windy = function(){
     var zoom = view.zoom;
     toggleWindyOverlay(center.latitude, center.longitude, zoom);
 }
-    
-window.toggleWindyOverlay = function (lat,lon,zoom) {
+
+window.toggleWindyOverlay = function (lat, lon, zoom) {
     // Check if the Windy iframe already exists
     const existingIframe = document.getElementById("windyIframe");
 
@@ -726,17 +726,7 @@ window.toggleWindyOverlay = function (lat,lon,zoom) {
         const windyIframe = document.createElement("iframe");
 
         // Customize the iframe settings to match Windy overlay size and settings
-        windyIframe.src = "https://embed.windy.com/embed2.html" +
-                          `?lat=${lat}` + // Use dynamic latitude
-                          `&lon=${lon}` + // Use dynamic longitude
-                          `&zoom=${zoom}` + // Use dynamic zoom level
-                          "&level=surface" +
-                          "&overlay=wind" +
-                          "&menu=&message=true" +
-                          "&marker=&calendar=&pressure=&type=map" +
-                          "&location=coordinates" +
-                          "&detail=&detailLat=" +
-                          "&metricWind=default&metricTemp=default";
+        windyIframe.src = `https://embed.windy.com/embed2.html?lat=${lat}&lon=${lon}&zoom=${zoom}&level=surface&overlay=wind&menu=&message=true&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=&metricWind=default&metricTemp=default`;
         windyIframe.id = "windyIframe"; // Add an ID to the iframe for toggling
         windyIframe.width = "100%"; // Set full width
         windyIframe.height = "100%"; // Set full height
@@ -839,51 +829,44 @@ window.addMarkersAndDrawLine = function (data) {
         symbol: { type: "simple-line", color: [0, 0, 255, 0.5], width: 4 }
     });
     draggableGraphicsLayer.add(polylineGraphic);
-    zoomToFlightPlan(polylineCoordinates,window.view);
+    zoomToFlightPlan(polylineCoordinates, window.view);
 
-function zoomToFlightPlan(data, view) {
-    if (!data || data.length < 2) {
-        console.error("Insufficient data to zoom. Data:", data);
-        return;
+    function zoomToFlightPlan(data, view) {
+        if (!data || data.length < 2) {
+            console.error("Insufficient data to zoom. Data:", data);
+            return;
+        }
+
+        // Extract the start and end points
+        const start = data[0];
+        const end = data[data.length - 1];
+
+        // Create an extent that covers the start and end points
+        const extent = {
+            xmin: Math.min(start[0], end[0]), // Min longitude
+            ymin: Math.min(start[1], end[1]), // Min latitude
+            xmax: Math.max(start[0], end[0]), // Max longitude
+            ymax: Math.max(start[1], end[1]), // Max latitude
+            spatialReference: { wkid: 4326 } // WGS 84 spatial reference
+        };
+
+        // Attempt to zoom to the extent
+        view.goTo(extent).then(() => {
+            console.log("Zoom to extent successful!");
+        }).catch((error) => {
+            console.error("Error zooming to extent:", error);
+        });
+
+        // Test direct zoom using a center and zoom level (for comparison)
+        view.goTo({
+            center: [(start[0] + end[0]) / 2, (start[1] + end[1]) / 2], // Center the map at midpoint
+            zoom: 6  // Set a reasonable zoom level for the flight path
+        }).then(() => {
+            console.log("Direct zoom successful!");
+        }).catch((error) => {
+            console.error("Error with direct zoom:", error);
+        });
     }
-
-    // Extract the start and end points
-    const start = data[0];
-    const end = data[data.length - 1];
-
-    // Log coordinates for debugging
-    console.log("Start point:", start);
-    console.log("End point:", end);
-
-    // Create an extent that covers the start and end points
-    const extent = {
-        xmin: Math.min(start[0], end[0]), // Min longitude
-        ymin: Math.min(start[1], end[1]), // Min latitude
-        xmax: Math.max(start[0], end[0]), // Max longitude
-        ymax: Math.max(start[1], end[1]), // Max latitude
-        spatialReference: { wkid: 4326 } // WGS 84 spatial reference
-    };
-
-    // Log extent for debugging
-    console.log("Calculated extent:", extent);
-
-    // Attempt to zoom to the extent
-    view.goTo(extent).then(() => {
-        console.log("Zoom to extent successful!");
-    }).catch((error) => {
-        console.error("Error zooming to extent:", error);
-    });
-
-    // Test direct zoom using a center and zoom level (for comparison)
-    view.goTo({
-        center: [(start[0] + end[0]) / 2, (start[1] + end[1]) / 2], // Center the map at midpoint
-        zoom: 6  // Set a reasonable zoom level for the flight path
-    }).then(() => {
-        console.log("Direct zoom successful!");
-    }).catch((error) => {
-        console.error("Error with direct zoom:", error);
-    });
-}
 
     
 
