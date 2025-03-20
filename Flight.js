@@ -233,10 +233,13 @@ function stopDragging() {
 view.on("click", function (event) {
     view.hitTest(event).then(function (response) {
         if (response.results.length > 0) {
-            let layerNames = new Set(); // Use a Set to avoid duplicate names
+            let layerNames = new Set();
+            let clickedIcon = false;
 
             response.results.forEach((result) => {
-                if (result.graphic) {
+                if (result.graphic && result.graphic.layer instanceof GeoJSONLayer) {
+                    clickedIcon = true; // Icon was clicked, so skip layer event
+                } else if (result.graphic) {
                     const attributes = result.graphic.attributes;
                     if (attributes && attributes.name) {
                         layerNames.add(attributes.name || "Unknown Layer");
@@ -244,10 +247,17 @@ view.on("click", function (event) {
                 }
             });
 
+            // If an icon was clicked, prevent layer event execution
+            if (clickedIcon) {
+                console.log("Icon clicked, ignoring layer event.");
+                return;
+            }
+
+            // Run the layer event only if no icon was clicked
             if (layerNames.size > 0) {
-                const layerData = { layers: Array.from(layerNames) }; // Create JSON object
+                const layerData = { layers: Array.from(layerNames) };
                 console.log("Clicked Layers:", layerData);
-                WL.Execute("GetSectorName", JSON.stringify(layerData)); // Send JSON string
+                WL.Execute("GetSectorName", JSON.stringify(layerData));
             } else {
                 console.log("Features clicked, but none had a 'name' property.");
             }
@@ -258,7 +268,6 @@ view.on("click", function (event) {
         console.error("Error in hitTest:", error);
     });
 });
-
 
  // Function to create a GeoJSONLayer with a specific icon for points
  window.createIconGeoJSONLayer = function(url, iconUrl) {
