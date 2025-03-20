@@ -234,12 +234,17 @@ view.on("click", function (event) {
     view.hitTest(event).then(function (response) {
         if (response.results.length > 0) {
             let layerNames = new Set();
-            let clickedIcon = false;
+            let topmostGraphic = response.results[0].graphic; // Get the topmost feature
 
+            // If the topmost feature belongs to a GeoJSONLayer, prevent layer click event
+            if (topmostGraphic && topmostGraphic.layer instanceof GeoJSONLayer) {
+                console.log("Icon clicked, ignoring layer event.");
+                return;
+            }
+
+            // Otherwise, process layers normally
             response.results.forEach((result) => {
-                if (result.graphic && result.graphic.layer instanceof GeoJSONLayer) {
-                    clickedIcon = true; // Icon was clicked, so skip layer event
-                } else if (result.graphic) {
+                if (result.graphic) {
                     const attributes = result.graphic.attributes;
                     if (attributes && attributes.name) {
                         layerNames.add(attributes.name || "Unknown Layer");
@@ -247,13 +252,6 @@ view.on("click", function (event) {
                 }
             });
 
-            // If an icon was clicked, prevent layer event execution
-            if (clickedIcon) {
-                console.log("Icon clicked, ignoring layer event.");
-                return;
-            }
-
-            // Run the layer event only if no icon was clicked
             if (layerNames.size > 0) {
                 const layerData = { layers: Array.from(layerNames) };
                 console.log("Clicked Layers:", layerData);
@@ -268,6 +266,7 @@ view.on("click", function (event) {
         console.error("Error in hitTest:", error);
     });
 });
+
 
  // Function to create a GeoJSONLayer with a specific icon for points
  window.createIconGeoJSONLayer = function(url, iconUrl) {
