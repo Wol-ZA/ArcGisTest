@@ -793,7 +793,7 @@ window.addMarkersAndDrawLine = function (data) {
         IorraLayer
     ];
 
-    const draggableGraphicsLayer = new GraphicsLayer({ zIndex: 1000 });
+    const draggableGraphicsLayer = new GraphicsLayer({ zIndex: 2000 });
     window.draggableGraphicsLayer = draggableGraphicsLayer;
     map.add(draggableGraphicsLayer);
     draggableGraphicsLayer.removeAll();
