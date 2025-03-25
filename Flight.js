@@ -734,7 +734,8 @@ window.toggleWindyOverlay = function (lat, lon, zoom) {
         const windyIframe = document.createElement("iframe");
 
         // Customize the iframe settings to match Windy overlay size and settings
-        windyIframe.src = `https://embed.windy.com/embed2.html?lat=${lat}&lon=${lon}&zoom=${zoom}&level=surface&overlay=wind&menu=&message=true&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=&metricWind=default&metricTemp=default`;
+        windyIframe.src = `https://embed.windy.com/embed2.html?lat=${lat}&lon=${lon}&zoom=${zoom}&level=surface&overlay=wind&menu=&message=true&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=&metricWind=default&metricTemp=default&windyApiKey=YqQDXWMhsWkYyMH4ZMMxsGEW48onxJE0`;
+
         windyIframe.id = "windyIframe"; // Add an ID to the iframe for toggling
         windyIframe.width = "100%"; // Set full width
         windyIframe.height = "100%"; // Set full height
