@@ -994,81 +994,86 @@ function generatePopupHTML(content, pointsWithinRadius) {
 
     let originalPositionMark = null;
     function showCustomPopup(content, screenPoint, pointsWithinRadius) {
-        const popupHTML = generatePopupHTML(content, pointsWithinRadius);
-        customPopup.innerHTML = popupHTML;
+    const popupHTML = generatePopupHTML(content, pointsWithinRadius);
+    customPopup.innerHTML = popupHTML;
 
-        // Set initial position of the popup
-        customPopup.style.left = `${screenPoint.x}px`;
-        customPopup.style.top = `${screenPoint.y}px`;
-        customPopup.style.display = "block";
+    // Set initial position
+    customPopup.style.left = `${screenPoint.x}px`;
+    customPopup.style.top = `${screenPoint.y}px`;
+    customPopup.style.display = "block";
 
-        
-        // Check if the popup overflows the screen horizontally (right side)
+    // Wait for the popup to be fully rendered before adjusting position
+    setTimeout(() => {
         const popupRect = customPopup.getBoundingClientRect();
         const screenWidth = window.innerWidth;
         const screenHeight = window.innerHeight;
 
-customPopup.querySelectorAll(".poi-tag").forEach((tag) => {
-    tag.addEventListener("click", (event) => {
-        const latitude = parseFloat(tag.dataset.latitude);
-        const longitude = parseFloat(tag.dataset.longitude);
-        const name = tag.dataset.name || "Unnamed POI";
-        const description = tag.dataset.description || "No description available";
+        let adjustedX = screenPoint.x;
+        let adjustedY = screenPoint.y;
 
-        if (view.draggedGraphic) {
-            // Update the dragged marker's geometry
-            const newPosition = { type: "point", latitude, longitude };
-            view.draggedGraphic.geometry = newPosition;
-
-            // Update the marker's attributes
-            view.draggedGraphic.attributes.name = name;
-            view.draggedGraphic.attributes.description = description;
-
-            // Update the polyline coordinates
-            const index = markerGraphics.indexOf(view.draggedGraphic);
-            if (index !== -1) {
-                polylineCoordinates[index] = [longitude, latitude];
-                polylineGraphic.geometry = { type: "polyline", paths: [...polylineCoordinates] };
-                hitDetectionPolyline.geometry = { 
-                    type: "polyline", 
-                    paths: [...polylineCoordinates] 
-                };
-            }
-
-            // Notify the backend about the updated marker
-            WL.Execute("AlertMe", getFlightPlanAsJSON());
-
-            // Hide the popup after updating
-            hideCustomPopup();
-        }
-    });
-});
-        
-        // Adjust for horizontal overflow (right side)
+        // Prevent overflow on the right
         if (popupRect.right > screenWidth) {
-            const offsetX = popupRect.right - screenWidth;
-            customPopup.style.left = `${screenPoint.x - offsetX - 10}px`; // Adjust 10px for margin
+            adjustedX = screenWidth - popupRect.width - 10; // Leave a small margin
         }
 
-        // Adjust for vertical overflow (bottom side)
+        // Prevent overflow on the bottom
         if (popupRect.bottom > screenHeight) {
-            const offsetY = popupRect.bottom - screenHeight;
-            customPopup.style.top = `${screenPoint.y - offsetY - 10}px`; // Adjust 10px for margin
+            adjustedY = screenHeight - popupRect.height - 10;
         }
 
-        // Optionally: Adjust for overflow on the left side (if it's too far left)
+        // Prevent overflow on the left
         if (popupRect.left < 0) {
-            const offsetX = popupRect.left;
-            customPopup.style.left = `${screenPoint.x - offsetX + 10}px`; // Adjust 10px for margin
+            adjustedX = 10; // Set a small margin
         }
 
-        // Optionally: Adjust for overflow on the top side (if it's too far up)
+        // Prevent overflow on the top
         if (popupRect.top < 0) {
-            const offsetY = popupRect.top;
-            customPopup.style.top = `${screenPoint.y - offsetY + 10}px`; // Adjust 10px for margin
+            adjustedY = 10;
         }
-    }
 
+        // Apply final adjustments
+        customPopup.style.left = `${adjustedX}px`;
+        customPopup.style.top = `${adjustedY}px`;
+
+    }, 0); // Delay until next render cycle
+
+    // Attach event listeners to POI tags
+    customPopup.querySelectorAll(".poi-tag").forEach((tag) => {
+        tag.addEventListener("click", (event) => {
+            const latitude = parseFloat(tag.dataset.latitude);
+            const longitude = parseFloat(tag.dataset.longitude);
+            const name = tag.dataset.name || "Unnamed POI";
+            const description = tag.dataset.description || "No description available";
+
+            if (view.draggedGraphic) {
+                // Update the dragged marker's geometry
+                const newPosition = { type: "point", latitude, longitude };
+                view.draggedGraphic.geometry = newPosition;
+
+                // Update the marker's attributes
+                view.draggedGraphic.attributes.name = name;
+                view.draggedGraphic.attributes.description = description;
+
+                // Update the polyline coordinates
+                const index = markerGraphics.indexOf(view.draggedGraphic);
+                if (index !== -1) {
+                    polylineCoordinates[index] = [longitude, latitude];
+                    polylineGraphic.geometry = { type: "polyline", paths: [...polylineCoordinates] };
+                    hitDetectionPolyline.geometry = { 
+                        type: "polyline", 
+                        paths: [...polylineCoordinates] 
+                    };
+                }
+
+                // Notify the backend about the updated marker
+                WL.Execute("AlertMe", getFlightPlanAsJSON());
+
+                // Hide the popup after updating
+                hideCustomPopup();
+            }
+        });
+    });
+}
     // Helper to hide custom popup
     function hideCustomPopup() {
         customPopup.style.display = "none";
