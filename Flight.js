@@ -1008,37 +1008,16 @@ function generatePopupHTML(content, pointsWithinRadius) {
 
     // Wait for the popup to be fully rendered before adjusting position
     setTimeout(() => {
-        const popupRect = customPopup.getBoundingClientRect();
+	const popupRect = customPopup.getBoundingClientRect();
         const screenWidth = window.innerWidth;
         const screenHeight = window.innerHeight;
 
-        let adjustedX = screenPoint.x;
-        let adjustedY = screenPoint.y;
+        // Center the popup on the screen
+        const centeredX = (screenWidth - popupRect.width) / 2;
+        const centeredY = (screenHeight - popupRect.height) / 2;
 
-        // Prevent overflow on the right
-        if (popupRect.right > screenWidth) {
-            adjustedX = screenWidth - popupRect.width - 10; // Leave a small margin
-        }
-
-        // Prevent overflow on the bottom
-        if (popupRect.bottom > screenHeight) {
-            adjustedY = screenHeight - popupRect.height - 10;
-        }
-
-        // Prevent overflow on the left
-        if (popupRect.left < 0) {
-            adjustedX = 10; // Set a small margin
-        }
-
-        // Prevent overflow on the top
-        if (popupRect.top < 0) {
-            adjustedY = 10;
-        }
-
-        // Apply final adjustments
-        customPopup.style.left = `${adjustedX}px`;
-        customPopup.style.top = `${adjustedY}px`;
-
+        customPopup.style.left = `${Math.max(centeredX, 10)}px`; // Prevent negative values
+        customPopup.style.top = `${Math.max(centeredY, 10)}px`;  // Prevent negative values
     }, 0); // Delay until next render cycle
 
     // Attach event listeners to POI tags
