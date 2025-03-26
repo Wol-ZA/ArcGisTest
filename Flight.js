@@ -898,7 +898,7 @@ function createPopup() {
     popup.style.wordWrap = "break-word"; // Ensure long text doesn't overflow
 
     // **Always center it on screen**
-    popup.style.left = "50%";
+    popup.style.left = "80%";
     popup.style.top = "50%";
     popup.style.transform = "translate(-50%, -50%)"; // This makes it perfectly centered
 
