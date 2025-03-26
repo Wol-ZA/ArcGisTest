@@ -998,8 +998,6 @@ function generatePopupHTML(content, pointsWithinRadius) {
     customPopup.innerHTML = popupHTML;
 
     // Set initial position
-    customPopup.style.left = `${screenPoint.x}px`;
-    customPopup.style.top = `${screenPoint.y}px`;
     customPopup.style.display = "block";
 
     // Wait for the popup to be fully rendered before adjusting position
