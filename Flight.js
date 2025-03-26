@@ -1009,17 +1009,15 @@ function generatePopupHTML(content, pointsWithinRadius) {
 
     // Wait for the popup to be fully rendered before adjusting position
     setTimeout(() => {
-	const popupRect = customPopup.getBoundingClientRect();
+  // Get the popup dimensions AFTER rendering
+        const popupRect = customPopup.getBoundingClientRect();
         const screenWidth = window.innerWidth;
         const screenHeight = window.innerHeight;
 
-        // Center the popup on the screen
-        const centeredX = (screenWidth - popupRect.width) / 2;
-        const centeredY = (screenHeight - popupRect.height) / 2;
-
-        customPopup.style.left = `${Math.max(centeredX, 10)}px`; // Prevent negative values
-        customPopup.style.top = `${Math.max(centeredY, 10)}px`;  // Prevent negative values
-    }, 0); // Delay until next render cycle
+        // **Correct centering**
+        customPopup.style.left = `${(screenWidth - popupRect.width) / 2}px`;
+        customPopup.style.top = `${(screenHeight - popupRect.height) / 2}px`;
+    }, 0);
 
     // Attach event listeners to POI tags
     customPopup.querySelectorAll(".poi-tag").forEach((tag) => {
