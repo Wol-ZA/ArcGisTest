@@ -885,7 +885,7 @@ window.addMarkersAndDrawLine = function (data) {
 function createPopup() {
     const popup = document.createElement("div");
     popup.id = "custom-popup";
-    popup.style.position = "fixed"; // Use fixed to position it relative to the viewport
+    popup.style.position = "fixed"; // Position relative to the viewport
     popup.style.background = "white";
     popup.style.border = "1px solid #ccc";
     popup.style.padding = "10px";
@@ -897,14 +897,15 @@ function createPopup() {
     popup.style.overflowY = "auto"; // Add scrolling for content that overflows
     popup.style.wordWrap = "break-word"; // Ensure long text doesn't overflow
 
-    // Center the popup
+    // **Always center it on screen**
     popup.style.left = "50%";
     popup.style.top = "50%";
-    popup.style.transform = "translate(-50%, -50%)"; // Shift back by half of its width & height
+    popup.style.transform = "translate(-50%, -50%)"; // This makes it perfectly centered
 
     document.body.appendChild(popup);
     return popup;
 }
+
 
     // Function to query features and build popup content
 function getFeaturesWithinRadius(mapPoint, callback) {
