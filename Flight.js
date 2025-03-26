@@ -889,7 +889,7 @@ function createPopup() {
     popup.style.background = "white";
     popup.style.border = "1px solid #ccc";
     popup.style.padding = "10px";
-    popup.style.display = "none";
+    popup.style.display = "block";
     popup.style.zIndex = "1000";
     popup.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)";
     popup.style.maxWidth = "90vw"; // Prevent the popup from exceeding the screen width
@@ -900,7 +900,6 @@ function createPopup() {
     // **Always center it on screen**
     popup.style.left = "80%";
     popup.style.top = "50%";
-    popup.style.transform = "translate(-50%, -50%)"; // This makes it perfectly centered
 
     document.body.appendChild(popup);
     return popup;
