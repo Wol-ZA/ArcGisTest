@@ -892,8 +892,8 @@ window.addMarkersAndDrawLine = function (data) {
     popup.style.display = "none";
     popup.style.zIndex = "1000";
     popup.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)";
-    popup.style.maxWidth = "90%"; // Prevent the popup from exceeding the screen width
-    popup.style.maxHeight = "90%"; // Prevent the popup from exceeding the screen height
+    popup.style.maxWidth = "90vw"; // Prevent the popup from exceeding the screen width
+    popup.style.maxHeight = "80vh"; // Prevent the popup from exceeding the screen height
     popup.style.overflowY = "auto"; // Add scrolling for content that overflows
     popup.style.wordWrap = "break-word"; // Ensure long text doesn't overflow
     document.body.appendChild(popup);
