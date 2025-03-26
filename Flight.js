@@ -882,13 +882,13 @@ window.addMarkersAndDrawLine = function (data) {
     // Custom popup creation
     const customPopup = createPopup();
 
-   function createPopup() {
+function createPopup() {
     const popup = document.createElement("div");
     popup.id = "custom-popup";
-    popup.style.position = "absolute";
+    popup.style.position = "fixed"; // Use fixed to position it relative to the viewport
     popup.style.background = "white";
     popup.style.border = "1px solid #ccc";
-    popup.style.padding = "100px";
+    popup.style.padding = "10px";
     popup.style.display = "none";
     popup.style.zIndex = "1000";
     popup.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)";
@@ -896,6 +896,12 @@ window.addMarkersAndDrawLine = function (data) {
     popup.style.maxHeight = "80vh"; // Prevent the popup from exceeding the screen height
     popup.style.overflowY = "auto"; // Add scrolling for content that overflows
     popup.style.wordWrap = "break-word"; // Ensure long text doesn't overflow
+
+    // Center the popup
+    popup.style.left = "50%";
+    popup.style.top = "50%";
+    popup.style.transform = "translate(-50%, -50%)"; // Shift back by half of its width & height
+
     document.body.appendChild(popup);
     return popup;
 }
