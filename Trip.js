@@ -177,13 +177,14 @@ const labelLayer = new FeatureLayer({
 map.add(labelLayer);
     };
 
-window.startFlightSimulation = function() {
+window.startFlightSimulation = function () {
     if (!flightPath.length || animationRunning) return;
+
+    // Remove all markers and lines before starting the simulation
+    graphicsLayer.removeAll();
 
     animationRunning = true;
     let index = 0;
-    let prevTimestamp = Date.now();
-    let prevPosition = flightPath[0];
 
     function animatePlane() {
         if (index >= flightPath.length) {
@@ -192,25 +193,61 @@ window.startFlightSimulation = function() {
         }
 
         const { latitude, longitude, altitude } = flightPath[index];
-        const currentTimestamp = Date.now();
-        const timeDiff = (currentTimestamp - prevTimestamp) / 1000;
 
-        // ✅ Calculate Speed using Haversine formula
-        const distance = calculateDistance(prevPosition, flightPath[index]);
-        const speed = timeDiff > 0 ? (distance / timeDiff) * 3.6 : 0;
+        // ✅ Add Waypoint
+        const waypointGraphic = new Graphic({
+            geometry: new Point({ longitude, latitude, z: altitude }),
+            symbol: new SimpleMarkerSymbol({
+                color: [255, 0, 0], // Red
+                size: 6,
+                outline: { color: [255, 255, 255], width: 1 }
+            })
+        });
+        graphicsLayer.add(waypointGraphic);
 
-        // ✅ Update Plane Position
-        planeGraphic.geometry = new Point({ latitude, longitude, z: altitude });
-
-        // ✅ Create or Update Label
-        const labelGraphic = new Graphic({
-            geometry: new Point({ latitude, longitude, z: altitude + 500 }),
-            attributes: {
-                ObjectID: 1,  
-                labelText: `Alt: ${Math.round(altitude)}m\nSpeed: ${Math.round(speed)} km/h`
-            }
+        // ✅ Draw Vertical Line
+        const verticalLine = new Polyline({
+            paths: [[[longitude, latitude, altitude], [longitude, latitude, 0]]],
+            spatialReference: { wkid: 4326 }
         });
 
+        const verticalLineGraphic = new Graphic({
+            geometry: verticalLine,
+            symbol: new SimpleLineSymbol({ color: [255, 0, 0, 0.7], width: 2, style: "dash" })
+        });
+        graphicsLayer.add(verticalLineGraphic);
+
+        // ✅ Update Plane Position
+        if (!planeGraphic) {
+            planeGraphic = new Graphic({
+                geometry: new Point({ latitude, longitude, z: altitude }),
+                symbol: new SimpleMarkerSymbol({
+                    color: [0, 0, 255], // Blue
+                    size: 8,
+                    outline: { color: [255, 255, 255], width: 1 }
+                })
+            });
+            graphicsLayer.add(planeGraphic);
+        } else {
+            planeGraphic.geometry = new Point({ latitude, longitude, z: altitude });
+        }
+
+        // ✅ Draw Flight Path Polyline incrementally
+        if (index > 0) {
+            const previousPoint = flightPath[index - 1];
+            const segment = new Polyline({
+                paths: [[[previousPoint.longitude, previousPoint.latitude, previousPoint.altitude],
+                        [longitude, latitude, altitude]]],
+                spatialReference: { wkid: 4326 }
+            });
+
+            const segmentGraphic = new Graphic({
+                geometry: segment,
+                symbol: new SimpleLineSymbol({ color: [0, 0, 0, 0.5], width: 3, style: "solid" })
+            });
+
+            graphicsLayer.add(segmentGraphic);
+        }
 
         index++;
         setTimeout(animatePlane, 500);
@@ -218,6 +255,7 @@ window.startFlightSimulation = function() {
 
     animatePlane();
 };
+
      function calculateDistance(point1, point2) {
         const R = 6371000;
         const lat1 = point1.latitude * (Math.PI / 180);
