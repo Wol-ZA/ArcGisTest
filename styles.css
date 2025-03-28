@@ -5,6 +5,35 @@ html, body {
 }
 
 /* Make the map take the full height and width of the page */
+.layer-toggle {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: 80vh; /* Ensures it doesn't exceed 80% of the viewport height */
+    overflow-y: auto; /* Enables scrolling if content is too long */
+    background: white;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1000;
+}
+
+.layer-toggle h3 {
+    margin: 10px 0;
+}
+
+.layer-toggle label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+}
+
+.layer-toggle img {
+    width: 20px;
+    height: 20px;
+}
+
 
 #map {
     position: relative;
