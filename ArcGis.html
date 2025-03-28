@@ -71,17 +71,7 @@
     border-radius: 5px;
 }
     
-    .layer-toggle {
-      position: absolute;
-      top: 60px;
-      left: 10px;
-      background: white;
-      padding: 10px;
-      border-radius: 4px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      display: none; /* Initially hidden */
-      z-index: 10; /* Ensure it is above other elements */
-    }
+
     /* Button to toggle the layer panel */
     .toggle-button {
       position: absolute;
@@ -101,8 +91,8 @@
 .layer-toggle {
     position: fixed;
     bottom: 0;
-    left: 0;
-    width: 40%;
+    left: 10px;
+    width: 60%;
     max-height: 80vh; /* Ensures it doesn't exceed 80% of the viewport height */
     overflow-y: auto; /* Enables scrolling if content is too long */
     background: white;
