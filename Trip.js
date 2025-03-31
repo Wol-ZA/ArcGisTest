@@ -53,6 +53,26 @@ require([
         }));
         graphicsLayer.addMany(graphicsBatch);
 
+            // **Draw Flight Path Polyline**
+      const polyline = new Polyline({
+        paths: [pathCoordinates], // Use collected waypoints
+      spatialReference: { wkid: 4326 }
+  });
+
+  const lineSymbol = new SimpleLineSymbol({
+      color: [0, 0, 255, 0.7], // Blue color for visibility
+      width: 2,
+      style: "solid"
+    });
+
+const lineGraphic = new Graphic({
+    geometry: polyline,
+    symbol: lineSymbol
+});
+
+graphicsLayer.add(lineGraphic);
+
+      
         view.extent = new Extent({ xmin, ymin, xmax, ymax, spatialReference: { wkid: 4326 } }).expand(1.2);
 
         setTimeout(() => {
@@ -70,11 +90,27 @@ require([
 
     function animatePlane() {
         if (!animationRunning || paused || index >= flightPath.length) return;
-
+        
         const { latitude, longitude, altitude } = flightPath[index++];
         planeGraphic.geometry = new Point({ longitude, latitude, z: altitude });
 
         document.getElementById("altitudeDisplay").innerText = `Altitude: ${Math.round(altitude * 3.28084)} ft`;
+      // ✅ Draw Flight Path Polyline incrementally
+      if (index > 0) {
+    const previousPoint = flightPath[index - 1];
+    const segment = new Polyline({
+        paths: [[[previousPoint.longitude, previousPoint.latitude, previousPoint.altitude],
+                [longitude, latitude, altitude]]],
+        spatialReference: { wkid: 4326 }
+    });
+
+    const segmentGraphic = new Graphic({
+        geometry: segment,
+        symbol: new SimpleLineSymbol({ color: [0, 0, 255, 0.7], width: 2, style: "solid" })
+    });
+
+    graphicsLayer.add(segmentGraphic);
+}
 
         graphicsLayer.addMany([
             new Graphic({
