@@ -1081,10 +1081,7 @@ function generatePopupHTML(content, pointsWithinRadius) {
         });
     }
 
-    view.on("drag", (event) => {
-        const { action } = event;
-        const mapPoint = view.toMap({ x: event.x, y: event.y });
-
+	
 view.on("click", (event) => {
     view.hitTest(event).then((response) => {
         if (response.results.length) {
@@ -1124,7 +1121,11 @@ view.on("click", (event) => {
             }
         }
     });
-});	    
+});	
+
+    view.on("drag", (event) => {
+        const { action } = event;
+        const mapPoint = view.toMap({ x: event.x, y: event.y });	    
 
 if (action === "start") {
     view.hitTest(event).then((response) => {
