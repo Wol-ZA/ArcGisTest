@@ -839,7 +839,8 @@ view.on("click", (event) => {
         if (response.results.length) {
             const graphic = response.results.find(result => markerGraphics.includes(result.graphic))?.graphic;
             if (graphic) {
-                view.draggedGraphic = graphic; // Set the clicked marker as the active graphic
+                view.draggedGraphic = graphic; // Set clicked marker as active
+                originalPositionMark = graphic.geometry.clone(); // Store current position for cancel
 
                 const mapPoint = graphic.geometry;
                 
