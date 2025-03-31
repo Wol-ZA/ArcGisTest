@@ -22,14 +22,34 @@ require([
         ground: "world-elevation"
     });
 
-    const view = new SceneView({
-        container: "viewDiv",
-        map: map,
-        camera: {
-            position: { latitude: -31.548, longitude: 24.34, z: 30000 },
-            tilt: 75
-        }
-    });
+const view = new SceneView({
+    container: "viewDiv",
+    map: map,
+    camera: {
+        position: { latitude: -30.5595, longitude: 22.9375, z: 500000 },
+        tilt: 75
+    },
+    extent: {
+        xmin: 16.344976, // Western border (Namibia)
+        ymin: -34.819166, // Southern tip (Cape Agulhas)
+        xmax: 32.83012,  // Eastern border (Mozambique)
+        ymax: -22.125424, // Northern border (Zimbabwe)
+        spatialReference: { wkid: 4326 }
+    }
+});
+
+view.constraints = {
+    rotationEnabled: false,
+    minZoom: 5,  // Prevents zooming out too much
+    maxZoom: 18, // Allows zooming in for details
+    extent: {
+        xmin: 16.344976,
+        ymin: -34.819166,
+        xmax: 32.83012,
+        ymax: -22.125424,
+        spatialReference: { wkid: 4326 }
+    }
+};
      view.ui.remove("zoom");
     const graphicsLayer = new GraphicsLayer();
     map.add(graphicsLayer);
