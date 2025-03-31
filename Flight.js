@@ -1085,6 +1085,47 @@ function generatePopupHTML(content, pointsWithinRadius) {
         const { action } = event;
         const mapPoint = view.toMap({ x: event.x, y: event.y });
 
+view.on("click", (event) => {
+    view.hitTest(event).then((response) => {
+        if (response.results.length) {
+            const graphic = response.results.find(result => markerGraphics.includes(result.graphic))?.graphic;
+            if (graphic) {
+                const mapPoint = graphic.geometry;
+                
+                getFeaturesWithinRadius(mapPoint, (pointsWithinRadius) => {
+                    console.log("Points within radius:", pointsWithinRadius);
+
+                    // Limit to 5 results
+                    const limitedPoints = pointsWithinRadius.slice(0, 5);
+
+                    // Create popup content
+                    const content = limitedPoints.map(point => {
+                        const truncatedDescription = point.description.length > 25
+                            ? point.description.slice(0, 25) + "..."
+                            : point.description;
+
+                        return `
+                            <div class="item">
+                                <div class="icon">
+                                    <img src="${point.icon}" alt="${point.name}" style="width: 16px; height: 16px; margin-right: 5px;">
+                                    ${point.name}
+                                </div>
+                                <span class="identifier">${truncatedDescription}</span>
+                            </div>
+                        `;
+                    }).join("");
+
+                    console.log("Popup content:", content);
+
+                    // Get screen position and show popup
+                    const screenPoint = view.toScreen(mapPoint);
+                    showCustomPopup(content, screenPoint, limitedPoints);
+                });
+            }
+        }
+    });
+});	    
+
 if (action === "start") {
     view.hitTest(event).then((response) => {
         if (response.results.length) {
@@ -1227,46 +1268,7 @@ if (activeCircleGraphic && activeCircleGraphic.geometry) {
     }
 });
 
-view.on("click", (event) => {
-    view.hitTest(event).then((response) => {
-        if (response.results.length) {
-            const graphic = response.results.find(result => markerGraphics.includes(result.graphic))?.graphic;
-            if (graphic) {
-                const mapPoint = graphic.geometry;
-                
-                getFeaturesWithinRadius(mapPoint, (pointsWithinRadius) => {
-                    console.log("Points within radius:", pointsWithinRadius);
 
-                    // Limit to 5 results
-                    const limitedPoints = pointsWithinRadius.slice(0, 5);
-
-                    // Create popup content
-                    const content = limitedPoints.map(point => {
-                        const truncatedDescription = point.description.length > 25
-                            ? point.description.slice(0, 25) + "..."
-                            : point.description;
-
-                        return `
-                            <div class="item">
-                                <div class="icon">
-                                    <img src="${point.icon}" alt="${point.name}" style="width: 16px; height: 16px; margin-right: 5px;">
-                                    ${point.name}
-                                </div>
-                                <span class="identifier">${truncatedDescription}</span>
-                            </div>
-                        `;
-                    }).join("");
-
-                    console.log("Popup content:", content);
-
-                    // Get screen position and show popup
-                    const screenPoint = view.toScreen(mapPoint);
-                    showCustomPopup(content, screenPoint, limitedPoints);
-                });
-            }
-        }
-    });
-});
 	
     // Event listener for Cancel button
  customPopup.addEventListener("click", (event) => {
