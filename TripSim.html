@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2D Flight Path from George to Bloemfontein</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://js.arcgis.com/4.26/esri/themes/light/main.css">
     <script src="https://js.arcgis.com/4.26/"></script>
     <style>
@@ -16,13 +17,78 @@
             height: 100%; /* Set height of the viewDiv to fill the screen */
             width: 100%;  /* Set width of the viewDiv to fill the screen */
         }
+        
+        /* Altitude Display Styling */
+        #altitudeDisplay {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 1000;
+        }
+
+        /* Remote Buttons Styling */
+   #Remotes {
+    position: absolute;
+    right: 10px;
+    top: 150px;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Add space between buttons */
+}
+
+        /* Button Styling */
+        button {
+            background-color: #007bff; /* Blue background */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            width: 50px; /* Default width for buttons */
+        }
+
+        /* Button Hover Effect */
+        button:hover {
+            background-color: #0056b3; /* Darker blue */
+            transform: scale(1.05); /* Slightly enlarge the button on hover */
+        }
+
+        /* Button Focus Effect */
+        button:focus {
+            outline: none;
+        }
+
     </style>
 </head>
 <body>
-    <div id="viewDiv">
-        <button onclick="startFlightSimulation()">Start Flight</button>
+    <!-- Add this div to render the map -->
+    <div id="viewDiv"></div>
+
+    <!-- Altitude Display -->
+    <div id="altitudeDisplay">
+        Altitude: 0FT
     </div>
-    
+
+    <!-- Remote Control Buttons -->
+    <div id="Remotes">
+        <button id="pauseButton"><i class="fas fa-pause"></i></button>
+        <button id="resumeButton"><i class="fas fa-play"></i></button>
+        <button id="rewindButton"><i class="fas fa-backward"></i></button>
+        <button id="resetButton"><i class="fas fa-sync-alt"></i></button>
+    </div>
+
     <script src="Trip.js"></script>
 </body>
 </html>
