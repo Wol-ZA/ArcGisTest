@@ -834,11 +834,13 @@ window.addMarkersAndDrawLine = function (data) {
         draggableGraphicsLayer.add(markerGraphic);
         markerGraphics.push(markerGraphic);
 
-	view.on("click", (event) => {
+view.on("click", (event) => {
     view.hitTest(event).then((response) => {
         if (response.results.length) {
             const graphic = response.results.find(result => markerGraphics.includes(result.graphic))?.graphic;
             if (graphic) {
+                view.draggedGraphic = graphic; // Set the clicked marker as the active graphic
+
                 const mapPoint = graphic.geometry;
                 
                 getFeaturesWithinRadius(mapPoint, (pointsWithinRadius) => {
@@ -873,7 +875,8 @@ window.addMarkersAndDrawLine = function (data) {
             }
         }
     });
-});    
+});
+
     });
 
     const polylineGraphic = new Graphic({
