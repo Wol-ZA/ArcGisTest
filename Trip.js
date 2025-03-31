@@ -1,3 +1,4 @@
+
 require([
     "esri/Map",
     "esri/views/SceneView",
@@ -209,7 +210,7 @@ function animatePlane() {
     const altitudeFeet = Math.round(altitude * 3.28084);
 
     // ✅ Update Altitude Display in feet
-    document.getElementById("altitudeDisplay").innerText = Altitude: ${altitudeFeet} ft;
+    document.getElementById("altitudeDisplay").innerText = `Altitude: ${altitudeFeet} ft`;
 
     // ✅ Draw Vertical Line
     const verticalLine = new Polyline({
@@ -286,7 +287,7 @@ function rewindSimulation() {
 
         // Update the altitude display
         const altitudeFeet = Math.round(altitude * 3.28084);
-        document.getElementById("altitudeDisplay").innerText = Altitude: ${altitudeFeet} ft;
+        document.getElementById("altitudeDisplay").innerText = `Altitude: ${altitudeFeet} ft`;
 
         // Remove the last waypoint (marker) and polyline (path)
         const lastGraphic = graphicsLayer.graphics.items[graphicsLayer.graphics.length - 1];
