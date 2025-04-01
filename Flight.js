@@ -1514,10 +1514,6 @@ window.removeMarkersAndLines = function() {
         graphicsLayer.removeAll();  // Clear all graphics from the main graphics layer
     }
 
-    // Optional: Refresh the view, forcing a re-render
-    if (view) {
-        view.refresh();  // This triggers a re-render of the map if needed
-    }
 };
     
     // Initial layer visibility toggle
