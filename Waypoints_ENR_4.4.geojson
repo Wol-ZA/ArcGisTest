@@ -1,0 +1,4620 @@
+{
+  "type": "FeatureCollection",
+  "name": "Waypoints - ENR 4.4",
+  "crs": {
+    "type": "name",
+    "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Heidelberg VFR",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": {
+        "type": "VFR Point",
+        "coordinates": [20.95527777778, -34.09083333333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Buffelsjag"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [20.546, -34.0388] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Buffelsjag DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [20.5375, -34.0149] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Riverbend",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [20.4168, -34.0829] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Silos", "description": "VFR Reporting Point;" },
+      "geometry": { "type": "VFR Point", "coordinates": [20.423, -34.0554] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Railton",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [20.4503, -34.0296] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cape Aghulas Lighthouse",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [20.0088, -348293] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Quoin Lighthouse",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [19.6395, -34.7806] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hermanus",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [19.175, -34.4177] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Botriviervlei",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [19.1161, -34.3419] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Houwhoek",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [19.1508, -34.2049] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Elgin", "description": "VFR Reporting Point;" },
+      "geometry": { "type": "VFR Point", "coordinates": [19.0369, -34.1502] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Eikenhof DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [19.03, -34.1233] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sir Lowrys Pass",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.9324, -34.1438] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Steenbras DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.8936, -34.1686] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gordons Bay",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.8688, -34.1569] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Strand", "description": "VFR Reporting Point;" },
+      "geometry": { "type": "VFR Point", "coordinates": [18.8291, -34.1177] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Somerset MALL",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.8222, -34.0836] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Macassar Beach",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.7388, -34.0763] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Firgrove ABM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.7983, -34.0338] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Eersterivier Quarry",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.7419, -34.0] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Seal Island",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.5826, -34.1373] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kayelitsha",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.668, -34.0372] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Strandfontein",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.5555, -34.0888] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hangklip Lighthouse",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.8277, -34.3866] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rooi Els Bay",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.8152, -34.2969] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Olifantbos BAY",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.3785, -34.2707] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Millers Point",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.4757, -34.2291] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Simonstown",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.433, -34.1858] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "FishHoek",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.44189, -34.1392] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kommetjie",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.3166, -34.1455] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Noordhoek",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.3902, -34.1044] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Chapmans Peak",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.3585, -34.0885] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hout Bay",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.3401, -34.054] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Camps Bay",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.3791, -33.9505] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clifton",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.3682, -33.941] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Muizenberg Beach",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.1066, -34.4763] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Strandfontein",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.5555, -34.0888] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Zeekoeivlei",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.5155, -34.0641] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kennelworth Race Course",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.4844, -33.9975] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Guguletu",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.5458, -33.9841] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "N2/R300 Interchange",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.633, -33.0011] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UCT", "description": "VFR Reporting Point;" },
+      "geometry": { "type": "VFR Point", "coordinates": [18.4627, -33.9577] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Athlone Power Station",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.513, -33.9483] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Elsiesrivier",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.573, -33.9283] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UWC", "description": "VFR Reporting Point;" },
+      "geometry": { "type": "VFR Point", "coordinates": [18.6333, -33.9333] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bottelary Tower",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.7636, -33.9258] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Helhoogte PASS",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.9074, -33.9244] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Blackheath",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.6999, -33.9666] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Greenpoint Lighthouse",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.3999, -33.9014] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "CapeTown Harbour",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.4416, -33.909] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "N1 City",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.5569, -33.8927] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Karl Bremer Hospital",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.6086, -33.8919] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "R300/M23 Interchange",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.6736, -33.908] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kuilsriver Golf Course",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.7107, -33.9008] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Devon Golf Course",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.8, -33.8833] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tygerberg",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.5922, -33.8638] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Caltex Refinery",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.5308, -33.8452] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cape Gate Shopping",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.6833, -33.85] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kanonkop Wines",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.8641, -33.8544] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rietvlei",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.8288, -33.8388] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Durbanville",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.6561, -33.8288] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Engen N1",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.7624, -33.8266] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Table View",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.4964, -33.8091] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Blouberg",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.4627, -33.8027] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Robben Island Lighthouse",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.374, -33.8147] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Melkbos Strand",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.4899, -33.8388] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Klipheuwel",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.7013, -33.7027] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Paarl Mountain",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.9227, -33.7372] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Du Toitskloof PASS",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.0802, -33.7338] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Brandvlei DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.4286, -33.7119] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bainskloof PASS",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.1013, -33.6143] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Paardeberg",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.8166, -33.5966] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bokpoint",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.3125, -33.5666] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Atlantis",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.4825, -33.5394] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Mamre", "description": "VFR Reporting Point;" },
+      "geometry": { "type": "VFR Point", "coordinates": [18.4765, -33.5125] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Malmesbury",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.7294, -33.4572] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Hermon", "description": "VFR Reporting Point;" },
+      "geometry": { "type": "VFR Point", "coordinates": [18.9627, -33.4397] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wolseley",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [19.2011, -33.4136] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Voelvlei DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [19.0347, -33.3594] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Riebeeck Kasteel",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.8977, -33.3849] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Riebeek West",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.8691, -33.3513] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Jakkalsfontein",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.2777, -33.4009] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nuwekloof PASS",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [19.0749, -33.3136] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Gouda", "description": "VFR Reporting Point;" },
+      "geometry": { "type": "VFR Point", "coordinates": [19.0413, -33.2972] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rust Station",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.6488, -33.2791] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dassen Island Lighthouse",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.0889, -33.4321] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Swartbergvlei",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.2209, -33.2278] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rust Station",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.6488, -33.2791] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mooreesburg",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.6488, -33.147] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Koperfontein",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [18.4169, -33.1002] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "South Head Lighthouse",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [17.9543, -33.1056] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hartebeeskuil DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [21.9982, -34.0958] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hartenbos",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [22.1166, -34.125] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Great Brak River",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [22.2222, -34.0499] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wildernes",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [22.5833, -33.9972] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gardenroute DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [22.5166, -33.9541] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Walker Point",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [22.9766, -34.0888] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Knysna",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [23.0552, -34.0275] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Prince Alfred PASS",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [23.1666, -33.8833] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Avontuur",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [23.1677, -33.7227] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Outeniqua PASS",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [22.3999, -33.8861] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wolwedans DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [22.1999, -33.95] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Eight Bells",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [22.0347, -33.9444] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Robinson PASS",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [22.0247, -33.8805] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Candy Cane",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [22.2663, -33.6708] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kammanassie DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [22.4333, -33.6666] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Railway Crossing",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [22.2936, -33.5855] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Love Bridge",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [22.0905, -33.64] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Stompdrift DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [22.5149, -33.5149] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Willowmore",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [23.4838, -33.2924] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Andrieskraal",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [24.6833, -33.7833] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hankey",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [23.8835, -33.7834] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Van Stadens River Bridge",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [25.1972, -33.9091] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gamtoos River Mouth",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [25.0166, -33.9555] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Railway Intersection",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [25.4499, -33.95] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kragga Kamma Rd",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [25.4911, -33.9694] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Swartkop River Mouth",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [25.6341, -33.8658] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Recife Lighthouse",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [25.7006, -34.029] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coega",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [25.685, -33.7997] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "VW Vehicle Plant",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [25.4166, -33.7875] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Addo",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [25.6238, -33.5308] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nanaga",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [25.9277, -33.6055] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Abeam Bird Island",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.2804, -33.7531] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Despatch",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [25.4666, -33.7999] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Alicedale",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.0666, -33.3165] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Riebeek East",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.1603, -33.208] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Glendower Beacon",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.805, -33.6195] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bathhurst",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.8347, -33.4916] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Riet point",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.0122, -33.5591] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Fishriver Sun",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.1341, -33.4846] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wesley",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.3166, -33.3277] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Peddie",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.1147, -33.195] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hamburg",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.4619, -33.2908] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kaysers Beach",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.6083, -33.2119] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Katrivier DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.7756, -32.5737] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sandile DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.1044, -32.7152] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dimbaza DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.2263, -32.8422] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kidd`s Beach",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.6954, -33.1521] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bridle Drift DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.75, -32.9833] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Berlin",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.5719, -32.8776] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nahoon DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.8, -32.9166] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Goodshed",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.8874, -32.9658] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gonubie",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [28.0166, -32.95] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cintsa",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [28.1166, -32.8333] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mooiplaas",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [28.0666, -32.7168] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Morgans Bay",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [28.3375, -32.7025] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nqabara",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [28.7286, -32.366] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Waterdown DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.867, -32.2931] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nqabara",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [28.7286, -32.366] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Amanzimtoti",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.8804, -30.0576] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Isipingo Beach",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.9561, -29.9902] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Oil Refinery",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.9333, -29.9666] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Crossmoor Railway Station",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.8619, -29.8986] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Klaarwater Railway Station",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.8286, -29.8683] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Millenium Tower",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.0574, -298756] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Durban CBD",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.0258, -29.8547] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pavilion Shopping Mall",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.9353, -29.8494] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pinetown South/N3",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.803, -29.8305] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "N2/N3 intersection",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.9572, -29.8405] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Umgeni River Mouth",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.0347, -29.8088] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hillcrest",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.7638, -29.7786] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Alverstone Mast",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.7167, -29.7699] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Camperdown",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.5358, -29.7274] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Thornville",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.3916, -29.7391] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Worlds View",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.3236, -29.5811] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Albert Falls DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.4316, -29.4349] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nagle DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.6316, -29.5899] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kranskloof Nature Reserve",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.8851, -29.7601] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Umhlanga River Mouth",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.0983, -29.7066] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Inanda DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.842, -29.685] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Umhloti River Mouth",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.1333, -29.6516] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hazelmere DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.0422, -29.5975] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ndwedwe",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.9333, -29.5] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tongaat River Mouth",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.1916, -29.5716] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ballito",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.225, -29.5366] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Christmas Bay",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.2649, -29.4756] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tinley Manor",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.2897, -29.4436] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Blythedale Beach",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.3538, -29.3705] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tugela River Mouth",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.5016, -29.2216] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Craigieburn DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.2917, -29.2917] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lake St Lucia",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [32.4497, -27.9897] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Klipfontein DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.8122, -27.8229] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pongolapoort DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.9429, -27.3854] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lake Sibaya",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [32.6865, -27.3524] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kosi Lake Nhlange",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [32.8401, -26.9831] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Grootgewaag DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.8026, -27.7149] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Koppies DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.6792, -27.25] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vaal DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [28.2522, -26.9497] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Grootdraai DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [29.4022, -26.9083] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Majuba Power Station",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [29.7707, -27.1002] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Heyshape DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.5077, -26.9882] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Camden Power Station",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.0938, -26.6202] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Jericho DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.4776, -26.6374] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Westoe DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.6074, -26.492] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Willem Brummer DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [29.9244, -26.4589] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lupholo DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.0992, -26.39] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Matla Power Station",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [29.1408, -26.2824] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rietspruit DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [29.2228, -26.1665] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kendal Power Station",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [28.9713, -26.0899] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Komati Power Station",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [29.4721, -26.0889] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mnjoli DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.6612, -26.1576] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hendrina Power Station",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [29.6, -26.033] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Duvha Power Station",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [29.3372, -25.9638] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Arnot Power Station",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [29.8102, -25.9411] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nooitgedacht DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.0739, -25.9722] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sandrivier DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.7009, -25.9943] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Renosterkop",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [28.9447, -25.5894] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Belfast DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.0109, -25.6673] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vygeboom DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.613, -25.858] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nkomati Mine",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.6189, -25.7448] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ngodwana DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.6757, -25.5866] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Gorge", "description": "VFR Reporting Point;" },
+      "geometry": { "type": "VFR Point", "coordinates": [31.2171, -25.5227] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Elandsrivier",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [25.4974, -25.4974] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Loskop DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [29.3432, -25.4276] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kwena DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.377, -25.3603] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mbombela Stadium",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.9297, -25.4617] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kanyamazane",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.1887, -25.464] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Amor", "description": "VFR Reporting Point;" },
+      "geometry": { "type": "VFR Point", "coordinates": [31.2767, -25.3597] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Legogote",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.0956, -25.2387] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Klipkoppie DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.0081, -25.2133] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Witklip DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.8963, -25.2281] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Da Gama DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.0174, -25.1503] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pretoriuskop",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.2461, -25.1627] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lydenburg",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.4255, -25.0791] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Graskop",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.8441, -24.9327] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mkhuhlu",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.2383, -24.9865] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Blyderivier DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.8027, -24.5473] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tzaneen DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [30.158, -23.7644] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Olifantsnek DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.2523, -25.7929] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gariep DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.0388, -30.0483] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vanderkloof DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [24.8056, -30.043] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Egmont DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [31.0422, -29.5975] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Knellpoort DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.8755, -29.7622] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Edenburg",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [25.9364, -29.7344] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Reddersburg",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.1666, -29.6499] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "De Wetsdorp",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.6499, -29.5833] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kalkfontein DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [25.2236, -29.5043] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tierpoort DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.1498, -29.4087] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vaalkop",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.4916, -29.4083] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Armenia DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.1294, -29.3483] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Groothoek DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.8612, -29.2986] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rusfontein DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.6132, -29.2806] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leeuberg",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.1692, -29.2375] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leeukop",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.4064, -29.3] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Thaba Nchu",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.8333, -29.1999] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sannaspos",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.5498, -29.1612] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Boesmanskop",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.4369, -29.1488] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Petrusburg",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [25.4333, -29.1166] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mockes DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.4671, -29.0624] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Maselspoort",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.4072, -29.03] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Karee Station",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.2833, -29.0166] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Glen Station",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.336, -28.9514] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Krugersdrift DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [25.9646, -28.8652] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Verkeerdevlei",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.7833, -28.8333] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dealesville",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [25.7666, -28.6777] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Erfenis DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.8091, -28.8091] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Theunissen",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.7166, -28.3999] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Allemanskraal DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.2338, -28.288] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bultfontein",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [26.1352, -28.2722] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spitskop DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [24.55, -28.0838] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bloemhof DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [25.7108, -27.7052] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Barkley West",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [24.5212, -28.5357] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kamders DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [24.7586, -28.6693] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Olifantskop",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [24.9049, -28.8543] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Race Course",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [24.8369, -28.727] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Plooysburg",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [24.238, -29.0283] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Saltlake",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [24.0002, -29.2833] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Belmont",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [24.368, -29.416] }
+    },
+
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Buffelspoort",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.4883, -25.7905] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Roodekoppies DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.6005, -25.4183] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vaalkop DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.4655, -25.3222] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rust De Winter DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [28.492, -25.2312] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Klipvoor DAM",
+        "description": "VFR Reporting Point;"
+      },
+      "geometry": { "type": "VFR Point", "coordinates": [27.8397, -25.1488] }
+    },
+
+    {
+      "type": "Feature",
+      "properties": { "name": "ALENI", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [32.160525, -26.9765388888889]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ALKAT", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [25.8520638888889, -33.183483833333298]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ALTES", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.3133388888889, -25.587436111111099]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ANIXU", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.127405556, -26.505591667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ANTES", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [10.0, -36.85] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ANTIL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [16.805568138888901, -28.506321777777799]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ANVAK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.997286111111102, -25.6724194444445]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ANVAR", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [14.562347222222201, -28.0025]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ANVED", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [33.109619444444398, -31.160963888888901]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ANVIT", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.383333333333301, -24.6666666666667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "APDAK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.0479555555556, -26.550983333333299]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "APDUR", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [25.386888888888901, -28.322125]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "APGAP", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.3296833333333, -28.286519444444501]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "APKAP", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [20.692119444, -33.988591667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "APKEK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [20.170922222222199, -30.5275472222222]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "APKID", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [0.0, -28.2] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "APKIK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.575877777777801, -28.3304277777778]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "APKIN", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [17.0164765, -34.083512166666701]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "APLEN", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.022166666666699, -30.760769444444399]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "APLIP", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.386875, -31.488102777777801]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "APLUK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [34.425555556, -28.870277778]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "APMAK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [25.532002777777802, -28.4804888888889]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "APMAT", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.949897222222202, -28.789938888888901]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "APMIN", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [25.857791666666699, -28.010680555555599]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "APMUL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.121830556, -31.296494444]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "APMUX", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.5234706666667, -24.576552055555599]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "APNON", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.781330555555598, -26.7605166666667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "APRAX", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.4189222222222, -28.008797222222199]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ASONI", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [10.0, -29.333333333] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ASPIK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.133557444444399, -34.105088861111099]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ATUXO", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.868686111111099, -27.993325]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "AVAGO", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.444265916666701, -25.719416666666699]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "AVAVA", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.452807222222201, -26.9156434166667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "AVEXA", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [23.379188889, -32.643408333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "AVILO", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [28.721006, -26.981858] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "AVUBU", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.538333333, -28.378552777777799]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "AVUSA", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.225024194444401, -27.498640055555601]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "AXEMU", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [21.400113889, -34.203225] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "AXOXI", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [27.9012, -32.204333333] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "AXOPA", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [19.975946694444399, -33.295071472222197]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "BEBAS", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.6151916666667, -27.8218]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "BOLUM", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [-5.0, -19.333333333] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "BUXIR", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [15.0, -32.0] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "DABUR", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [5.0, -26.3333333333333] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "DIMIX", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [10.5, -17.783333333333299]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "DODOS", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.577116666666701, -25.508936111111101]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "DUDMO", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [17.931061111111099, -28.490783333333301]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "DUDVU", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.860138889, -31.397852778]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "DUGLU", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.364472222222201, -33.799569444444401]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "DUGPA", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.426341666666701, -26.224733333333301]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "DUKMU", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.750119444, -30.380161111]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "DUKRA", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.7865472222222, -26.340119444444401]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "DULPU", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.223683333333302, -25.9565861111111]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "DULRI", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.944188888888899, -31.0830611111111]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "DUMGO", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.0307336944444, -24.086198222222201]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "DUNSA", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [30.48742, -30.235197] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "DUSKO", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.400472222222199, -25.17465]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "DUSLI", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.650461111111099, -24.9734083333333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "DUTGI", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [32.023683333333302, -25.295491666666699]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "DUVPI", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.521511111111099, -27.986680555555601]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EGMEN", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [28.968202, -25.646038] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EGNOM", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.443125, -30.900936111111101]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EGNOR", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [20.6612694444444, -27.498652777777799]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EGPOP", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.510955555555601, -26.281658333333301]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EGRAP", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [14.0269361111111, -27.843752777777802]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EGRUP", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [23.26105, -31.1683194444444]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EGSAN", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.143266666666701, -28.002977777777801]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EGSOX", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [34.69205, -28.392205555555599]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EGSUV", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.311072777777799, -27.01715]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EGTAP", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.8176138888889, -30.771286111111099]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EGTAR", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.351411527777799, -28.127268361111099]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EGTIL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.865411111111101, -31.039802777777801]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EGTIM", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [25.690544444444399, -33.160475]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EKBAP", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.116095527777802, -23.5169312777778]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EKBED", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [0.0, -39.216666667] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EKBEX", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [25.7899888888889, -28.010861111111101]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EKBON", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [17.618417916666701, -28.3097066111111]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EKBOX", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [25.128205555555599, -34.912802777777799]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EPMAK", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.0921787777778, -36.970170972222199]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EPRET", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [32.429644444444399, -26.85885]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EPSAK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.161533305555601, -27.198606805555599]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EPSEK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.5625, -23.454166666666701]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EPTOT", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.395302778, -28.634191667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EPVUV", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.222338889, -33.817585417]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ERDAS", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [19.186902777777799, -33.413916666666701]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ESPOG", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.846294444, -33.184652778]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ESPUV", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.7155, -25.829266666666701]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ESRAS", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.153894444444401, -25.8961111111111]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ESRET", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [33.13485, -29.2776833333333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ESRUK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [19.807455556, -33.969577778]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ESRUM", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.725105555555601, -25.9110333333333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ESTAM", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [14.420952777777799, -28.146952777777798]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ESVAX", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.001863889, -32.434008333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ESVEV", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.605327777777799, -25.98695]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ESVIR", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.828819444444399, -28.088483333333301]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ETBIN", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.695891667, -32.208677778]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ETBUL", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [21.373372222, -33.999025] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ETBUX", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.26613275, -25.906611666666699]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ETGAX", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.372233333, -33.756680556]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ETGEB", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.584291667, -32.504047222]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ETGIS", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [25.1491527777778, -31.086636111111101]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ETKAL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.5600096944444, -32.913443972222197]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ETKON", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.939311111, -33.418888889]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ETLEK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.224475, -33.210866666666703]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ETLIG",
+        "description": "&nbsp;\n\nFAOR RNAV GNSS"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.283055555555599, -26.696666666666701]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ETLUR", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.215191667, -30.907063889]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ETMAL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.383475, -27.572802777777799]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ETMIT", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.628525, -23.213469444444399]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ETMOS", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [35.938333333333297, -28.373333333333299]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ETMUS", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [16.45161875, -28.333275722222201]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ETOBO", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [-10.0, -23.65] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ETOSA", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.053605555555599, -24.715111111111099]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ETOVU", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.395369444, -32.356191667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ETULA", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [10.0, -34.35] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IMKUP", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.239070111111101, -24.821027916666701]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ETUPO", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.1193899444444, -28.1855435]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ETUPU",
+        "description": "&nbsp;\n\nFAWB RNAV GNSS"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.488953888888901, -25.66429175]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EVARI", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.054219444444399, -27.680252777777799]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EVEMU", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.2549777777778, -30.684652777777799]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EVESI", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [25.186861111111099, -28.5985277777778]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EVIDO", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [32.08025, -29.645783333333299]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EVIPI", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.848431722222202, -24.866722777777799]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EVOPO", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.194000583333299, -25.206717583333301]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EVUKI", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.3505138055556, -33.1668734722222]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EVUVA", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.595047222222199, -30.759966666666699]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EXABU", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.812886111, -31.632255556]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EXANO", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.843067388888901, -26.6301423333333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EXATA", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.020833333, -29.766111111]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EXELO", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.4073285277778, -33.325108]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EXOBI", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.1475891944444, -26.047851833333301]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "EXOKU", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.577819444, -26.669555556]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "GABGO", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [23.289836111, -33.667555556]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "GABNA", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.566666667, -24.166666667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "GADNU", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [21.108663889, -33.480991667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "GAGNO", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.630322222222201, -25.552563888888901]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "GEDOL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.167827777777799, -29.843747222222198]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "GEPES", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [25.296619444444399, -28.010275]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "GERAM", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [0.0, -34.05] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "GERAX", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.386363888888901, -27.3159666666667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "GEROX", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.8286415, -27.380280055555598]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "GERUT", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [23.555744444, -32.944316667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "GESIL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.0, -22.316666666666698]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "GETEN", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [19.60325, -34.0573277777778]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "GETIM",
+        "description": "&nbsp;\n\nFASZ RNAV GNSS"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.555925, -25.092988055555601]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "GETOK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.154952777777801, -29.512969444444401]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "GEVIN", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [14.168975, -27.698319444444401]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "GEVIS", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [33.960433333333299, -29.6937472222222]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "GEVUX", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.4756336111111, -26.962972222222199]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "GEXIP", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [19.249466667, -32.249880556]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "GUBAG", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [9.66666666666667, -18.0] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IBRIS", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [25.95, -28.866666667] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IBRUN", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.483333333333299, -28.890208333333302]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IBTEK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [25.2132004444444, -29.717788194444399]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IBVIT", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [21.000122222222199, -28.4148944444444]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IBMES", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.557466388888901, -27.3885583333333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IMGEV", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.29225, -27.9859166666667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IMKID", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.117002777777799, -25.96205]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IMKUS", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.439152777777799, -33.078191666666697]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IMLID", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.024914, -30.5439941111111]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IMLUT", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [15.684094444444399, -30.509972222222199]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IMPOD", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.2688467222222, -23.6120029722222]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IMPOK", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [14.0583333333333, -27.5] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IMROG", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.654008333, -32.178586111]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IMSIR", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.966997222222201, -27.996036111111099]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "IMSOL",
+        "description": "&nbsp;\n\nFAWB RNAV GNSS"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.392693861111098, -25.7441399166667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IMSOM", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.008678083333301, -33.934416361111097]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "IMSUL",
+        "description": "&nbsp;\n\nFASS RNAV ARR/DEP"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.3685, -27.343166666666701]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IMTET", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.885158333333301, -26.338375]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ITGAD", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [10.0, -31.716666667] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ITGIV", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [-10.0, -32.933333333] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ITKIT", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.164003333333302, -33.360351416666703]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ITKOT", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.6112173888889, -28.061437277777799]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ITLIK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [14.999166667, -35.266666667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ITMEK", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [15.0, -34.2] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ITMIL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.810666666666702, -29.030847222222199]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ITNOX", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [17.889271083333298, -28.242859527777799]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ITROL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.434826138888901, -25.035547166666699]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IXAKU", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.979619444, -31.375016667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IXARA", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.894466666666698, -27.974286111111098]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IXEBI", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.346480556, -31.964727778]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IXEKI", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.676902778, -28.512069444]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "IXEPI",
+        "description": "&nbsp;\n\nFASS RNAV ARR/DEP"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.957333333333299, -27.579166666666701]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "IXESU", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.3330555555556, -26.510555555555602]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "KATOR", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.642879611111098, -33.48873975]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "KEBAT", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [18.3, -27.5] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "KODES", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.755555556, -33.144444444]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "MITAR", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.3310718888889, -27.878740166666699]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "MUNES", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [-10.0, -40.333333333] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "MUVAL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.1658333333333, -26.6244444444444]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NAMGU", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [29.79957, -30.284484] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NESAG", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.850983638888898, -24.9467230833333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NESAN", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.1182101111111, -25.496910805555601]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NESEK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.616666667, -25.031666667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NESUS", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [21.765072222222202, -30.674472222222199]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NEVAR", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [17.832722222222198, -27.513430555555601]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NEVEN", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.0491956944444, -27.483098194444398]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NEVUK", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.9234013611111, -24.839008888888898]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NEVUL", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.485982777777799, -27.442538888888901]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NEXIS", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.203563888888901, -25.854169444444501]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NEXIT", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [20.375936111111098, -30.524422222222199]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NEXUL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.246877777777801, -31.360541666666698]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NEXUP", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.743404722222198, -27.115140555555602]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NIBEX", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [27.670391, -26.823767] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NIBOP", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.130791666666699, -31.2543694444444]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NIDAL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.236958333333298, -32.705441666666701]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NIDEM", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.735861111111099, -29.569305555555601]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NIDIG", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.005133333, -28.801886111]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NIDOX", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.6128361111111, -31.1829944444444]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "NOKOX", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [19.717594527777798, -33.020619694444399]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ODKER", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.083333333, -24.141666667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ODOTU", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [11.966666666666701, -17.1666666666667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKBIL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [23.397586111111099, -31.212294444444399]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKBUS", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.312758333333299, -30.496511111111101]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKDIN", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.489955556, -28.154652778]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKDOG", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [15.0, -33.0833333333333] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "OKLEM",
+        "description": "&nbsp;\n\nFACT RNAV GNSS"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.880514722222198, -33.734486111111103]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKLIL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.2091621388889, -24.8196222222222]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKLOK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [19.377201027777801, -32.808115805555602]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKLOL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.862641666666701, -31.007833333333298]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKPIT", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.742377777777801, -25.4622833333333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKPUN", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [26.811288889, -31.792675] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKRAV", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.603491667, -33.991630556]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKREV", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.033516666666699, -30.526480555555601]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKRIP", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.692752777777802, -25.882822222222199]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKRUL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.867622222222199, -30.5399777777778]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKSAD", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.8, -26.822222222222202]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKSET", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.6391749166667, -34.2169685]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKSOP", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.142427777777801, -31.2655888888889]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKTAN", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.581483333333299, -30.299533333333301]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKTED", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [19.558333333, -34.22] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKTEK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.463376416666701, -27.476540638888899]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKTEL", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [15.0, -28.1316138888889] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OKTIG", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.778011111111098, -28.477411111111099]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ORKAN", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.9166666666667, -24.5416666666667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "ORNAD", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.966666666666701, -25.9166666666667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OSEPA", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [0.0, -23.0] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "OVALA", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.629083333333298, -26.8176083333333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "PAREK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [16.265974277777801, -28.4955105]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "PEDIL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.859458333333301, -25.659352638888901]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "RAGUL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.57885725, -26.448424833333299]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "RUDAS", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.735, -24.323333333333299]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "TAVLA", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.293333333333301, -22.623333333333299]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "TESUN", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.1846472222222, -27.962358333333299]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "TETAN", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [19.416111111, -33.663333333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "TETIK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.64036925, -26.5706043333333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "TETUS", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [25.639086111111101, -25.526222222222199]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "TEVAP", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [32.001666666666701, -24.741666666666699]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "TEVAR", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.309233777777798, -27.205936083333299]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "TEXAB", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [16.938636111111101, -30.534388888888898]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "TEXIP", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [25.507075, -26.217713889] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "TEXIS", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [20.382425, -33.265558333333303]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "TEXON", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.011294444444399, -25.1740833333333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "TIDAX", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.070372222, -31.509597222]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "TIDUP", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.8366075, -24.4041856111111]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "TIKER", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.171161111, -32.400588889]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "TIKIG", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.4043833333333, -27.016913333333299]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "TIKIL", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [23.533916666666698, -31.256166666666701]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "TILIR", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.777880555555601, -25.781186111111101]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "TONKA", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [32.105, -26.123333333333299]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "TUBIN", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [30.298517, -30.033691] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UBVER", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [14.2947027777778, -27.922697222222201]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UDBUL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.466666666666701, -25.2010583333333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UDLON", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [20.8131444444445, -27.7307138888889]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UDLUM", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [23.3869694444444, -25.272777777777801]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UNGEK", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [25.457325, -26.907863889] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "UNGEX",
+        "description": "&nbsp;\n\nFASS RNAV ARR/DEP"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [23.048666666666701, -27.725]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UNGOS", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.403011111111098, -28.373738888888901]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UNPAX", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.062561111111101, -24.848572222222199]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UNPEN", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [32.032538888888901, -25.112058333333302]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UNRAG", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.019211111111101, -28.3636444444444]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UNRES", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [20.982288889, -33.878694444]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UMVET", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.06505, -24.932130555555599]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UNDIT", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.2044565833333, -25.446431166666699]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "USENA", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-6.12, -18.463333333333299]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UTANI", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [21.0096666666667, -27.229647222222201]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UTEBA", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.037301166666701, -26.95305525]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UTERI", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [23.702294444444401, -28.537352777777802]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UTIGU", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.6189777777778, -23.8299972222222]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UTIMO", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.251813888888901, -30.711216666666701]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UTONU", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.8097472222222, -28.871163888888901]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UTOXO", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.5166166666667, -31.6059388888889]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "UTREX",
+        "description": "&nbsp;\n\nFASZ RNAV GNSS"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.255027777777801, -24.9722222222222]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UTRUK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.832580555555499, -25.675827777777801]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UTSEM", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [25.968875, -30.934625] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UTSEV", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.143780556, -26.531919444]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UTSIT", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.6510844444444, -27.388158333333301]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UTUMI", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [17.461925, -30.538688888888899]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UTUPU", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.6800780277778, -24.4903473888889]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UVBUD", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [17.080155555555599, -30.535733333333301]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UVDEX", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [20.342972222, -33.566472222]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UVGOD", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [15.0, -29.1620194444444] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UVGUK", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.379911111, -34.216388889]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UVIKU", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [17.573852777777802, -33.459575]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UVILA", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [17.8700650555556, -27.99446125]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "UVITI", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.753266666666701, -25.928538888888902]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "VASUR", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.893297472222201, -25.5629881111111]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "XABDO", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.513280556, -31.546163889]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "XADUP", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.936983333, -31.013472222]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "XAGEN", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [27.3178, -26.062477778] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "XAKIM", "description": "&nbsp;" },
+      "geometry": { "type": "Point", "coordinates": [26.796627778, -33.439625] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "XALIN", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.867077778, -33.719080556]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "XALVA", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [19.566727778, -32.374530556]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "XANDA", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [22.939730556, -33.149744444]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "XANRO", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.875986111, -26.418636111]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "XARMA", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.057812388888902, -24.7254476666667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "XARVI", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [26.443380556, -32.690322222]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "XASMI",
+        "description": "&nbsp;\n\nFASS RNAV ARR/DEP"
+      },
+      "geometry": { "type": "Point", "coordinates": [23.4725, -27.6295] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "XATKU",
+        "description": "&nbsp;\n\nFASS RNAV ARR/DEP"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [23.4075, -27.3808333333333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "XATNU", "description": null },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [30.192157111111101, -24.611942444444399]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "XAVMU", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.2845, -30.541305555555599]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "XORER", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.177011111, -28.293116667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "XOXOR", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [25.994422222, -32.835658333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "XOTOP", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [27.635147222222201, -27.99685]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "XUDAN", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [16.168516666666701, -27.511447222222198]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "XUGOL", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [20.190997222, -34.176147222]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "XUGUV", "description": "&nbsp;" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.042575, -27.270397222222201]
+      }
+    }
+  ]
+}
