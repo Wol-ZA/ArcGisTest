@@ -567,6 +567,7 @@ function toggleLayerVisibility() {
     ENRLayer.visible = document.getElementById("ENRLayerToggle").checked;
     RnavLayer.visible = document.getElementById("RNAVLayerToggle").checked;
     IorraLayer.visible = document.getElementById("IORRALayerToggle").checked;
+    ENR2Layer.visable = document.getElementById("ENR2LayerToggle").checked;
 }
 
 function getToggledLayerName(event) {
@@ -585,7 +586,8 @@ function getToggledLayerName(event) {
         "helistopsLayerToggle": "helistopsLayer",
         "ENRLayerToggle": "ENRLayer",
         "RNAVLayerToggle": "RnavLayer",
-        "IORRALayerToggle": "IorraLayer"
+        "IORRALayerToggle": "IorraLayer",
+	"ENR2LayerToggle": "ENR2Layer"   
     };
 
     const layerName = layerMap[event.target.id];
@@ -659,6 +661,10 @@ document.getElementById("IORRALayerToggle").addEventListener("change", (event) =
     toggleLayerVisibility();
      WL.Execute("ToggleLayer", getToggledLayerName(event));
 });
+document.getElementById("ENR2LayerToggle").addEvenetListener("change", (event) => {
+	toggleLayerVisability();
+	WL.Execute("ToggleLayer", getToggledLayerName(event));
+});	
     
     // Function to start tracking
 window.StartTracking = function() {
@@ -777,7 +783,8 @@ window.addMarkersAndDrawLine = function (data) {
         helistopsLayer: "helistops.png",
         ENRLayer: "ENR.png",
         RnavLayer: "Iorra.png",
-        IorraLayer:"Rnav.png"
+        IorraLayer:"Rnav.png",
+	ENR2Layer: "ENR.png"    
     };
 
     const layers = [
@@ -790,7 +797,8 @@ window.addMarkersAndDrawLine = function (data) {
         helistopsLayer,
         ENRLayer,
         RnavLayer,
-        IorraLayer
+        IorraLayer,
+	ENR2Layer    
     ];
 
     const draggableGraphicsLayer = new GraphicsLayer({ zIndex: 2000 });
