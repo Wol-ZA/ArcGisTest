@@ -122,7 +122,6 @@ window.drawRoute = function(destinationLat, destinationLong) {
 let geoJSONPolygons = [];
 window.createGeoJSONLayer = function (url, colorHTML, alpha) {
     const layer = new GeoJSONLayer({
-         url: url
     });
      fetch(url)
         .then(response => response.json())
