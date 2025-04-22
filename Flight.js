@@ -506,7 +506,7 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
 
         // Check if the user is inside this polygon
         const containsUser = geometryEngine.contains(polygonGeometry, userPoint);
-
+	console.log(intersects);
         // Add to the array if it intersects and does not contain the user
         if (intersects && !containsUser && feature.properties?.name) {
             intersectingPolygons.push({ name: feature.properties.name });
