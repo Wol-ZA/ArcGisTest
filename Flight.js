@@ -517,6 +517,9 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
         }
 
         try {
+	    console.log("polygonGeometry:", polygonGeometry);
+	    console.log("polylineGeometry:", polylineGeometry);
+            console.log("userPoint:", userPoint);	
             const intersects = geometryEngine.intersects(polylineGeometry, polygonGeometry);
             const containsUser = geometryEngine.contains(polygonGeometry, userPoint);
 
