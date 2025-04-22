@@ -142,6 +142,19 @@ window.createGeoJSONLayer = function (url, colorHTML, alpha) {
         outFields: ["*"], // Load all properties from the GeoJSON file
         opacity: 0.5
     });
+    fetch(url)
+        .then(response => response.json())
+        .then(geojson => {
+            geojson.features.forEach((feature, index) => {
+                const graphic = createGeoJSONGraphic(feature, colorHTML, alpha); // Customize fill color and alpha
+                // Only include polygon geometries
+                if (feature.geometry.type === "Polygon" || feature.geometry.type === "MultiPolygon") {
+                    const name = feature.properties.name || `Polygon ${index + 1}`;
+                    geoJSONPolygons.push({ geometry: graphic.geometry, feature });
+                }
+            });
+        })
+        .catch(error => console.error('Error loading GeoJSON:', error));	
     //const graphic = createGeoJSONGraphic(feature, colorHTML, alpha);
     console.log(layer);
     return layer;
