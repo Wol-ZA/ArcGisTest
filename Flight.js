@@ -155,8 +155,6 @@ window.createGeoJSONLayer = function (url, colorHTML, alpha) {
             });
         })
         .catch(error => console.error('Error loading GeoJSON:', error));	
-    //const graphic = createGeoJSONGraphic(feature, colorHTML, alpha);
-    console.log(layer);
     return layer;
 };
 
@@ -496,7 +494,7 @@ if (!userGraphic.polylineGraphic) {
 	console.log(mainLineGraphic.geometry);
 	console.log(userGraphic.polylineGraphic);
         const intersections = checkIntersectionWithPolygons(mainLineGraphic.geometry, userPoint);
-        console.log(intersections);
+        alert(intersections[0]);
         //WL.Execute("ClosingInn", intersections);
     }
 }
@@ -523,7 +521,6 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
 
     // Default spatial reference
     const defaultSR = { wkid: 4326 };
-	console.log(geoJSONPolygons);
     if (!polylineGeometry?.spatialReference) {
         polylineGeometry.spatialReference = defaultSR;
     }
@@ -552,7 +549,6 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
   		y: userPoint.latitude,
   		spatialReference: userPoint.spatialReference || { wkid: 4326 }
 		};
-		 console.log("userPoint2:", convertedUserPoint.type);
             const intersects = geometryEngine.intersects(polylineGeometry, polygonGeometry);
             const containsUser = geometryEngine.contains(polygonGeometry, convertedUserPoint);
 
