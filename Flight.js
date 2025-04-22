@@ -452,33 +452,12 @@ function addUserLocationMarker(location, heading) {
 
     const adjustedHeading = (heading + view.rotation) % 360;
     // Create the polyline graphic
-    // Call the new function that returns [mainLineGraphic, ...tickGraphics]
-const polylineGraphics = createDirectionalPolylineWithTicks(userPoint, heading);
-
-// Separate the main line from tick marks
-const mainLineGraphic = polylineGraphics[0];
-const tickGraphics = polylineGraphics.slice(1);
-
-if (!userGraphic.polylineGraphic) {
-    // First time: add main line and ticks
-    userGraphic.polylineGraphic = mainLineGraphic;
-    userGraphic.tickGraphics = tickGraphics;
-
-    graphicsLayer.add(userGraphic.polylineGraphic);
-    tickGraphics.forEach(tick => graphicsLayer.add(tick));
-} else {
-    // Update main polyline geometry
-    userGraphic.polylineGraphic.geometry = mainLineGraphic.geometry;
-
-    // Remove old ticks
-    if (userGraphic.tickGraphics) {
-        userGraphic.tickGraphics.forEach(tick => graphicsLayer.remove(tick));
+ if (!userGraphic.polylineGraphic) {
+        userGraphic.polylineGraphic = polylineGraphic;
+        graphicsLayer.add(userGraphic.polylineGraphic);
+    } else {
+        userGraphic.polylineGraphic.geometry = polylineGraphic.geometry; // Update existing polyline
     }
-
-    // Add new ticks
-    userGraphic.tickGraphics = tickGraphics;
-    tickGraphics.forEach(tick => graphicsLayer.add(tick));
-}
 
     if (!isUserInteracting) {
         // Calculate corrected map rotation
@@ -535,19 +514,16 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
     return intersectingPolygons;
 }
 
-function createDirectionalPolylineWithTicks(userPoint, heading) {
-    const earthRadiusMeters = 6371000;
+function createDirectionalPolyline(userPoint, heading) {
+    const earthRadiusMeters = 6371000; // Earth's radius in meters
     const nauticalMileInMeters = 1852;
     const maxDistanceNm = 20;
     const segmentLengthNm = 5;
-    const tickLengthMeters = 500; // ~0.27 NM tick line
 
     const headingRadians = heading * (Math.PI / 180);
-    const perpendicularHeading = heading + 90;
-    const perpendicularRadians = perpendicularHeading * (Math.PI / 180);
 
+    // Create array to store segment points
     const pathPoints = [];
-    const tickGraphics = [];
 
     for (let i = 0; i <= maxDistanceNm; i += segmentLengthNm) {
         const distanceMeters = i * nauticalMileInMeters;
@@ -558,52 +534,27 @@ function createDirectionalPolylineWithTicks(userPoint, heading) {
         const lat = userPoint[1] + deltaLat;
         const lon = userPoint[0] + deltaLon;
 
-        const mainPoint = [lon, lat];
-        pathPoints.push(mainPoint);
-
-        // Create a perpendicular tick mark at this point
-        const tickDeltaLat = (tickLengthMeters / 2 / earthRadiusMeters) * (180 / Math.PI) * Math.cos(perpendicularRadians);
-        const tickDeltaLon = (tickLengthMeters / 2 / earthRadiusMeters) * (180 / Math.PI) * Math.sin(perpendicularRadians) / Math.cos(lat * Math.PI / 180);
-
-        const tickStart = [lon - tickDeltaLon, lat - tickDeltaLat];
-        const tickEnd = [lon + tickDeltaLon, lat + tickDeltaLat];
-
-        const tickGeometry = {
-            type: "polyline",
-            paths: [tickStart, tickEnd]
-        };
-
-        const tickSymbol = {
-            type: "simple-line",
-            color: [0, 0, 0, 0.8], // black tick
-            width: 1
-        };
-
-        tickGraphics.push(new Graphic({
-            geometry: tickGeometry,
-            symbol: tickSymbol
-        }));
+        pathPoints.push([lon, lat]);
     }
 
-    // Create main polyline
+    // Create the polyline geometry with segments
     const polylineGeometry = {
         type: "polyline",
         paths: pathPoints
     };
 
+    // Define the line symbol
     const lineSymbol = {
         type: "simple-line",
         color: [255, 105, 180, 0.7],
         width: 2
     };
 
-    const mainLineGraphic = new Graphic({
+    // Return the polyline graphic
+    return new Graphic({
         geometry: polylineGeometry,
         symbol: lineSymbol
     });
-
-    // Return main line + ticks
-    return [mainLineGraphic, ...tickGraphics];
 }
 
     
