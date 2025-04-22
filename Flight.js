@@ -18,7 +18,7 @@ require([
 
     // Create the map
    window.map = new Map({
-        basemap: "streets-navigation-vector",
+        basemap: "topo-vector",
         ground: "world-elevation"
     });
 
