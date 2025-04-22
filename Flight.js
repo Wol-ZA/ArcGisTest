@@ -573,7 +573,7 @@ function createDirectionalPolylineWithTicks(userPoint, heading) {
 
         const tickSymbol = {
             type: "simple-line",
-            color: [0, 0, 0, 0.8], // black tick
+            color: [255, 255, 255, 0.8], // black tick
             width: 2
         };
 
@@ -591,7 +591,7 @@ function createDirectionalPolylineWithTicks(userPoint, heading) {
 
     const lineSymbol = {
         type: "simple-line",
-        color: [255, 105, 180, 0.7],
+        color: [255, 255, 255, 0.7],
         width: 2
     };
 
