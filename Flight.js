@@ -517,20 +517,32 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
 }
 
 function createDirectionalPolyline(userPoint, heading) {
-    const nauticalMilesToMeters = 60 * 1852; // 20 nautical miles in meters
     const earthRadiusMeters = 6371000; // Earth's radius in meters
+    const nauticalMileInMeters = 1852;
+    const maxDistanceNm = 20;
+    const segmentLengthNm = 5;
 
-    // Convert heading to radians
     const headingRadians = heading * (Math.PI / 180);
 
-    // Calculate the endpoint based on distance and heading
-    const endLatitude = userPoint[1] + (nauticalMilesToMeters / earthRadiusMeters) * (180 / Math.PI) * Math.cos(headingRadians);
-    const endLongitude = userPoint[0] + (nauticalMilesToMeters / earthRadiusMeters) * (180 / Math.PI) * Math.sin(headingRadians) / Math.cos(userPoint[1] * Math.PI / 180);
+    // Create array to store segment points
+    const pathPoints = [];
 
-    // Create the polyline geometry
+    for (let i = 0; i <= maxDistanceNm; i += segmentLengthNm) {
+        const distanceMeters = i * nauticalMileInMeters;
+
+        const deltaLat = (distanceMeters / earthRadiusMeters) * (180 / Math.PI) * Math.cos(headingRadians);
+        const deltaLon = (distanceMeters / earthRadiusMeters) * (180 / Math.PI) * Math.sin(headingRadians) / Math.cos(userPoint[1] * Math.PI / 180);
+
+        const lat = userPoint[1] + deltaLat;
+        const lon = userPoint[0] + deltaLon;
+
+        pathPoints.push([lon, lat]);
+    }
+
+    // Create the polyline geometry with segments
     const polylineGeometry = {
         type: "polyline",
-        paths: [[userPoint[0], userPoint[1]], [endLongitude, endLatitude]]
+        paths: pathPoints
     };
 
     // Define the line symbol
