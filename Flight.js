@@ -496,21 +496,24 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
         const { geometry: polygonGeometry, feature } = polygonData;
 
         // Ensure geometries are valid
-        if (!polygonGeometry || !userPoint) {
-            console.warn("Invalid geometry detected", polygonGeometry, userPoint);
-            return; // Skip this iteration
+        if (!polygonGeometry || !userPoint || !polylineGeometry) {
+            console.warn("Invalid geometry detected", {
+                polygonGeometry,
+                userPoint,
+                polylineGeometry
+            });
+            return;
         }
 
-        // Check if the polyline intersects the polygon
-        const intersects = geometryEngine.intersects(polylineGeometry, polygonGeometry);
+        try {
+            const intersects = geometryEngine.intersects(polylineGeometry, polygonGeometry);
+            const containsUser = geometryEngine.contains(polygonGeometry, userPoint);
 
-        // Check if the user is inside this polygon
-        const containsUser = geometryEngine.contains(polygonGeometry, userPoint);
-	console.log(intersects);
-	console.log(containsUser);    
-        // Add to the array if it intersects and does not contain the user
-        if (intersects && !containsUser && feature.properties?.name) {
-            intersectingPolygons.push({ name: feature.properties.name });
+            if (intersects && !containsUser && feature.properties?.name) {
+                intersectingPolygons.push({ name: feature.properties.name });
+            }
+        } catch (error) {
+            console.error("Geometry engine error:", error);
         }
     });
 
