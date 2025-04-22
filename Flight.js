@@ -122,38 +122,32 @@ window.drawRoute = function(destinationLat, destinationLong) {
 let geoJSONPolygons = [];
 window.createGeoJSONLayer = function (url, colorHTML, alpha) {
     const layer = new GeoJSONLayer({
-        url: url,
-        renderer: {
-            type: "simple",
-            symbol: {
-                type: "simple-fill",
-                color: htmlToRGBA(colorHTML, alpha),
-                outline: {
-                    color: darkenColor(colorHTML, 1),
-                    width: 2,
-                    style: "solid"
+         title: "Custom GeoJSON Layer"
+    });
+     fetch(url)
+        .then(response => response.json())
+        .then(geojson => {
+            geojson.features.forEach((feature, index) => {
+                const graphic = createGeoJSONGraphic(feature, colorHTML, alpha); // Customize fill color and alpha
+
+                // Only include polygon geometries
+                if (feature.geometry.type === "Polygon" || feature.geometry.type === "MultiPolygon") {
+                    const name = feature.properties.name || `Polygon ${index + 1}`;
+                    geoJSONPolygons.push({ geometry: graphic.geometry, feature });
                 }
-            }
-        },
-        fields: [
-            { name: "name", type: "string" } // Ensure 'name' is recognized as an attribute
-        ],
-        outFields: ["*"], // Load all properties from the GeoJSON file
-        opacity: 0.5
-    });
-     layer.when(() => {
-        layer.queryFeatures().then((featureSet) => {
-            featureSet.features.forEach((feature) => {
-                geoJSONPolygons.push({
-                    geometry: feature.geometry,
-                    feature: feature
-                });
+
+                graphicsLayer.add(graphic);
             });
-        });
-    });
+
+            if (view && setupGraphicsLayerClickEvent) {
+                setupGraphicsLayerClickEvent(view, graphicsLayer);
+            }
+        })
+        .catch(error => console.error('Error loading GeoJSON:', error));
 
     return layer;
 };
+	
 
 let isPanelOpen = false;
 let startY = 0;
@@ -399,6 +393,16 @@ window.loadGeoJSONAndDisplay = function (url, opacity = 0.7, view) {
     // Return the newly created GraphicsLayer
     return graphicsLayer;
 };
+
+
+
+
+
+
+
+
+
+	
 
     // Create a GraphicsLayer for static graphics
     const graphicsLayer = new GraphicsLayer();
