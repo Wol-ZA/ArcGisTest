@@ -414,8 +414,7 @@ function addUserLocationMarker(location, heading) {
     const userPoint = {
         type: "point",
         longitude: location[0],
-        latitude: location[1],
-	spatialReference: {wkid: 4326}
+        latitude: location[1]
     };
 
     const markerSymbol = new PictureMarkerSymbol({
@@ -467,7 +466,7 @@ if (!userGraphic.polylineGraphic) {
         const correctedRotation = 360 - heading;
         view.rotation = correctedRotation; // Rotate the map view
         view.center = userPoint; // Center map on user location
-        const intersections = checkIntersectionWithPolygons(userGraphic.polylineGraphic, userPoint);
+        const intersections = checkIntersectionWithPolygons(mainLineGraphic, userPoint);
         console.log(intersections);
         //WL.Execute("ClosingInn", intersections);
     }
@@ -590,7 +589,8 @@ function createDirectionalPolylineWithTicks(userPoint, heading) {
 
     const mainLineGraphic = new Graphic({
         geometry: polylineGeometry,
-        symbol: lineSymbol
+        symbol: lineSymbol,
+	spatialReference: { wkid: 4326 }
     });
 
     // Return main line + ticks
