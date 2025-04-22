@@ -88,8 +88,8 @@ window.drawRoute = function(destinationLat, destinationLong) {
             // Create a graphic for the polyline
             const lineSymbol = {
                 type: "simple-line", // autocasts as new SimpleLineSymbol()
-                color: [226, 119, 40], // Orange
-                width: 4
+                color: [0, 0, 255], // Blue
+                width: 2
             };
 
             const newPolylineGraphic = new Graphic({
