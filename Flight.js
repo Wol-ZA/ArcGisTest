@@ -71,8 +71,13 @@ let locationWatchId; // Renamed from watchId
 window.drawRoute = function(destinationLat, destinationLong) {
     require(["esri/geometry/Polyline", "esri/Graphic"], function(Polyline, Graphic) {
         // Clear any existing polyline
+	const routeLineLayer = new GraphicsLayer({
+   	 title: "Route Line",
+    	id: "routeLineLayer",
+    	listMode: "hide"
+	});    
         if (polylineGraphic) {
-            view.graphics.remove(polylineGraphic);
+            routeLineLayer.remove(polylineGraphic);
         }
 
         // Function to update the line dynamically
@@ -99,10 +104,10 @@ window.drawRoute = function(destinationLat, destinationLong) {
 
             // Add the new graphic to the map view
             if (polylineGraphic) {
-                view.graphics.remove(polylineGraphic);
+                routeLineLayer.remove(polylineGraphic);
             }
             polylineGraphic = newPolylineGraphic;
-            view.graphics.add(polylineGraphic);
+            routeLineLayer.add(polylineGraphic);
         }
 
         // Watch the user's location and update the line
