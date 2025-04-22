@@ -538,7 +538,7 @@ function createDirectionalPolylineWithTicks(userPoint, heading) {
     const nauticalMileInMeters = 1852;
     const maxDistanceNm = 20;
     const segmentLengthNm = 5;
-    const tickLengthMeters = 1000; // ~0.27 NM tick line
+    const tickLengthMeters = 1500; // ~0.27 NM tick line
 
     const headingRadians = heading * (Math.PI / 180);
     const perpendicularHeading = heading + 90;
@@ -574,7 +574,7 @@ function createDirectionalPolylineWithTicks(userPoint, heading) {
         const tickSymbol = {
             type: "simple-line",
             color: [0, 0, 0, 0.8], // black tick
-            width: 1
+            width: 2
         };
 
         tickGraphics.push(new Graphic({
@@ -749,9 +749,9 @@ window.EndTracking = function() {
                 graphicsLayer.remove(userGraphic.polylineGraphic); // Remove the polyline
                 userGraphic.polylineGraphic = null; // Clear the polyline reference
             }
-	    if (tickGraphics) {
-                graphicsLayer.remove(tickGraphics); // Remove the polyline
-                tickGraphics = null; // Clear the polyline reference
+	    if (userGraphic.tickGraphics) {
+                graphicsLayer.removeMany(userGraphic.tickGraphics); // Remove the polyline
+                userGraphic.tickGraphics = null; // Clear the polyline reference
             }
             if (userGraphic.textGraphic) {
                 graphicsLayer.remove(userGraphic.textGraphic); // Remove the text graphic
