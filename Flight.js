@@ -457,7 +457,8 @@ const polylineGraphics = createDirectionalPolylineWithTicks(userPoint, heading);
 // Separate the main line from tick marks
 const mainLineGraphic = polylineGraphics[0];
 const tickGraphics = polylineGraphics.slice(1);
-
+console.log(mainLineGraphic);
+console.log(tickGraphics);
 if (!userGraphic.polylineGraphic) {
     // First time: add main line and ticks
     userGraphic.polylineGraphic = mainLineGraphic;
