@@ -414,7 +414,8 @@ function addUserLocationMarker(location, heading) {
     const userPoint = {
         type: "point",
         longitude: location[0],
-        latitude: location[1]
+        latitude: location[1],
+	spatialReference: {wkid: 4326}
     };
 
     const markerSymbol = new PictureMarkerSymbol({
@@ -492,17 +493,22 @@ function checkIfInsidePolygon(userPoint) {
 function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
     const intersectingPolygons = [];
 
+    // Ensure polyline has spatial reference
+    if (!polylineGeometry.spatialReference) {
+        polylineGeometry.spatialReference = { wkid: 4326 };
+    }
+
     geoJSONPolygons.forEach((polygonData) => {
         const { geometry: polygonGeometry, feature } = polygonData;
 
-        // Ensure geometries are valid
         if (!polygonGeometry || !userPoint || !polylineGeometry) {
-            console.warn("Invalid geometry detected", {
-                polygonGeometry,
-                userPoint,
-                polylineGeometry
-            });
+            console.warn("Invalid geometry detected", { polygonGeometry, userPoint, polylineGeometry });
             return;
+        }
+
+        // Ensure polygon has spatial reference
+        if (!polygonGeometry.spatialReference) {
+            polygonGeometry.spatialReference = { wkid: 4326 };
         }
 
         try {
