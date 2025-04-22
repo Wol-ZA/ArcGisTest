@@ -405,16 +405,6 @@ window.loadGeoJSONAndDisplay = function (url, opacity = 0.7, view) {
     return graphicsLayer;
 };
 
-
-
-
-
-
-
-
-
-	
-
     // Create a GraphicsLayer for static graphics
     const graphicsLayer = new GraphicsLayer();
     map.add(graphicsLayer);
@@ -494,8 +484,7 @@ if (!userGraphic.polylineGraphic) {
 	console.log(mainLineGraphic.geometry);
 	console.log(userGraphic.polylineGraphic);
         const intersections = checkIntersectionWithPolygons(mainLineGraphic.geometry, userPoint);
-        alert(intersections[0].name);
-        //WL.Execute("ClosingInn", intersections);
+        WL.Execute("ClosingInn", intersections);
     }
 }
   
