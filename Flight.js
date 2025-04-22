@@ -141,8 +141,17 @@ window.createGeoJSONLayer = function (url, colorHTML, alpha) {
         outFields: ["*"], // Load all properties from the GeoJSON file
         opacity: 0.5
     });
-    //const graphic = createGeoJSONGraphic(feature, colorHTML, alpha);
-    console.log(layer);
+     layer.when(() => {
+        layer.queryFeatures().then((featureSet) => {
+            featureSet.features.forEach((feature) => {
+                geoJSONPolygons.push({
+                    geometry: feature.geometry,
+                    feature: feature
+                });
+            });
+        });
+    });
+
     return layer;
 };
 
