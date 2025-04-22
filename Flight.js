@@ -496,7 +496,7 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
 
     // Default spatial reference
     const defaultSR = { wkid: 4326 };
-
+	console.log(geoJSONPolygons);
     if (!polylineGeometry?.spatialReference) {
         polylineGeometry.spatialReference = defaultSR;
     }
@@ -519,9 +519,6 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
         }
 
         try {
-	    console.log("polygonGeometry type:", polygonGeometry.type);
-    	    console.log("polylineGeometry type:", polylineGeometry.type);
-            console.log("userPoint type:", userPoint.type);
 		const convertedUserPoint = {
   		type: "point",
   		x: userPoint.longitude,
