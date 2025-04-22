@@ -494,7 +494,7 @@ if (!userGraphic.polylineGraphic) {
 	console.log(mainLineGraphic.geometry);
 	console.log(userGraphic.polylineGraphic);
         const intersections = checkIntersectionWithPolygons(mainLineGraphic.geometry, userPoint);
-        alert(intersections[0]);
+        alert(intersections[0].name);
         //WL.Execute("ClosingInn", intersections);
     }
 }
