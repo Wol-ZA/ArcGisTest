@@ -155,10 +155,6 @@ window.createGeoJSONLayer = function (url, colorHTML, alpha) {
 
                 graphicsLayer.add(graphic);
             });
-
-            if (view && setupGraphicsLayerClickEvent) {
-                setupGraphicsLayerClickEvent(view, graphicsLayer);
-            }
         })
         .catch(error => console.error('Error loading GeoJSON:', error));
 
