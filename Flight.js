@@ -492,29 +492,35 @@ function checkIfInsidePolygon(userPoint) {
 function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
     const intersectingPolygons = [];
 
-    // Ensure polyline has spatial reference
-    if (!polylineGeometry.spatialReference) {
-        polylineGeometry.spatialReference = { wkid: 4326 };
+    // Default spatial reference
+    const defaultSR = { wkid: 4326 };
+
+    if (!polylineGeometry?.spatialReference) {
+        polylineGeometry.spatialReference = defaultSR;
     }
 
     geoJSONPolygons.forEach((polygonData) => {
         const { geometry: polygonGeometry, feature } = polygonData;
 
-        if (!polygonGeometry || !userPoint || !polylineGeometry) {
+        // Skip invalid inputs
+        if (!polygonGeometry || !polylineGeometry || !userPoint) {
             console.warn("Invalid geometry detected", { polygonGeometry, userPoint, polylineGeometry });
             return;
         }
 
-        // Ensure polygon has spatial reference
         if (!polygonGeometry.spatialReference) {
-            polygonGeometry.spatialReference = { wkid: 4326 };
+            polygonGeometry.spatialReference = defaultSR;
+        }
+
+        if (!userPoint.spatialReference) {
+            userPoint.spatialReference = defaultSR;
         }
 
         try {
             const intersects = geometryEngine.intersects(polylineGeometry, polygonGeometry);
             const containsUser = geometryEngine.contains(polygonGeometry, userPoint);
 
-            if (intersects && !containsUser && feature.properties?.name) {
+            if (intersects && !containsUser && feature?.properties?.name) {
                 intersectingPolygons.push({ name: feature.properties.name });
             }
         } catch (error) {
@@ -524,6 +530,7 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
 
     return intersectingPolygons;
 }
+
 
 function createDirectionalPolylineWithTicks(userPoint, heading) {
     const earthRadiusMeters = 6371000;
