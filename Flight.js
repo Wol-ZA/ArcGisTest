@@ -141,7 +141,8 @@ window.createGeoJSONLayer = function (url, colorHTML, alpha) {
         outFields: ["*"], // Load all properties from the GeoJSON file
         opacity: 0.5
     });
-
+    //const graphic = createGeoJSONGraphic(feature, colorHTML, alpha);
+    console.log(layer);
     return layer;
 };
 
@@ -306,7 +307,7 @@ view.on("click", function (event) {
             maxScale: 0
         }];
     }
-
+	
     return layer;
 }
 
