@@ -466,7 +466,7 @@ if (!userGraphic.polylineGraphic) {
         const correctedRotation = 360 - heading;
         view.rotation = correctedRotation; // Rotate the map view
         view.center = userPoint; // Center map on user location
-        const intersections = checkIntersectionWithPolygons(mainLineGraphic.geometry, userPoint);
+        const intersections = checkIntersectionWithPolygons(userGraphic.polylineGraphic, userPoint);
         console.log(intersections);
         //WL.Execute("ClosingInn", intersections);
     }
