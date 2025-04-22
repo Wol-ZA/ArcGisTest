@@ -475,7 +475,7 @@ if (!userGraphic.polylineGraphic) {
 function checkIfInsidePolygon(userPoint) {
     let insideAnyPolygon = false;
 
-    geoJSONPolygons .forEach((polygonData, index) => {
+    geoJSONPolygons.forEach((polygonData, index) => {
         const { geometry: polygonGeometry, feature } = polygonData;
 
         // Check if the point is inside the polygon
@@ -507,6 +507,7 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
         // Check if the user is inside this polygon
         const containsUser = geometryEngine.contains(polygonGeometry, userPoint);
 	console.log(intersects);
+	console.log(containsUser);    
         // Add to the array if it intersects and does not contain the user
         if (intersects && !containsUser && feature.properties?.name) {
             intersectingPolygons.push({ name: feature.properties.name });
