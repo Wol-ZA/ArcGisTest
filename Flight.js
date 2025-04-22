@@ -749,6 +749,10 @@ window.EndTracking = function() {
                 graphicsLayer.remove(userGraphic.polylineGraphic); // Remove the polyline
                 userGraphic.polylineGraphic = null; // Clear the polyline reference
             }
+	    if (userGraphic.tickGraphics) {
+                graphicsLayer.remove(userGraphic.tickGraphics); // Remove the polyline
+                userGraphic.tickGraphics = null; // Clear the polyline reference
+            }
             if (userGraphic.textGraphic) {
                 graphicsLayer.remove(userGraphic.textGraphic); // Remove the text graphic
                 userGraphic.textGraphic = null; // Clear the text reference
