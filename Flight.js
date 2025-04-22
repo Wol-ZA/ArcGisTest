@@ -538,7 +538,7 @@ function createDirectionalPolylineWithTicks(userPoint, heading) {
     const nauticalMileInMeters = 1852;
     const maxDistanceNm = 20;
     const segmentLengthNm = 5;
-    const tickLengthMeters = 500; // ~0.27 NM tick line
+    const tickLengthMeters = 1000; // ~0.27 NM tick line
 
     const headingRadians = heading * (Math.PI / 180);
     const perpendicularHeading = heading + 90;
