@@ -390,23 +390,6 @@ window.loadGeoJSONAndDisplay = function (url, opacity = 0.7, view) {
     return graphicsLayer;
 };
 
-
-    // Define point layers and add to the map
-   // const sacaaLayer = createIconGeoJSONLayer("SACAA.geojson", "SACAA_1.png");
-	//const aerodromeAipLayer = createIconGeoJSONLayer("Aerodrome_AIP.geojson", "AIP_1.png");
-	//const aerodromeAicLayer = createIconGeoJSONLayer("Aerodrome_AIC.geojson", "AIC_1.png");
-	//const unlicensedLayer = createIconGeoJSONLayer("Un-Licensed.geojson", "unlicensed_1.png");
-	//const atnsLayer = createIconGeoJSONLayer("ATNS.geojson", "ATNS_1.png");
-	//const militaryLayer = createIconGeoJSONLayer("Military.geojson", "military_1.png");
-	//const helistopsLayer = createIconGeoJSONLayer("helistops.geojson", "helistops_1.png");
-	//const ENRLayer = createIconGeoJSONLayer("ENR.geojson", "ENR.png");
-	//const RnavLayer = createIconGeoJSONLayer("RNAV.geojson", "Rnav.png");
-	//const IorraLayer = createIconGeoJSONLayer("IORRA.geojson", "Iorra.png");
-	//const AorraLayer = createIconGeoJSONLayer("AORRA.geojson", "Iorra.png");
-
-    // Add point layers to the map
-   // map.addMany([sacaaLayer, aerodromeAipLayer, aerodromeAicLayer, unlicensedLayer, atnsLayer, militaryLayer, helistopsLayer, ENRLayer, RnavLayer, IorraLayer, AorraLayer]);
-
     // Create a GraphicsLayer for static graphics
     const graphicsLayer = new GraphicsLayer();
     map.add(graphicsLayer);
