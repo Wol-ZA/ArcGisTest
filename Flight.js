@@ -519,9 +519,16 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
         try {
 	    console.log("polygonGeometry:", polygonGeometry);
 	    console.log("polylineGeometry:", polylineGeometry);
-            console.log("userPoint:", userPoint);	
+            console.log("userPoint:", userPoint);
+		const convertedUserPoint = {
+  		type: "point",
+  		x: userPoint.longitude,
+  		y: userPoint.latitude,
+  		spatialReference: userPoint.spatialReference || { wkid: 4326 }
+		};
+		 console.log("userPoint2:", convertedUserPoint);
             const intersects = geometryEngine.intersects(polylineGeometry, polygonGeometry);
-            const containsUser = geometryEngine.contains(polygonGeometry, userPoint);
+            const containsUser = geometryEngine.contains(polygonGeometry, convertedUserPoint);
 
             if (intersects && !containsUser && feature?.properties?.name) {
                 intersectingPolygons.push({ name: feature.properties.name });
