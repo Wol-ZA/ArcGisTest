@@ -252,10 +252,10 @@ view.on("click", function (event) {
             let topmostGraphic = response.results[0].graphic; // Get the topmost feature
 
             // If the topmost feature belongs to a GeoJSONLayer, prevent layer click event
-            //if (topmostGraphic && topmostGraphic.layer instanceof GeoJSONLayer) { 
-                //console.log("Icon clicked, ignoring layer event.");
-                //return;
-            //}
+            if (topmostGraphic && topmostGraphic.layer instanceof GeoJSONLayer) { 
+                console.log("Icon clicked, ignoring layer event.");
+                return;
+            }
 
             // Otherwise, process layers normally
             response.results.forEach((result) => {
