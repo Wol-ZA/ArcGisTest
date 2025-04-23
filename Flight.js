@@ -251,7 +251,8 @@ view.on("click", function (event) {
             showCustomPopup("<p>No features clicked.</p>");
             return;
         }
-
+	
+	
         let iconInfo = null;
         let polygonInfos = [];
 
@@ -261,7 +262,7 @@ view.on("click", function (event) {
 
             const attributes = graphic.attributes;
             const geometryType = graphic.geometry.type;
-
+	console.log("Polygon ATTRIBUTES:", attributes);
             if (geometryType === "point" && !iconInfo) {
                 iconInfo = {
                     name: attributes.name || attributes.id || "Unnamed Icon",
