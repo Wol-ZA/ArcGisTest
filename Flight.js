@@ -359,7 +359,7 @@ function showCustommPopup(htmlContent) {
     // Hide after 5 seconds
     popupTimeout = setTimeout(() => {
         popup.style.display = "none";
-    }, 5000);
+    }, 10000);
 }
 let GeoJsonIcons = [];
 
