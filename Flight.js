@@ -306,8 +306,12 @@ view.on("click", function (event) {
 
 
 // Create or update a popup in the top-left corner
+let popupTimeout; // global timeout tracker
+
 function showCustommPopup(htmlContent) {
     let popup = document.getElementById("customPopup");
+    
+    // Create popup if it doesn't exist
     if (!popup) {
         popup = document.createElement("div");
         popup.id = "customPopup";
@@ -323,9 +327,18 @@ function showCustommPopup(htmlContent) {
         document.body.appendChild(popup);
     }
 
+    // Update content and show popup
     popup.innerHTML = htmlContent;
-}
+    popup.style.display = "block";
 
+    // Clear any existing timeout
+    if (popupTimeout) clearTimeout(popupTimeout);
+
+    // Hide after 5 seconds
+    popupTimeout = setTimeout(() => {
+        popup.style.display = "none";
+    }, 5000);
+}
 let GeoJsonIcons = [];
 
 // Function to create a GeoJSONLayer with a specific icon for points
