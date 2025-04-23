@@ -332,8 +332,6 @@ let popupTimeout; // global timeout tracker
 
 function showCustommPopup(htmlContent) {
     let popup = document.getElementById("customPopup");
-    
-    // Create popup if it doesn't exist
     if (!popup) {
         popup = document.createElement("div");
         popup.id = "customPopup";
@@ -342,25 +340,36 @@ function showCustommPopup(htmlContent) {
         popup.style.left = "10px";
         popup.style.background = "white";
         popup.style.border = "1px solid #ccc";
-        popup.style.padding = "10px";
+        popup.style.borderRadius = "8px";
+        popup.style.padding = "12px 16px";
         popup.style.zIndex = "999";
-        popup.style.maxWidth = "300px";
-        popup.style.boxShadow = "0 2px 6px rgba(0,0,0,0.3)";
+        popup.style.maxWidth = "320px";
+        popup.style.fontFamily = "'Segoe UI', Roboto, sans-serif";
+        popup.style.fontSize = "13px";
+        popup.style.color = "#333";
+        popup.style.boxShadow = "0 4px 8px rgba(0,0,0,0.2)";
+        popup.style.lineHeight = "1.4";
+        popup.style.transition = "opacity 0.3s ease";
+        popup.style.opacity = "1";
         document.body.appendChild(popup);
     }
 
-    // Update content and show popup
-    popup.innerHTML = htmlContent;
-    popup.style.display = "block";
+    popup.innerHTML = `
+        <div style="border-bottom: 1px solid #ddd; margin-bottom: 8px;">
+            <h3 style="margin: 0 0 4px; font-size: 15px; color: #003366;">What's Here?</h3>
+        </div>
+        ${htmlContent}
+    `;
 
-    // Clear any existing timeout
-    if (popupTimeout) clearTimeout(popupTimeout);
-
-    // Hide after 5 seconds
-    popupTimeout = setTimeout(() => {
-        popup.style.display = "none";
+    // Fade out after 5 seconds
+    setTimeout(() => {
+        popup.style.opacity = "0";
+        setTimeout(() => popup.remove(), 300); // remove after fade out
     }, 10000);
 }
+
+
+	
 let GeoJsonIcons = [];
 
 // Function to create a GeoJSONLayer with a specific icon for points
