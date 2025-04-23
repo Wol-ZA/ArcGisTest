@@ -321,9 +321,15 @@ function showCustommPopup(htmlContent) {
     popup.innerHTML = htmlContent;
 }
 
+let GeoJsonIcons = [];
 
- // Function to create a GeoJSONLayer with a specific icon for points
- window.createIconGeoJSONLayer = function(url, iconUrl) {
+// Function to create a GeoJSONLayer with a specific icon for points
+window.createIconGeoJSONLayer = function(url, iconUrl) {
+    const popupTemplate = {
+        title: "{name}",
+        content: "{description}"
+    };
+
     const layer = new GeoJSONLayer({
         url: url,
         renderer: {
@@ -335,10 +341,7 @@ function showCustommPopup(htmlContent) {
                 height: "16px"
             }
         },
-        popupTemplate: {
-            title: "{name}",
-            content: "{description}"
-        }
+        popupTemplate: popupTemplate
     });
 
     // Only add labelingInfo for ENR.geojson
@@ -360,7 +363,14 @@ function showCustommPopup(htmlContent) {
             maxScale: 0
         }];
     }
-	
+
+    // Add to GeoJsonIcons array
+    GeoJsonIcons.push({
+        layer: layer,
+        title: popupTemplate.title,
+        content: popupTemplate.content
+    });
+
     return layer;
 }
 
