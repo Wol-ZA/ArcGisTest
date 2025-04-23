@@ -384,11 +384,6 @@ window.createIconGeoJSONLayer = function(url, iconUrl) {
                 const props = result.features[0].attributes;
                 const nameField = Object.keys(props).find(key => key.toLowerCase().includes("name"));
                 const descField = Object.keys(props).find(key => key.toLowerCase().includes("desc"));
-
-                layer.popupTemplate = {
-                    title: `{${nameField || 'id'}}`,
-                    content: `{${descField || nameField || 'id'}}`
-                };
             }
         });
     });
