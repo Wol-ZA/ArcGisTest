@@ -286,7 +286,7 @@ view.on("click", function (event) {
         if (polygonInfo) {
             popupContent += `<h3>Polygon Info</h3><p>Name: ${polygonInfo.name}</p>`;
             const layerData = { layers: [polygonInfo.name] };
-            WL.Execute("GetSectorName", JSON.stringify(layerData));
+            //WL.Execute("GetSectorName", JSON.stringify(layerData));
         }
 
         if (!popupContent) {
