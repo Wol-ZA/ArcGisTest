@@ -253,6 +253,8 @@ view.on("click", function (event) {
 
             // If the topmost feature belongs to a GeoJSONLayer, prevent layer click event
             if (topmostGraphic && topmostGraphic.layer instanceof GeoJSONLayer) {
+		console.log(topmostGraphic.layer); 
+		console.log(GeoJSONLayer); 
                 console.log("Icon clicked, ignoring layer event.");
                 return;
             }
