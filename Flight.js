@@ -329,11 +329,6 @@ let GeoJsonIcons = [];
 
 // Function to create a GeoJSONLayer with a specific icon for points
 window.createIconGeoJSONLayer = function(url, iconUrl) {
-    const popupTemplate = {
-        title: "{name}",
-        content: "{description}"
-    };
-
     const layer = new GeoJSONLayer({
         url: url,
         renderer: {
@@ -344,11 +339,25 @@ window.createIconGeoJSONLayer = function(url, iconUrl) {
                 width: "16px",
                 height: "16px"
             }
-        },
-        popupTemplate: popupTemplate
+        }
     });
 
-    // Only add labelingInfo for ENR.geojson
+    layer.when(() => {
+        layer.queryFeatures().then((result) => {
+            if (result.features.length > 0) {
+                const props = result.features[0].attributes;
+                const nameField = Object.keys(props).find(key => key.toLowerCase().includes("name"));
+                const descField = Object.keys(props).find(key => key.toLowerCase().includes("desc"));
+
+                layer.popupTemplate = {
+                    title: `{${nameField || 'id'}}`,
+                    content: `{${descField || nameField || 'id'}}`
+                };
+            }
+        });
+    });
+
+    // Labeling for ENR only
     if (url === "ENR.geojson") {
         layer.labelingInfo = [{
             labelExpressionInfo: { expression: "$feature.name" },
@@ -368,15 +377,11 @@ window.createIconGeoJSONLayer = function(url, iconUrl) {
         }];
     }
 
-    // Add to GeoJsonIcons array
-    GeoJsonIcons.push({
-        layer: layer,
-        title: popupTemplate.title,
-        content: popupTemplate.content
-    });
+    GeoJsonIcons.push({ layer });
 
     return layer;
 }
+
 
 
 
