@@ -356,9 +356,8 @@ window.createIconGeoJSONLayer = function(url, iconUrl) {
             }
         });
     });
-
+	
     // Labeling for ENR only
-    if (url === "ENR.geojson") {
         layer.labelingInfo = [{
             labelExpressionInfo: { expression: "$feature.name" },
             symbol: {
@@ -375,7 +374,6 @@ window.createIconGeoJSONLayer = function(url, iconUrl) {
             minScale: 300000,
             maxScale: 0
         }];
-    }
 
     GeoJsonIcons.push({ layer });
 
