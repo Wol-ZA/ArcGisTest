@@ -253,7 +253,7 @@ view.on("click", function (event) {
         }
 
         let iconInfo = null;
-        let polygonInfo = null;
+        let polygonInfos = [];
 
         for (let result of response.results) {
             const graphic = result.graphic;
@@ -267,14 +267,12 @@ view.on("click", function (event) {
                     name: attributes.name || attributes.id || "Unnamed Icon",
                     attributes
                 };
-            } else if (geometryType === "polygon" && !polygonInfo) {
-                polygonInfo = {
+            } else if (geometryType === "polygon") {
+                polygonInfos.push({
                     name: attributes.name || attributes.id || "Unnamed Polygon",
                     attributes
-                };
+                });
             }
-
-            if (iconInfo && polygonInfo) break; // we have what we need
         }
 
         let popupContent = "";
@@ -283,10 +281,15 @@ view.on("click", function (event) {
             popupContent += `<h3>Icon Info</h3><p>Name: ${iconInfo.name}</p>`;
         }
 
-        if (polygonInfo) {
-            popupContent += `<h3>Polygon Info</h3><p>Name: ${polygonInfo.name}</p>`;
-            const layerData = { layers: [polygonInfo.name] };
-            //WL.Execute("GetSectorName", JSON.stringify(layerData));
+        if (polygonInfos.length > 0) {
+            popupContent += `<h3>Polygon Info</h3><ul>`;
+            polygonInfos.forEach(p => {
+                popupContent += `<li>${p.name}</li>`;
+            });
+            popupContent += `</ul>`;
+
+            const layerNames = polygonInfos.map(p => p.name);
+            //WL.Execute("GetSectorName", JSON.stringify({ layers: layerNames }));
         }
 
         if (!popupContent) {
@@ -298,6 +301,7 @@ view.on("click", function (event) {
         console.error("Error in hitTest:", error);
     });
 });
+
 
 
 // Create or update a popup in the top-left corner
