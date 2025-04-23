@@ -247,41 +247,79 @@ function stopDragging() {
 	
 view.on("click", function (event) {
     view.hitTest(event).then(function (response) {
-        if (response.results.length > 0) {
-            let layerNames = new Set();
-            let topmostGraphic = response.results[0].graphic; // Get the topmost feature
-
-            // If the topmost feature belongs to a GeoJSONLayer, prevent layer click event
-            if (topmostGraphic && topmostGraphic.layer instanceof GeoJSONLayer) { 
-                console.log("Icon clicked, ignoring layer event.");
-                return;
-            }
-
-            // Otherwise, process layers normally
-            response.results.forEach((result) => {
-		console.log(response.results);    
-                if (result.graphic) {
-                    const attributes = result.graphic.attributes;
-                    if (attributes && attributes.name) {
-                        layerNames.add(attributes.name || "Unknown Layer");
-                    }
-                }
-            });
-
-            if (layerNames.size > 0) {
-                const layerData = { layers: Array.from(layerNames) };
-                console.log("Clicked Layers:", layerData);
-                WL.Execute("GetSectorName", JSON.stringify(layerData));
-            } else {
-                console.log("Features clicked, but none had a 'name' property.");
-            }
-        } else {
-            console.log("No feature clicked.");
+        if (!response.results.length) {
+            console.log("No features clicked.");
+            showCustomPopup("<p>No features clicked.</p>");
+            return;
         }
+
+        let iconInfo = null;
+        let polygonInfo = null;
+
+        response.results.forEach(result => {
+            const graphic = result.graphic;
+            if (!graphic || !graphic.attributes) return;
+
+            const attributes = graphic.attributes;
+            const isGeoJSON = graphic.layer instanceof GeoJSONLayer;
+
+            if (isGeoJSON && !iconInfo) {
+                iconInfo = {
+                    name: attributes.name || 'Unknown Icon',
+                    attributes: attributes
+                };
+            } else if (!isGeoJSON && !polygonInfo) {
+                polygonInfo = {
+                    name: attributes.name || 'Unknown Polygon',
+                    attributes: attributes
+                };
+            }
+        });
+
+        // Build popup content
+        let popupContent = "";
+
+        if (iconInfo) {
+            popupContent += `<h3>Icon Info</h3><p>Name: ${iconInfo.name}</p>`;
+        }
+
+        if (polygonInfo) {
+            popupContent += `<h3>Polygon Info</h3><p>Name: ${polygonInfo.name}</p>`;
+            const layerData = { layers: [polygonInfo.name] };
+            WL.Execute("GetSectorName", JSON.stringify(layerData));
+        }
+
+        if (!popupContent) {
+            popupContent = "<p>No recognizable features clicked.</p>";
+        }
+
+        showCustomPopup(popupContent);
+
     }).catch(error => {
         console.error("Error in hitTest:", error);
     });
 });
+
+// Create or update a popup in the top-left corner
+function showCustomPopup(htmlContent) {
+    let popup = document.getElementById("customPopup");
+    if (!popup) {
+        popup = document.createElement("div");
+        popup.id = "customPopup";
+        popup.style.position = "absolute";
+        popup.style.top = "10px";
+        popup.style.left = "10px";
+        popup.style.background = "white";
+        popup.style.border = "1px solid #ccc";
+        popup.style.padding = "10px";
+        popup.style.zIndex = "999";
+        popup.style.maxWidth = "300px";
+        popup.style.boxShadow = "0 2px 6px rgba(0,0,0,0.3)";
+        document.body.appendChild(popup);
+    }
+
+    popup.innerHTML = htmlContent;
+}
 
 
  // Function to create a GeoJSONLayer with a specific icon for points
