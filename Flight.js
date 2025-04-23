@@ -255,25 +255,27 @@ view.on("click", function (event) {
         let iconInfo = null;
         let polygonInfo = null;
 
-        response.results.forEach(result => {
+        for (let result of response.results) {
             const graphic = result.graphic;
-            if (!graphic || !graphic.attributes) return;
+            if (!graphic || !graphic.attributes || !graphic.geometry) continue;
 
             const attributes = graphic.attributes;
-            const isIcon = graphic.layer instanceof GeoJSONLayer;
+            const geometryType = graphic.geometry.type;
 
-            if (isIcon && !iconInfo) {
+            if (geometryType === "point" && !iconInfo) {
                 iconInfo = {
-                    name: attributes.name || attributes.id || 'Unnamed Icon',
+                    name: attributes.name || attributes.id || "Unnamed Icon",
                     attributes
                 };
-            } else if (!isIcon && !polygonInfo) {
+            } else if (geometryType === "polygon" && !polygonInfo) {
                 polygonInfo = {
-                    name: attributes.name || attributes.id || 'Unnamed Polygon',
+                    name: attributes.name || attributes.id || "Unnamed Polygon",
                     attributes
                 };
             }
-        });
+
+            if (iconInfo && polygonInfo) break; // we have what we need
+        }
 
         let popupContent = "";
 
@@ -284,7 +286,7 @@ view.on("click", function (event) {
         if (polygonInfo) {
             popupContent += `<h3>Polygon Info</h3><p>Name: ${polygonInfo.name}</p>`;
             const layerData = { layers: [polygonInfo.name] };
-            //WL.Execute("GetSectorName", JSON.stringify(layerData));
+            WL.Execute("GetSectorName", JSON.stringify(layerData));
         }
 
         if (!popupContent) {
