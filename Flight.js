@@ -248,7 +248,6 @@ function stopDragging() {
 view.on("click", function (event) {
     view.hitTest(event).then(function (response) {
         if (!response.results.length) {
-            console.log("No features clicked.");
             showCustomPopup("<p>No features clicked.</p>");
             return;
         }
@@ -261,24 +260,18 @@ view.on("click", function (event) {
             if (!graphic || !graphic.attributes) return;
 
             const attributes = graphic.attributes;
-            const layer = graphic.layer;
-
-            // Match by reference to your arrays
-            const isIcon = GeoJsonIcons.includes(layer);
-            const isPolygon = geoJSONPolygons.includes(layer);
+            const isIcon = graphic.layer instanceof GeoJSONLayer;
 
             if (isIcon && !iconInfo) {
                 iconInfo = {
                     name: attributes.name || attributes.id || 'Unnamed Icon',
-                    attributes: attributes
+                    attributes
                 };
-            } else if (isPolygon && !polygonInfo) {
+            } else if (!isIcon && !polygonInfo) {
                 polygonInfo = {
                     name: attributes.name || attributes.id || 'Unnamed Polygon',
-                    attributes: attributes
+                    attributes
                 };
-            } else {
-                console.log("Clicked feature not in recognized layers", attributes);
             }
         });
 
@@ -299,11 +292,11 @@ view.on("click", function (event) {
         }
 
         showCustommPopup(popupContent);
-
     }).catch(error => {
         console.error("Error in hitTest:", error);
     });
 });
+
 
 // Create or update a popup in the top-left corner
 function showCustommPopup(htmlContent) {
