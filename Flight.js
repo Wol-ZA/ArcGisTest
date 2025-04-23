@@ -261,22 +261,27 @@ view.on("click", function (event) {
             if (!graphic || !graphic.attributes) return;
 
             const attributes = graphic.attributes;
-            const isGeoJSON = graphic.layer instanceof GeoJSONLayer;
+            const layer = graphic.layer;
 
-            if (isGeoJSON && !iconInfo) {
+            // Match by reference to your arrays
+            const isIcon = GeoJsonIcons.includes(layer);
+            const isPolygon = geoJSONPolygons.includes(layer);
+
+            if (isIcon && !iconInfo) {
                 iconInfo = {
-                    name: attributes.name || 'Unknown Icon',
+                    name: attributes.name || attributes.id || 'Unnamed Icon',
                     attributes: attributes
                 };
-            } else if (!isGeoJSON && !polygonInfo) {
+            } else if (isPolygon && !polygonInfo) {
                 polygonInfo = {
-                    name: attributes.name || 'Unknown Polygon',
+                    name: attributes.name || attributes.id || 'Unnamed Polygon',
                     attributes: attributes
                 };
+            } else {
+                console.log("Clicked feature not in recognized layers", attributes);
             }
         });
 
-        // Build popup content
         let popupContent = "";
 
         if (iconInfo) {
