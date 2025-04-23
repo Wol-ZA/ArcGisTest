@@ -259,6 +259,7 @@ view.on("click", function (event) {
 
             // Otherwise, process layers normally
             response.results.forEach((result) => {
+		console.log(response.results);    
                 if (result.graphic) {
                     const attributes = result.graphic.attributes;
                     if (attributes && attributes.name) {
