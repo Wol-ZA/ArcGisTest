@@ -397,7 +397,7 @@ window.loadGeoJSONAndDisplay = function (url, opacity = 0.7, view) {
             });
 
             // Setup click event after loading graphics
-            setupGraphicsLayerClickEvent(view, graphicsLayer);
+            //setupGraphicsLayerClickEvent(view, graphicsLayer);
         })
         .catch(error => console.error('Error loading GeoJSON:', error));
 
