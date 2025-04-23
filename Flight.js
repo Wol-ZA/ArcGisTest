@@ -286,14 +286,14 @@ view.on("click", function (event) {
         if (polygonInfo) {
             popupContent += `<h3>Polygon Info</h3><p>Name: ${polygonInfo.name}</p>`;
             const layerData = { layers: [polygonInfo.name] };
-            WL.Execute("GetSectorName", JSON.stringify(layerData));
+            //WL.Execute("GetSectorName", JSON.stringify(layerData));
         }
 
         if (!popupContent) {
             popupContent = "<p>No recognizable features clicked.</p>";
         }
 
-        showCustomPopup(popupContent);
+        showCustommPopup(popupContent);
 
     }).catch(error => {
         console.error("Error in hitTest:", error);
@@ -301,7 +301,7 @@ view.on("click", function (event) {
 });
 
 // Create or update a popup in the top-left corner
-function showCustomPopup(htmlContent) {
+function showCustommPopup(htmlContent) {
     let popup = document.getElementById("customPopup");
     if (!popup) {
         popup = document.createElement("div");
