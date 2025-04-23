@@ -244,15 +244,35 @@ function stopDragging() {
         infoPanel.style.bottom = '0';
     }
 }
+
+let longPressTimeout;
+let isLongPress = false;
+
+view.on("pointer-down", function(event) {
+    isLongPress = false;
+
+    longPressTimeout = setTimeout(() => {
+        isLongPress = true;
+        handleLongPress(event);
+    }, 600); // long press threshold in milliseconds (adjust if needed)
+});
+
+view.on("pointer-up", function(event) {
+    clearTimeout(longPressTimeout);
+});
+
+view.on("pointer-move", function(event) {
+    clearTimeout(longPressTimeout); // cancel if user moves the pointer
+});
 	
-view.on("click", function (event) {
+	
+function handleLongPress(event) {
     view.hitTest(event).then(function (response) {
         if (!response.results.length) {
-            showCustomPopup("<p>No features clicked.</p>");
+            showCustommPopup("<p>No features clicked.</p>");
             return;
         }
-	
-	
+
         let iconInfo = null;
         let polygonInfos = [];
 
@@ -262,7 +282,7 @@ view.on("click", function (event) {
 
             const attributes = graphic.attributes;
             const geometryType = graphic.geometry.type;
-	console.log("Polygon ATTRIBUTES:", attributes);
+
             if (geometryType === "point" && !iconInfo) {
                 iconInfo = {
                     name: attributes.name || attributes.id || "Unnamed Icon",
@@ -288,9 +308,6 @@ view.on("click", function (event) {
                 popupContent += `<li>${p.name}</li>`;
             });
             popupContent += `</ul>`;
-
-            const layerNames = polygonInfos.map(p => p.name);
-            //WL.Execute("GetSectorName", JSON.stringify({ layers: layerNames }));
         }
 
         if (!popupContent) {
@@ -301,7 +318,7 @@ view.on("click", function (event) {
     }).catch(error => {
         console.error("Error in hitTest:", error);
     });
-});
+}
 
 
 
