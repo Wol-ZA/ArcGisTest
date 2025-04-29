@@ -581,6 +581,7 @@ if (!userGraphic.polylineGraphic) {
 	console.log(mainLineGraphic.geometry);
 	console.log(userGraphic.polylineGraphic);
         const intersections = checkIntersectionWithPolygons(mainLineGraphic.geometry, userPoint);
+	console.log(intersections);    
         WL.Execute("ClosingInn", JSON.stringify(intersections));
     }
 }
@@ -659,7 +660,6 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
             console.error("Geometry engine error:", error);
         }
     });
-    console.log(intersectingPolygons);
     return intersectingPolygons;
 }
 
