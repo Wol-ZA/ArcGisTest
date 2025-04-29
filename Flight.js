@@ -69,17 +69,20 @@ let polylineGraphic;
 let locationWatchId; // Renamed from watchId
 	
 window.recenterToUser = function() {
-    if (navigator.geolocation) {
+ if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             (position) => {
-                const userPoint = {
-                    type: "point",
+                const userPoint = new Point({
                     longitude: position.coords.longitude,
-                    latitude: position.coords.latitude
-                };
+                    latitude: position.coords.latitude,
+                    spatialReference: { wkid: 4326 } // important!
+                });
+
                 view.goTo({
                     target: userPoint,
-                    zoom: 14 // Adjust zoom level as needed
+                    zoom: 14
+                }).catch((err) => {
+                    console.error("Failed to go to user location:", err);
                 });
             },
             (error) => {
