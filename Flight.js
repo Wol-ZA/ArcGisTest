@@ -1135,6 +1135,7 @@ function createPopup() {
     popup.style.maxHeight = "80vh"; // Prevent the popup from exceeding the screen height
     popup.style.overflowY = "auto"; // Add scrolling for content that overflows
     popup.style.wordWrap = "break-word"; // Ensure long text doesn't overflow
+    popup.style.display = "none";
 
     // **Always center it on screen**
     popup.style.left = "80%";
@@ -1243,7 +1244,7 @@ function generatePopupHTML(content, pointsWithinRadius) {
     customPopup.innerHTML = popupHTML;
 
     // Set initial position
-    customPopup.style.display = "none";
+    customPopup.style.display = "block";
 
     // Wait for the popup to be fully rendered before adjusting position
     setTimeout(() => {
