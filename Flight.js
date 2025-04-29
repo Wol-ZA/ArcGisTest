@@ -1119,7 +1119,7 @@ view.on("click", (event) => {
     
 
     // Custom popup creation
-    //const customPopup = createPopup();
+    const customPopup = createPopup();
 
 function createPopup() {
     const popup = document.createElement("div");
@@ -1243,7 +1243,7 @@ function generatePopupHTML(content, pointsWithinRadius) {
     customPopup.innerHTML = popupHTML;
 
     // Set initial position
-    customPopup.style.display = "block";
+    customPopup.style.display = "none";
 
     // Wait for the popup to be fully rendered before adjusting position
     setTimeout(() => {
