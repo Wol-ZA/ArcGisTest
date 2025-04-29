@@ -360,6 +360,8 @@ let popupTimeout; // global timeout tracker
 
 function showCustommPopup(htmlContent) {
     let popup = document.getElementById("customPopup");
+    let progressBar;
+
     if (!popup) {
         popup = document.createElement("div");
         popup.id = "customPopup";
@@ -379,6 +381,7 @@ function showCustommPopup(htmlContent) {
         popup.style.lineHeight = "1.4";
         popup.style.transition = "opacity 0.3s ease";
         popup.style.opacity = "1";
+
         document.body.appendChild(popup);
     }
 
@@ -387,14 +390,35 @@ function showCustommPopup(htmlContent) {
             <h3 style="margin: 0 0 4px; font-size: 15px; color: #003366;">What's Here?</h3>
         </div>
         ${htmlContent}
+        <div id="popupProgress" style="
+            height: 4px;
+            background-color: #e0e0e0;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 12px;
+        ">
+            <div style="
+                height: 100%;
+                width: 0%;
+                background-color: #4caf50;
+                transition: width 10s linear;
+            "></div>
+        </div>
     `;
 
-    // Fade out after 5 seconds
+    // Animate progress bar
+    progressBar = popup.querySelector("#popupProgress div");
+    requestAnimationFrame(() => {
+        progressBar.style.width = "100%";
+    });
+
+    // Fade out after 10 seconds
     setTimeout(() => {
         popup.style.opacity = "0";
-        setTimeout(() => popup.remove(), 300); // remove after fade out
+        setTimeout(() => popup.remove(), 300);
     }, 10000);
 }
+
 
 
 	
