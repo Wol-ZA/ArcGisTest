@@ -381,6 +381,8 @@ function showCustommPopup(htmlContent) {
         popup.style.lineHeight = "1.4";
         popup.style.transition = "opacity 0.3s ease";
         popup.style.opacity = "1";
+        popup.style.pointerEvents = "none"; // Optional: prevents interfering with map
+        popup.style.willChange = "opacity, transform"; // Hint for smoother rendering
 
         document.body.appendChild(popup);
     }
