@@ -67,7 +67,31 @@ function darkenColor(colorHTML, factor) {
 // Initialize global variables
 let polylineGraphic;
 let locationWatchId; // Renamed from watchId
-
+	
+window.drawRoute = function() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const userPoint = {
+                    type: "point",
+                    longitude: position.coords.longitude,
+                    latitude: position.coords.latitude
+                };
+                view.goTo({
+                    target: userPoint,
+                    zoom: 14 // Adjust zoom level as needed
+                });
+            },
+            (error) => {
+                console.error("Geolocation error:", error);
+            },
+            { enableHighAccuracy: true }
+        );
+    } else {
+        console.warn("Geolocation is not supported by this browser.");
+    }
+}
+	
 // Function to draw a line from current location to a destination
 window.drawRoute = function(destinationLat, destinationLong) {
     require(["esri/geometry/Polyline", "esri/Graphic"], function(Polyline, Graphic) {
