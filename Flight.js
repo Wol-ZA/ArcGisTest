@@ -638,9 +638,16 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
             const intersects = geometryEngine.intersects(polylineGeometry, polygonGeometry);
 	    const projectedPolyline = webMercatorUtils.geographicToWebMercator(polylineGeometry);
   	    const projectedPolygon = webMercatorUtils.geographicToWebMercator(polygonGeometry);
-            const distanceNauticalMiles = geometryEngine.distance(projectedPolyline, projectedPolygon, "nautical-miles");
+           if (intersects) {
+      		// Get the actual intersection geometry
+      		const intersectionGeometry = geometryEngine.intersect(projectedPolyline, projectedPolygon);
 
-            console.log("Distance (nautical miles):", distanceNauticalMiles);
+     		 if (intersectionGeometry) {
+        // Get the length of the intersection in nautical miles
+        	const intersectionLength = geometryEngine.geodesicLength(intersectionGeometry, "nautical-miles");
+
+        	console.log("Intersection length (nautical miles):", intersectionLength);
+      		}
             const containsUser = geometryEngine.contains(polygonGeometry, convertedUserPoint);
 
             if (intersects && !containsUser && feature?.properties?.name) {
