@@ -356,11 +356,14 @@ function handleLongPress(event) {
 
 
 // Create or update a popup in the top-left corner
-let popupTimeout; // global timeout tracker
+// Global references so we can clear them on repeat calls
+let popupTimeout = null;
+let countdownInterval = null;
 
 function showCustommPopup(htmlContent) {
     let popup = document.getElementById("customPopup");
 
+    // Create popup if it doesn't exist
     if (!popup) {
         popup = document.createElement("div");
         popup.id = "customPopup";
@@ -378,13 +381,18 @@ function showCustommPopup(htmlContent) {
         popup.style.color = "#333";
         popup.style.boxShadow = "0 4px 8px rgba(0,0,0,0.15)";
         popup.style.lineHeight = "1.4";
-        popup.style.pointerEvents = "none"; // allows interaction with map
-        popup.style.willChange = "transform"; // avoids flicker
+        popup.style.pointerEvents = "none";
+        popup.style.willChange = "transform";
         popup.style.opacity = "1";
 
         document.body.appendChild(popup);
     }
 
+    // Reset timer and countdown if they exist
+    if (popupTimeout) clearTimeout(popupTimeout);
+    if (countdownInterval) clearInterval(countdownInterval);
+
+    // Set new content and countdown display
     popup.innerHTML = `
         <div style="border-bottom: 1px solid #ddd; margin-bottom: 8px; position: relative;">
             <h3 style="margin: 0 0 4px; font-size: 15px; color: #003366;">What's Here?</h3>
@@ -402,17 +410,20 @@ function showCustommPopup(htmlContent) {
     // Start countdown
     let countdown = 10;
     const timerSpan = popup.querySelector("#countdownTimer");
-    const interval = setInterval(() => {
+    countdownInterval = setInterval(() => {
         countdown--;
         if (timerSpan) timerSpan.textContent = countdown + "s";
-        if (countdown <= 0) clearInterval(interval);
+        if (countdown <= 0) clearInterval(countdownInterval);
     }, 1000);
 
-    // Remove popup after 10 seconds
-    setTimeout(() => {
+    // Set timeout to remove popup
+    popupTimeout = setTimeout(() => {
         popup.remove();
+        popupTimeout = null;
+        countdownInterval = null;
     }, 10000);
 }
+
 
 
 
