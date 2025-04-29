@@ -1119,7 +1119,7 @@ view.on("click", (event) => {
     
 
     // Custom popup creation
-    const customPopup = createPopup();
+    //const customPopup = createPopup();
 
 function createPopup() {
     const popup = document.createElement("div");
