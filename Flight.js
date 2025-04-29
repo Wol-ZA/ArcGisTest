@@ -1088,8 +1088,7 @@ view.on("click", (event) => {
         });
     }
 }
-
-function recenterToUser() {
+	function recenterToUser() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -1112,7 +1111,6 @@ function recenterToUser() {
         console.warn("Geolocation is not supported by this browser.");
     }
 }
-
 function addCustomButtons(flightPlanExtent) {
     // Create container for buttons if not already present
     let buttonContainer = document.getElementById("custom-buttons");
@@ -1155,6 +1153,7 @@ function addCustomButtons(flightPlanExtent) {
     recenterButton.style.cursor = "pointer";
     recenterButton.onclick = recenterToUser;
     buttonContainer.appendChild(recenterButton);
+}
 
 	
     function zoomToFlightPlan(data, view) {
