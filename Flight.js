@@ -1063,7 +1063,7 @@ view.on("click", (event) => {
 
                     // Get screen position and show popup
                     const screenPoint = view.toScreen(mapPoint);
-                    showCustomPopup(content, screenPoint, limitedPoints);
+                    //showCustomPopup(content, screenPoint, limitedPoints);
                 });
             }
         }
