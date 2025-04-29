@@ -68,7 +68,7 @@ function darkenColor(colorHTML, factor) {
 let polylineGraphic;
 let locationWatchId; // Renamed from watchId
 	
-window.drawRoute = function() {
+window.recenterToUser = function() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             (position) => {
