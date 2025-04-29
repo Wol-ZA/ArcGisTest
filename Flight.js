@@ -368,7 +368,7 @@ function showCustommPopup(htmlContent) {
         popup = document.createElement("div");
         popup.id = "customPopup";
         popup.style.position = "fixed";
-        popup.style.top = "10px";
+        popup.style.top = "150px";
         popup.style.left = "10px";
         popup.style.background = "white";
         popup.style.border = "1px solid #ccc";
