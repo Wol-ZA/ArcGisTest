@@ -635,6 +635,8 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
   		spatialReference: userPoint.spatialReference || { wkid: 4326 }
 		};
             const intersects = geometryEngine.intersects(polylineGeometry, polygonGeometry);
+	    const distance = geometryEngine.distance(polylineGeometry, polygonGeometry, "nautical-miles");
+		console.log(distance);
             const containsUser = geometryEngine.contains(polygonGeometry, convertedUserPoint);
 
             if (intersects && !containsUser && feature?.properties?.name) {
