@@ -13,8 +13,9 @@ require([
      "esri/geometry/SpatialReference",
     "esri/geometry/geometryEngine",
     "esri/geometry/Polyline",
+    "esri/geometry/support/webMercatorUtils",
     "esri/geometry/projection"
-], function(Circle, Extent, Map, MapView, SceneView, GeoJSONLayer, Graphic, Point, PictureMarkerSymbol, GraphicsLayer,Polygon,SpatialReference,geometryEngine,Polyline,projection) {
+], function(Circle, Extent, Map, MapView, SceneView, GeoJSONLayer, Graphic, Point, PictureMarkerSymbol, GraphicsLayer,Polygon,SpatialReference,geometryEngine,Polyline,webMercatorUtils,projection) {
 
     // Create the map
    window.map = new Map({
@@ -635,8 +636,11 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
   		spatialReference: userPoint.spatialReference || { wkid: 4326 }
 		};
             const intersects = geometryEngine.intersects(polylineGeometry, polygonGeometry);
-	    const distance = geometryEngine.distance(polylineGeometry, polygonGeometry, "nautical-miles");
-		console.log(distance);
+	    const projectedPolyline = webMercatorUtils.geographicToWebMercator(polylineGeometry);
+  	    const projectedPolygon = webMercatorUtils.geographicToWebMercator(polygonGeometry);
+            const distanceNauticalMiles = geometryEngine.distance(projectedPolyline, projectedPolygon, "nautical-miles");
+
+            console.log("Distance (nautical miles):", distanceNauticalMiles);
             const containsUser = geometryEngine.contains(polygonGeometry, convertedUserPoint);
 
             if (intersects && !containsUser && feature?.properties?.name) {
