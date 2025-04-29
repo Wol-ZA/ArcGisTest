@@ -659,7 +659,7 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
             console.error("Geometry engine error:", error);
         }
     });
-
+    console.log(intersectingPolygons);
     return intersectingPolygons;
 }
 
