@@ -360,66 +360,78 @@ let popupTimeout; // global timeout tracker
 
 function showCustommPopup(htmlContent) {
     let popup = document.getElementById("customPopup");
-    let progressBar;
 
     if (!popup) {
         popup = document.createElement("div");
         popup.id = "customPopup";
-        popup.style.position = "absolute";
+        popup.style.position = "fixed"; // Use fixed instead of absolute
         popup.style.top = "10px";
         popup.style.left = "10px";
         popup.style.background = "white";
         popup.style.border = "1px solid #ccc";
         popup.style.borderRadius = "8px";
         popup.style.padding = "12px 16px";
-        popup.style.zIndex = "999";
+        popup.style.zIndex = "9999";
         popup.style.maxWidth = "320px";
         popup.style.fontFamily = "'Segoe UI', Roboto, sans-serif";
         popup.style.fontSize = "13px";
         popup.style.color = "#333";
-        popup.style.boxShadow = "0 4px 8px rgba(0,0,0,0.2)";
+        popup.style.boxShadow = "0 4px 8px rgba(0,0,0,0.15)";
         popup.style.lineHeight = "1.4";
-        popup.style.transition = "opacity 0.3s ease";
+        popup.style.pointerEvents = "none"; // Don't interfere with the map
+        popup.style.willChange = "transform"; // Performance hint
         popup.style.opacity = "1";
-        popup.style.pointerEvents = "none"; // Optional: prevents interfering with map
-        popup.style.willChange = "opacity, transform"; // Hint for smoother rendering
+        popup.style.backgroundClip = "padding-box";
 
         document.body.appendChild(popup);
     }
 
+    // Set HTML content
     popup.innerHTML = `
         <div style="border-bottom: 1px solid #ddd; margin-bottom: 8px;">
             <h3 style="margin: 0 0 4px; font-size: 15px; color: #003366;">What's Here?</h3>
         </div>
         ${htmlContent}
-        <div id="popupProgress" style="
+        <div style="
+            position: relative;
             height: 4px;
-            background-color: #e0e0e0;
+            background-color: #eee;
             border-radius: 2px;
-            overflow: hidden;
             margin-top: 12px;
+            overflow: hidden;
         ">
-            <div style="
-                height: 100%;
+            <div id="progressFill" style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
                 width: 0%;
                 background-color: #4caf50;
-                transition: width 10s linear;
             "></div>
         </div>
     `;
 
-    // Animate progress bar
-    progressBar = popup.querySelector("#popupProgress div");
-    requestAnimationFrame(() => {
-        progressBar.style.width = "100%";
-    });
+    // Animate the bar without triggering GPU flicker
+    const progressFill = popup.querySelector('#progressFill');
+    let start = null;
 
-    // Fade out after 10 seconds
+    function animateProgress(timestamp) {
+        if (!start) start = timestamp;
+        const elapsed = timestamp - start;
+        const percent = Math.min(elapsed / 10000, 1) * 100;
+        progressFill.style.width = percent + "%";
+        if (elapsed < 10000) {
+            requestAnimationFrame(animateProgress);
+        }
+    }
+    requestAnimationFrame(animateProgress);
+
+    // Hide after 10s
     setTimeout(() => {
-        popup.style.opacity = "0";
-        setTimeout(() => popup.remove(), 300);
+        if (popup) popup.remove();
     }, 10000);
 }
+
 
 
 
