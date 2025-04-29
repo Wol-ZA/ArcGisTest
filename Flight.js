@@ -648,6 +648,7 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
 
         	console.log("Intersection length (nautical miles):", intersectionLength);
       		}
+	   }
             const containsUser = geometryEngine.contains(polygonGeometry, convertedUserPoint);
 
             if (intersects && !containsUser && feature?.properties?.name) {
