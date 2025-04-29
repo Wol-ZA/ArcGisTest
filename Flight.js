@@ -364,7 +364,7 @@ function showCustommPopup(htmlContent) {
     if (!popup) {
         popup = document.createElement("div");
         popup.id = "customPopup";
-        popup.style.position = "fixed"; // Use fixed instead of absolute
+        popup.style.position = "fixed";
         popup.style.top = "10px";
         popup.style.left = "10px";
         popup.style.background = "white";
@@ -378,59 +378,42 @@ function showCustommPopup(htmlContent) {
         popup.style.color = "#333";
         popup.style.boxShadow = "0 4px 8px rgba(0,0,0,0.15)";
         popup.style.lineHeight = "1.4";
-        popup.style.pointerEvents = "none"; // Don't interfere with the map
-        popup.style.willChange = "transform"; // Performance hint
+        popup.style.pointerEvents = "none"; // allows interaction with map
+        popup.style.willChange = "transform"; // avoids flicker
         popup.style.opacity = "1";
-        popup.style.backgroundClip = "padding-box";
 
         document.body.appendChild(popup);
     }
 
-    // Set HTML content
     popup.innerHTML = `
-        <div style="border-bottom: 1px solid #ddd; margin-bottom: 8px;">
+        <div style="border-bottom: 1px solid #ddd; margin-bottom: 8px; position: relative;">
             <h3 style="margin: 0 0 4px; font-size: 15px; color: #003366;">What's Here?</h3>
+            <span id="countdownTimer" style="
+                position: absolute;
+                right: 0;
+                top: 0;
+                font-size: 12px;
+                color: #999;
+            ">10s</span>
         </div>
         ${htmlContent}
-        <div style="
-            position: relative;
-            height: 4px;
-            background-color: #eee;
-            border-radius: 2px;
-            margin-top: 12px;
-            overflow: hidden;
-        ">
-            <div id="progressFill" style="
-                position: absolute;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                width: 0%;
-                background-color: #4caf50;
-            "></div>
-        </div>
     `;
 
-    // Animate the bar without triggering GPU flicker
-    const progressFill = popup.querySelector('#progressFill');
-    let start = null;
+    // Start countdown
+    let countdown = 10;
+    const timerSpan = popup.querySelector("#countdownTimer");
+    const interval = setInterval(() => {
+        countdown--;
+        if (timerSpan) timerSpan.textContent = countdown + "s";
+        if (countdown <= 0) clearInterval(interval);
+    }, 1000);
 
-    function animateProgress(timestamp) {
-        if (!start) start = timestamp;
-        const elapsed = timestamp - start;
-        const percent = Math.min(elapsed / 10000, 1) * 100;
-        progressFill.style.width = percent + "%";
-        if (elapsed < 10000) {
-            requestAnimationFrame(animateProgress);
-        }
-    }
-    requestAnimationFrame(animateProgress);
-
-    // Hide after 10s
+    // Remove popup after 10 seconds
     setTimeout(() => {
-        if (popup) popup.remove();
+        popup.remove();
     }, 10000);
 }
+
 
 
 
