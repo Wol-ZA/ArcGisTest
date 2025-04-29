@@ -605,7 +605,6 @@ function checkIfInsidePolygon(userPoint) {
 function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
     const intersectingPolygons = [];
 
-    // Default spatial reference
     const defaultSR = { wkid: 4326 };
     if (!polylineGeometry?.spatialReference) {
         polylineGeometry.spatialReference = defaultSR;
@@ -614,7 +613,6 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
     geoJSONPolygons.forEach((polygonData) => {
         const { geometry: polygonGeometry, feature } = polygonData;
 
-        // Skip invalid inputs
         if (!polygonGeometry || !polylineGeometry || !userPoint) {
             console.warn("Invalid geometry detected", { polygonGeometry, userPoint, polylineGeometry });
             return;
@@ -629,31 +627,34 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
         }
 
         try {
-		const convertedUserPoint = {
-  		type: "point",
-  		x: userPoint.longitude,
-  		y: userPoint.latitude,
-  		spatialReference: userPoint.spatialReference || { wkid: 4326 }
-		};
+            const convertedUserPoint = {
+                type: "point",
+                x: userPoint.longitude,
+                y: userPoint.latitude,
+                spatialReference: userPoint.spatialReference || defaultSR
+            };
+
             const intersects = geometryEngine.intersects(polylineGeometry, polygonGeometry);
-	    const projectedPolyline = webMercatorUtils.geographicToWebMercator(polylineGeometry);
-  	    const projectedPolygon = webMercatorUtils.geographicToWebMercator(polygonGeometry);
-           if (intersects) {
-      		// Get the actual intersection geometry
-      		const intersectionGeometry = geometryEngine.intersect(projectedPolyline, projectedPolygon);
-
-     		 if (intersectionGeometry) {
-        // Get the length of the intersection in nautical miles
-        	const intersectionLength = geometryEngine.geodesicLength(intersectionGeometry, "nautical-miles");
-
-        	console.log("Intersection length (nautical miles):", intersectionLength);
-      		}
-	   }
             const containsUser = geometryEngine.contains(polygonGeometry, convertedUserPoint);
 
             if (intersects && !containsUser && feature?.properties?.name) {
-                intersectingPolygons.push({ name: feature.properties.name });
+                // Project to Web Mercator for accurate length
+                const projectedPolyline = webMercatorUtils.geographicToWebMercator(polylineGeometry);
+                const projectedPolygon = webMercatorUtils.geographicToWebMercator(polygonGeometry);
+
+                const intersectionGeometry = geometryEngine.intersect(projectedPolyline, projectedPolygon);
+                let intersectionLengthNm = null;
+
+                if (intersectionGeometry) {
+                    intersectionLengthNm = geometryEngine.geodesicLength(intersectionGeometry, "nautical-miles");
+                }
+
+                intersectingPolygons.push({
+                    name: feature.properties.name,
+                    distance: intersectionLengthNm // in nautical miles
+                });
             }
+
         } catch (error) {
             console.error("Geometry engine error:", error);
         }
