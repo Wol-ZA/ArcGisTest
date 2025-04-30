@@ -621,8 +621,29 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
                 let intersectionLengthNm = null;
 
                 if (intersectionGeometry) {
-                    intersectionLengthNm = geometryEngine.geodesicLength(intersectionGeometry, "nautical-miles");
-                }
+    // If the result is a polyline, get its first point
+    		let intersectionPoint = null;
+
+    		if (intersectionGeometry.type === "polyline") {
+        		const paths = intersectionGeometry.paths;
+        		if (paths.length > 0 && paths[0].length > 0) {
+            		const [x, y] = paths[0][0];
+            		intersectionPoint = { type: "point", x, y, spatialReference: intersectionGeometry.spatialReference };
+        		}
+    		} else if (intersectionGeometry.type === "point") {
+        		intersectionPoint = intersectionGeometry;
+    		}
+
+    		if (intersectionPoint) {
+        		const projectedUserPoint = webMercatorUtils.geographicToWebMercator(convertedUserPoint);
+        		const distance = geometryEngine.distance(projectedUserPoint, intersectionPoint, "nautical-miles");
+
+        		intersectingPolygons.push({
+            		name: feature.properties.name,
+            		distance // distance from user point to first intersection point
+        		});
+    		}
+		}
 
                 intersectingPolygons.push({
                     name: feature.properties.name,
