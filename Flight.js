@@ -642,7 +642,7 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
                         if (distance != null) {
                             intersectingPolygons.push({
                                 name: feature.properties.name,
-                                distance
+                                distance: Math.round(distance * 100) / 100 // round to 2 decimals
                             });
                         }
                     }
