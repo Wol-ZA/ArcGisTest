@@ -188,8 +188,6 @@ window.createGeoJSONLayer = function (url, colorHTML, alpha) {
 
 	
 
-
-
 let longPressTimeout;
 let isLongPress = false;
 
