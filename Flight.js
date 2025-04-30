@@ -579,8 +579,8 @@ function checkIfInsidePolygon(userPoint) {
     
 function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
     const intersectingPolygons = [];
-
     const defaultSR = { wkid: 4326 };
+
     if (!polylineGeometry?.spatialReference) {
         polylineGeometry.spatialReference = defaultSR;
     }
@@ -613,50 +613,50 @@ function checkIntersectionWithPolygons(polylineGeometry, userPoint) {
             const containsUser = geometryEngine.contains(polygonGeometry, convertedUserPoint);
 
             if (intersects && !containsUser && feature?.properties?.name) {
-                // Project to Web Mercator for accurate length
                 const projectedPolyline = webMercatorUtils.geographicToWebMercator(polylineGeometry);
                 const projectedPolygon = webMercatorUtils.geographicToWebMercator(polygonGeometry);
+                const projectedUserPoint = webMercatorUtils.geographicToWebMercator(convertedUserPoint);
 
                 const intersectionGeometry = geometryEngine.intersect(projectedPolyline, projectedPolygon);
-                let intersectionLengthNm = null;
 
                 if (intersectionGeometry) {
-    // If the result is a polyline, get its first point
-    		let intersectionPoint = null;
+                    let intersectionPoint = null;
 
-    		if (intersectionGeometry.type === "polyline") {
-        		const paths = intersectionGeometry.paths;
-        		if (paths.length > 0 && paths[0].length > 0) {
-            		const [x, y] = paths[0][0];
-            		intersectionPoint = { type: "point", x, y, spatialReference: intersectionGeometry.spatialReference };
-        		}
-    		} else if (intersectionGeometry.type === "point") {
-        		intersectionPoint = intersectionGeometry;
-    		}
+                    if (intersectionGeometry.type === "polyline") {
+                        const paths = intersectionGeometry.paths;
+                        if (paths.length > 0 && paths[0].length > 0) {
+                            const [x, y] = paths[0][0];
+                            intersectionPoint = {
+                                type: "point",
+                                x,
+                                y,
+                                spatialReference: intersectionGeometry.spatialReference
+                            };
+                        }
+                    } else if (intersectionGeometry.type === "point") {
+                        intersectionPoint = intersectionGeometry;
+                    }
 
-    		if (intersectionPoint) {
-        		const projectedUserPoint = webMercatorUtils.geographicToWebMercator(convertedUserPoint);
-        		const distance = geometryEngine.distance(projectedUserPoint, intersectionPoint, "nautical-miles");
-
-        		intersectingPolygons.push({
-            		name: feature.properties.name,
-            		distance // distance from user point to first intersection point
-        		});
-    		}
-		}
-
-                intersectingPolygons.push({
-                    name: feature.properties.name,
-                    distance: intersectionLengthNm // in nautical miles
-                });
+                    if (intersectionPoint) {
+                        const distance = geometryEngine.distance(projectedUserPoint, intersectionPoint, "nautical-miles");
+                        if (distance != null) {
+                            intersectingPolygons.push({
+                                name: feature.properties.name,
+                                distance
+                            });
+                        }
+                    }
+                }
             }
 
         } catch (error) {
             console.error("Geometry engine error:", error);
         }
     });
+
     return intersectingPolygons;
 }
+
 
 
 function createDirectionalPolylineWithTicks(userPoint, heading) {
