@@ -13,49 +13,6 @@
       margin: 0;
       overflow: hidden;
     }
-    /* Styling for layer toggle panel */
-   #titleBar {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    background-color: #000;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    border-radius: 10px 10px 0 0;
-    cursor: pointer;
-    z-index: 10000;
-}
-
-
-/* Sliding Info Panel */
-.sliding-window {
-    position: fixed;
-    bottom: -400px; /* Hidden initially */
-    left: 0;
-    width: 100%;
-    height: 300px;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    transition: bottom 0.3s ease-in-out;
-    z-index: 9999;
-    padding: 10px;
-    overflow-y: auto; /* Enable scrolling */
-    max-height: 80vh; /* Prevent it from getting too large */
-    border-radius: 15px 15px 0 0;
-}
-
-/* Ensures content doesn't overflow */
-.sliding-window::-webkit-scrollbar {
-    width: 8px;
-}
-
-.sliding-window::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
-}
 
 /* Close button */
 .close-btn {
