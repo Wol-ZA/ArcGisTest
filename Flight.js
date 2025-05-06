@@ -257,7 +257,7 @@ function handleLongPress(event) {
             onclick="handleInfo('${iconInfo.name}')"
         >i</button>
         <button 
-            style="background-color: #FFC107; border: none; color: black; border-radius: 50%; width: 24px; height: 24px; cursor: pointer;" 
+            style="border: none; color: black; border-radius: 50%; width: 24px; height: 24px; cursor: pointer;" 
             title="Report"
             onclick="handleReport('${iconInfo.name}')"
         >⚠️</button>
