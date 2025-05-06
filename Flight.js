@@ -284,12 +284,12 @@ function handleLongPress(event) {
 }
 
 function handleInfo(name) {
-    alert("Info clicked for: " + name);
+    WL.Execute("PopupInfo", name);
     // You can replace this with a modal or side panel opening
 }
 
 function handleReport(name) {
-    alert("Report clicked for: " + name);
+    WL.Execute("PopupReport", name);
     // Replace this with your report submission logic
 }
 
