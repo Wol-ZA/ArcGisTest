@@ -216,6 +216,7 @@ view.on("pointer-move", function(event) {
 	
 	
 function handleLongPress(event) {
+    console.log("Long press triggered");
     view.hitTest(event).then(function (response) {
         if (!response.results.length) {
             showCustommPopup("<p>No features clicked.</p>");
