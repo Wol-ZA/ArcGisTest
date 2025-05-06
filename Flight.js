@@ -192,25 +192,17 @@ let longPressTimeout;
 let isLongPress = false;
 
 view.on("pointer-down", function(event) {
-    const pointerType = event.pointerType;
-
-    if (pointerType === "touch") {
-        // Touch device: trigger on long press
-        isLongPress = false;
-        longPressTimeout = setTimeout(() => {
-            isLongPress = true;
-            handleLongPress(event);
-        }, 600);
-    } else if (pointerType === "mouse") {
-        // Desktop: trigger immediately on left click
-        if (event.button === 0) { // 0 = left mouse button
-            handleLongPress(event);
-        }
+    // Prevent if more than one pointer (multi-touch = pinch zoom)
+    if (event.pointerType === "touch" && event.native.pointerId && event.native.isPrimary === false) {
+        return;
     }
-});
 
-view.on("pointer-up", function(event) {
-    clearTimeout(longPressTimeout);
+    isLongPress = false;
+
+    longPressTimeout = setTimeout(() => {
+        isLongPress = true;
+        handleLongPress(event);
+    }, 600);
 });
 
 view.on("pointer-move", function(event) {
