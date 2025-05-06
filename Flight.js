@@ -319,7 +319,7 @@ function showCustommPopup(htmlContent) {
         popup.style.color = "#333";
         popup.style.boxShadow = "0 4px 8px rgba(0,0,0,0.15)";
         popup.style.lineHeight = "1.4";
-        popup.style.pointerEvents = "none";
+        popup.style.pointerEvents = "auto";
         popup.style.willChange = "transform";
         popup.style.opacity = "1";
 
