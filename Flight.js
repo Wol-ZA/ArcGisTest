@@ -247,7 +247,22 @@ function handleLongPress(event) {
         let popupContent = "";
 
         if (iconInfo) {
-            popupContent += `<h3>Icon Info</h3><p>Name: ${iconInfo.name}</p>`;
+            popupContent += `
+    <h3>Icon Info</h3>
+    <p style="display: flex; align-items: center; gap: 8px;">
+        <span>Name: ${iconInfo.name}</span>
+        <button 
+            style="background-color: #007BFF; border: none; color: white; border-radius: 50%; width: 24px; height: 24px; cursor: pointer;" 
+            title="Info"
+            onclick="handleInfo('${iconInfo.name}')"
+        >i</button>
+        <button 
+            style="background-color: #FFC107; border: none; color: black; border-radius: 50%; width: 24px; height: 24px; cursor: pointer;" 
+            title="Report"
+            onclick="handleReport('${iconInfo.name}')"
+        >⚠️</button>
+    </p>
+`;
         }
 
         if (polygonInfos.length > 0) {
@@ -268,7 +283,15 @@ function handleLongPress(event) {
     });
 }
 
+function handleInfo(name) {
+    alert("Info clicked for: " + name);
+    // You can replace this with a modal or side panel opening
+}
 
+function handleReport(name) {
+    alert("Report clicked for: " + name);
+    // Replace this with your report submission logic
+}
 
 // Create or update a popup in the top-left corner
 // Global references so we can clear them on repeat calls
