@@ -192,21 +192,24 @@ let longPressTimeout;
 let isLongPress = false;
 
 view.on("pointer-down", function(event) {
-    // You can add a debug flag if needed to restrict this to development
-    const isTouch = event.pointerType === "touch";
-    const isMouse = event.pointerType === "mouse";
+    const pointerType = event.pointerType;
 
-    if (!isTouch && !isMouse) return;
-
-    isLongPress = false;
-
-    longPressTimeout = setTimeout(() => {
-        isLongPress = true;
-        handleLongPress(event);
-    }, 600);
+    if (pointerType === "touch") {
+        // Touch device: trigger on long press
+        isLongPress = false;
+        longPressTimeout = setTimeout(() => {
+            isLongPress = true;
+            handleLongPress(event);
+        }, 600);
+    } else if (pointerType === "mouse") {
+        // Desktop: trigger immediately on left click
+        if (event.button === 0) { // 0 = left mouse button
+            handleLongPress(event);
+        }
+    }
 });
 
-view.on("pointer-up", function() {
+view.on("pointer-up", function(event) {
     clearTimeout(longPressTimeout);
 });
 
