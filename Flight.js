@@ -286,18 +286,16 @@ function handleLongPress(event) {
     }).catch(error => {
         console.error("Error in hitTest:", error);
     });
-function handleInfo(name) {
+
+}
+
+window.handleInfo = function(name) {
     WL.Execute("PopupInfo", name);
-    // You can replace this with a modal or side panel opening
-}
+};
 
-function handleReport(name) {
+window.handleReport = function(name) {
     WL.Execute("PopupReport", name);
-    // Replace this with your report submission logic
-}	
-}
-
-
+};	
 
 // Create or update a popup in the top-left corner
 // Global references so we can clear them on repeat calls
