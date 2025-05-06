@@ -192,10 +192,11 @@ let longPressTimeout;
 let isLongPress = false;
 
 view.on("pointer-down", function(event) {
-    // Prevent if more than one pointer (multi-touch = pinch zoom)
-    if (event.pointerType === "touch" && event.native.pointerId && event.native.isPrimary === false) {
-        return;
-    }
+    // You can add a debug flag if needed to restrict this to development
+    const isTouch = event.pointerType === "touch";
+    const isMouse = event.pointerType === "mouse";
+
+    if (!isTouch && !isMouse) return;
 
     isLongPress = false;
 
@@ -205,7 +206,7 @@ view.on("pointer-down", function(event) {
     }, 600);
 });
 
-view.on("pointer-up", function(event) {
+view.on("pointer-up", function() {
     clearTimeout(longPressTimeout);
 });
 
