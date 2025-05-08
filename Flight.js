@@ -960,29 +960,37 @@ window.StartTracking = function() {
     // Function to stop tracking
 window.EndTracking = function() {
     if (tracking) {
-        tracking = false; // Set tracking status to false
-        
-        // Remove the user graphic, polyline graphic, and text graphic
+        tracking = false;
+
+        // Remove the user graphic and related visuals
         if (userGraphic) {
             if (userGraphic.polylineGraphic) {
-                graphicsLayer.remove(userGraphic.polylineGraphic); // Remove the polyline
-                userGraphic.polylineGraphic = null; // Clear the polyline reference
+                graphicsLayer.remove(userGraphic.polylineGraphic);
+                userGraphic.polylineGraphic = null;
             }
-	    if (userGraphic.tickGraphics) {
-                graphicsLayer.removeMany(userGraphic.tickGraphics); // Remove the polyline
-                userGraphic.tickGraphics = null; // Clear the polyline reference
+            if (userGraphic.tickGraphics) {
+                graphicsLayer.removeMany(userGraphic.tickGraphics);
+                userGraphic.tickGraphics = null;
             }
             if (userGraphic.textGraphic) {
-                graphicsLayer.remove(userGraphic.textGraphic); // Remove the text graphic
-                userGraphic.textGraphic = null; // Clear the text reference
+                graphicsLayer.remove(userGraphic.textGraphic);
+                userGraphic.textGraphic = null;
             }
-            graphicsLayer.remove(userGraphic); // Remove the user marker
-            userGraphic = null; // Clear the user graphic reference
+            graphicsLayer.remove(userGraphic);
+            userGraphic = null;
         }
-        
-        navigator.geolocation.clearWatch(watchId); // Stop watching the position
-        
-        // Reset the view without replacing the map container
+
+        // ✅ Remove flight trail
+        if (flightPathGraphic) {
+            graphicsLayer.remove(flightPathGraphic);
+            flightPathGraphic = null;
+        }
+        flightPathPoints = [];
+
+        // Stop geolocation tracking
+        navigator.geolocation.clearWatch(watchId);
+
+        // Reset the view
         view.container = null;
         const mapView = new MapView({
             container: "viewDiv",
@@ -990,10 +998,11 @@ window.EndTracking = function() {
             center: [22.4617, -33.9646],
             zoom: 12
         });
-        
-        view = mapView; // Update the view variable
+
+        view = mapView;
     }
 };
+
     
 window.windy = function(){
     var center = view.center; // Get the map's current center
