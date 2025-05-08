@@ -581,7 +581,7 @@ function addUserLocationMarker(location, heading) {
 
     const trailSymbol = {
         type: "simple-line",
-        color: [0, 0, 255, 0.7], // blue trail
+        color: [255, 255, 255, 0.7], // White trail
         width: 2
     };
 
