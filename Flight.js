@@ -192,7 +192,6 @@ let longPressTimeout;
 let isLongPress = false;
 
 view.on("pointer-down", function(event) {
-    // Prevent if more than one pointer (multi-touch = pinch zoom)
     if (event.pointerType === "touch" && event.native.pointerId && event.native.isPrimary === false) {
         return;
     }
@@ -205,9 +204,14 @@ view.on("pointer-down", function(event) {
     }, 600);
 });
 
-view.on("pointer-move", function(event) {
+function cancelLongPress() {
     clearTimeout(longPressTimeout);
-});
+}
+
+view.on("pointer-move", cancelLongPress);
+view.on("pointer-up", cancelLongPress);
+view.on("pointer-leave", cancelLongPress);
+
 	
 	
 function handleLongPress(event) {
