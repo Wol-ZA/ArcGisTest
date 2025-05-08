@@ -382,8 +382,8 @@ window.addWeatherReportToMap = function(view, reportData) {
 
     const symbol = new PictureMarkerSymbol({
       url: iconUrl,
-      width: "24px",
-      height: "24px"
+      width: "32px",
+      height: "32px"
     });
 
     const popupTemplate = new PopupTemplate({
