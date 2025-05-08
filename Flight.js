@@ -558,14 +558,42 @@ view.on("pointer-move", () => isUserInteracting = true);
 
 // Reset interaction flag after a delay to allow map updates
 setInterval(() => isUserInteracting = false, 4000); // Adjust timing as needed
-
+let flightPathPoints = []; // Stores all coordinates
+let flightPathGraphic = null; // Holds the polyline graphic
 function addUserLocationMarker(location, heading) {
+		
     const userPoint = {
         type: "point",
         longitude: location[0],
         latitude: location[1]
     };
+    flightPathPoints.push([userPoint.longitude, userPoint.latitude]);
 
+    // Limit trail length to 1000 points
+    if (flightPathPoints.length > 1000) {
+        flightPathPoints.shift();
+    }
+
+    const flightPath = {
+        type: "polyline",
+        paths: [flightPathPoints]
+    };
+
+    const trailSymbol = {
+        type: "simple-line",
+        color: [0, 0, 255, 0.7], // blue trail
+        width: 2
+    };
+
+    if (flightPathGraphic) {
+        flightPathGraphic.geometry = flightPath;
+    } else {
+        flightPathGraphic = new Graphic({
+            geometry: flightPath,
+            symbol: trailSymbol
+        });
+        graphicsLayer.add(flightPathGraphic);
+    }
     const markerSymbol = new PictureMarkerSymbol({
         url: "plane_1.png",
         width: "32px",
