@@ -359,8 +359,8 @@ function showCustommPopup(htmlContent) {
 }
 
 
-window.addWeatherReportToMap = function(view, reportData) {
-   require([
+window.addWeatherReportsToMap = function(view, reportDataArray) {
+  require([
     "esri/Graphic",
     "esri/geometry/Point",
     "esri/symbols/PictureMarkerSymbol",
@@ -409,7 +409,6 @@ window.addWeatherReportToMap = function(view, reportData) {
     });
   });
 }
-
 
 
 	
