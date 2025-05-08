@@ -360,12 +360,15 @@ function showCustommPopup(htmlContent) {
 
 
 window.addWeatherReportToMap = function(view, reportData) {
-  require([
+   require([
     "esri/Graphic",
     "esri/geometry/Point",
     "esri/symbols/PictureMarkerSymbol",
     "esri/PopupTemplate"
   ], function(Graphic, Point, PictureMarkerSymbol, PopupTemplate) {
+
+    // Remove existing weather graphics
+    view.graphics.removeAll();
 
     const iconMap = {
       "Fog": "fog.png",
@@ -373,35 +376,37 @@ window.addWeatherReportToMap = function(view, reportData) {
       "Wind": "wind.png"
     };
 
-    const iconUrl = iconMap[reportData.Report_Type] || "default.png";
+    reportDataArray.forEach(reportData => {
+      const iconUrl = iconMap[reportData.Report_Type] || "default.png";
 
-    const point = new Point({
-      latitude: parseFloat(reportData.Latitude),
-      longitude: parseFloat(reportData.Longitude)
+      const point = new Point({
+        latitude: parseFloat(reportData.Latitude),
+        longitude: parseFloat(reportData.Longitude)
+      });
+
+      const symbol = new PictureMarkerSymbol({
+        url: iconUrl,
+        width: "24px",
+        height: "24px"
+      });
+
+      const popupTemplate = new PopupTemplate({
+        title: `${reportData.Report_Type} Report`,
+        content: `
+          <strong>Reported by:</strong> ${reportData.UserName}<br>
+          <strong>Notes:</strong> ${reportData.Extra_Notes}<br>
+          <strong>Time:</strong> ${new Date().toLocaleString()}
+        `
+      });
+
+      const graphic = new Graphic({
+        geometry: point,
+        symbol: symbol,
+        popupTemplate: popupTemplate
+      });
+
+      view.graphics.add(graphic);
     });
-
-    const symbol = new PictureMarkerSymbol({
-      url: iconUrl,
-      width: "45px",
-      height: "45px"
-    });
-
-    const popupTemplate = new PopupTemplate({
-      title: `${reportData.Report_Type} Report`,
-      content: `
-        <strong>Reported by:</strong> ${reportData.UserName}<br>
-        <strong>Notes:</strong> ${reportData.Extra_Notes}<br>
-        <strong>Time:</strong> ${new Date().toLocaleString()}
-      `
-    });
-
-    const graphic = new Graphic({
-      geometry: point,
-      symbol: symbol,
-      popupTemplate: popupTemplate
-    });
-
-    view.graphics.add(graphic);
   });
 }
 
