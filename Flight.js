@@ -388,7 +388,7 @@ window.addWeatherReportsToMap = function(view, reportDataArray) {
       locationMap[key].push(report);
     });
 
-    const OFFSET_DISTANCE = 0.0001; // ~11 meters; adjust as needed
+    const OFFSET_DISTANCE = 0.01; // ~11 meters; adjust as needed
 
     // Add graphics with offset if necessary
     for (const key in locationMap) {
