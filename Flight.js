@@ -380,30 +380,59 @@ window.addWeatherReportsToMap = function(view, reportDataArray) {
       "Hazard": "hazard.png"
     };
 
-    // Group reports by coordinates
-    const locationMap = {};
+    // ~100 meters in degrees
+    const proximityThreshold = 0.0009;
+
+    // ~200 meters in degrees
+    const OFFSET_DISTANCE = 0.0018;
+
+    function areCloseEnough(lat1, lng1, lat2, lng2) {
+      return Math.abs(lat1 - lat2) < proximityThreshold &&
+             Math.abs(lng1 - lng2) < proximityThreshold;
+    }
+
+    // Group nearby reports
+    const groups = [];
+
     reportDataArray.forEach(report => {
-      const key = `${report.Latitude},${report.Longitude}`;
-      if (!locationMap[key]) locationMap[key] = [];
-      locationMap[key].push(report);
+      const lat = parseFloat(report.Latitude);
+      const lng = parseFloat(report.Longitude);
+      let placed = false;
+
+      for (const group of groups) {
+        const base = group[0];
+        if (areCloseEnough(lat, lng, parseFloat(base.Latitude), parseFloat(base.Longitude))) {
+          group.push(report);
+          placed = true;
+          break;
+        }
+      }
+
+      if (!placed) {
+        groups.push([report]);
+      }
     });
 
-    const OFFSET_DISTANCE = 0.01; // ~11 meters; adjust as needed
+    // Create offset markers
+    groups.forEach(group => {
+      const baseLat = parseFloat(group[0].Latitude);
+      const baseLng = parseFloat(group[0].Longitude);
 
-    // Add graphics with offset if necessary
-    for (const key in locationMap) {
-      const reportsAtLocation = locationMap[key];
-      const [baseLat, baseLng] = key.split(',').map(parseFloat);
+      group.forEach((report, index) => {
+        let lat = baseLat;
+        let lng = baseLng;
 
-      reportsAtLocation.forEach((report, index) => {
-        const offsetLat = baseLat + OFFSET_DISTANCE * Math.cos(index * 2 * Math.PI / reportsAtLocation.length);
-        const offsetLng = baseLng + OFFSET_DISTANCE * Math.sin(index * 2 * Math.PI / reportsAtLocation.length);
+        if (group.length > 1) {
+          const angle = (index * 2 * Math.PI) / group.length;
+          lat += OFFSET_DISTANCE * Math.cos(angle);
+          lng += OFFSET_DISTANCE * Math.sin(angle);
+        }
 
         const iconUrl = iconMap[report.Report_Type] || "default.png";
 
         const point = new Point({
-          latitude: offsetLat,
-          longitude: offsetLng
+          latitude: lat,
+          longitude: lng
         });
 
         const symbol = new PictureMarkerSymbol({
@@ -429,9 +458,10 @@ window.addWeatherReportsToMap = function(view, reportDataArray) {
 
         view.graphics.add(graphic);
       });
-    }
+    });
   });
 }
+
 
 
 
