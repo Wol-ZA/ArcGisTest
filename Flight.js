@@ -377,7 +377,8 @@ window.addWeatherReportsToMap = function(view, reportDataArray) {
     const iconMap = {
       "Fog": "fog.png",
       "Rain": "rain.png",
-      "Wind": "wind.png"
+      "Wind": "wind.png",
+      "Hazard": "hazzard.png"   
     };
 
     reportDataArray.forEach(reportData => {
