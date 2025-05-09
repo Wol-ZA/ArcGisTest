@@ -378,7 +378,7 @@ window.addWeatherReportsToMap = function(view, reportDataArray) {
       "Fog": "fog.png",
       "Rain": "rain.png",
       "Wind": "wind.png",
-      "Hazard": "hazzard.png"   
+      "Hazard": "hazard.png"   
     };
 
     reportDataArray.forEach(reportData => {
