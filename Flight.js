@@ -371,49 +371,68 @@ window.addWeatherReportsToMap = function(view, reportDataArray) {
     "esri/PopupTemplate"
   ], function(Graphic, Point, PictureMarkerSymbol, PopupTemplate) {
 
-    // Remove existing weather graphics
     view.graphics.removeAll();
 
     const iconMap = {
       "Fog": "fog.png",
       "Rain": "rain.png",
       "Wind": "wind.png",
-      "Hazard": "hazard.png"   
+      "Hazard": "hazard.png"
     };
 
-    reportDataArray.forEach(reportData => {
-      const iconUrl = iconMap[reportData.Report_Type] || "default.png";
-
-      const point = new Point({
-        latitude: parseFloat(reportData.Latitude),
-        longitude: parseFloat(reportData.Longitude)
-      });
-
-      const symbol = new PictureMarkerSymbol({
-        url: iconUrl,
-        width: "42px",
-        height: "42px"
-      });
-
-      const popupTemplate = new PopupTemplate({
-        title: `${reportData.Report_Type} Report`,
-        content: `
-          <strong>Reported by:</strong> ${reportData.UserName}<br>
-          <strong>Notes:</strong> ${reportData.Extra_Notes}<br>
-          <strong>Time:</strong> ${new Date().toLocaleString()}
-        `
-      });
-
-      const graphic = new Graphic({
-        geometry: point,
-        symbol: symbol,
-        popupTemplate: popupTemplate
-      });
-
-      view.graphics.add(graphic);
+    // Group reports by coordinates
+    const locationMap = {};
+    reportDataArray.forEach(report => {
+      const key = `${report.Latitude},${report.Longitude}`;
+      if (!locationMap[key]) locationMap[key] = [];
+      locationMap[key].push(report);
     });
+
+    const OFFSET_DISTANCE = 0.0001; // ~11 meters; adjust as needed
+
+    // Add graphics with offset if necessary
+    for (const key in locationMap) {
+      const reportsAtLocation = locationMap[key];
+      const [baseLat, baseLng] = key.split(',').map(parseFloat);
+
+      reportsAtLocation.forEach((report, index) => {
+        const offsetLat = baseLat + OFFSET_DISTANCE * Math.cos(index * 2 * Math.PI / reportsAtLocation.length);
+        const offsetLng = baseLng + OFFSET_DISTANCE * Math.sin(index * 2 * Math.PI / reportsAtLocation.length);
+
+        const iconUrl = iconMap[report.Report_Type] || "default.png";
+
+        const point = new Point({
+          latitude: offsetLat,
+          longitude: offsetLng
+        });
+
+        const symbol = new PictureMarkerSymbol({
+          url: iconUrl,
+          width: "42px",
+          height: "42px"
+        });
+
+        const popupTemplate = new PopupTemplate({
+          title: `${report.Report_Type} Report`,
+          content: `
+            <strong>Reported by:</strong> ${report.UserName}<br>
+            <strong>Notes:</strong> ${report.Extra_Notes}<br>
+            <strong>Time:</strong> ${new Date().toLocaleString()}
+          `
+        });
+
+        const graphic = new Graphic({
+          geometry: point,
+          symbol: symbol,
+          popupTemplate: popupTemplate
+        });
+
+        view.graphics.add(graphic);
+      });
+    }
   });
 }
+
 
 
 	
