@@ -195,24 +195,24 @@ function buildAltitudeLookup(jsonData) {
 
             const placemark = folder.Placemark;
             if (placemark && placemark.name && placemark.description) {
-                const name = placemark.name.trim();
+                const name = placemark.name.trim().toLowerCase();
                 const description = placemark.description.trim();
 
-                // Extract altitude info from the description using regex
-                const match = description.match(/([0-9]+FT ALT.*FL[0-9]+|FL[0-9]+ - FL[0-9]+)/);
+                // Match things like "FL145 - FL460" or "3500FT ALT - FL195"
+                const match = description.match(/([0-9]+FT ALT\s*-\s*FL[0-9]+|FL[0-9]+\s*-\s*FL[0-9]+)/);
                 altitudeLookup[name] = match ? match[0] : null;
             }
         }
-	console.log("Altitude Lookup Built:", altitudeLookup);
     }
 
-    if (jsonData && jsonData.Folder) {
-        recurseFolders(jsonData.Folder);
+    const rootFolders = jsonData?.kml?.Document?.Folder;
+    if (rootFolders) {
+        recurseFolders(rootFolders);
+        console.log("Altitude Lookup:", altitudeLookup); // debug output
     } else {
-        console.warn("Unexpected structure in altitude JSON");
+        console.warn("Could not find root Folder structure in altitude JSON");
     }
 }
-
 fetch('json.json')
     .then(response => response.json())
     .then(data => buildAltitudeLookup(data))
@@ -268,8 +268,8 @@ function handleLongPress(event) {
                     attributes
                 };
             } else if (geometryType === "polygon") {
-                let baseName = (attributes.name || attributes.id || "Unnamed Polygon").trim();
-		let altitude = altitudeLookup[baseName];
+               let baseName = (attributes.name || attributes.id || "Unnamed Polygon").trim();
+		let altitude = altitudeLookup[baseName.toLowerCase()];
 		let displayName = altitude ? `${baseName} - ${altitude}` : baseName;
 
 		polygonInfos.push({
