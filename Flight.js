@@ -266,18 +266,24 @@ function handleLongPress(event) {
     </p>
 `;
         }
-        if (polygonInfos.length > 0) {
-            popupContent += `<h3>Polygon Info</h3><ul>`;
-            polygonInfos.forEach(p => {    
-		WL.Execute("GetInfo", p.name);    
-                popupContent += `<li>${p.name}</li>`;
-            });
-            popupContent += `</ul>`;
-        }
+if (polygonInfos.length > 0) {
+    let namesArray = []; // Collect names here
+    popupContent += `<h3>Polygon Info</h3><ul>`;
+    
+    polygonInfos.forEach(p => {
+        namesArray.push(p.name); // Add to names array
+        popupContent += `<li>${p.name}</li>`;
+    });
+    
+    popupContent += `</ul>`;
+    
+    // Send the namesArray (or join into a string, if needed)
+    WL.Execute("GetInfo", JSON.stringify(namesArray));
+}
 
-        if (!popupContent) {
-            popupContent = "<p>No recognizable features clicked.</p>";
-        }
+if (!popupContent) {
+    popupContent = "<p>No recognizable features clicked.</p>";
+}
 	
         showCustommPopup(popupContent);
     }).catch(error => {
