@@ -279,14 +279,14 @@ function handleLongPress(event) {
                     attributes
                 };
             } else if (geometryType === "polygon") {
-               let baseName = (attributes.name || attributes.id || "Unnamed Polygon").trim();
-		let altitude = altitudeLookup[baseName.toLowerCase()];
-		let displayName = altitude ? `${baseName} - ${altitude}` : baseName;
+                let baseName = (attributes.name || attributes.id || "Unnamed Polygon").trim();
+    		let altitude = altitudeLookup[baseName.toLowerCase()];
+    		let displayName = altitude ? `${baseName} - ${altitude}` : baseName;
 
-		polygonInfos.push({
-    		name: displayName,
-    		attributes	
-		});
+    		polygonInfos.push({
+        	name: displayName,
+        	attributes
+    		});
             }
 		console.log(response.results);
 		console.log("Looking up altitude for:", baseName.toLowerCase(), "=>", altitude);
