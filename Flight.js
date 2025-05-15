@@ -189,34 +189,45 @@ window.createGeoJSONLayer = function (url, colorHTML, alpha) {
 let altitudeLookup = {};
 
 function buildAltitudeLookup(jsonData) {
-    function recurseFolders(folders) {
-        for (let folder of folders) {
-            if (folder.Folder) recurseFolders(folder.Folder);
+function recurseFolders(folders) {
+    // Normalize single folder to array
+    if (!Array.isArray(folders)) folders = [folders];
 
-            const placemark = folder.Placemark;
-            if (placemark && placemark.name && placemark.description) {
-                const name = placemark.name.trim().toLowerCase();
-                const description = placemark.description.trim();
+    for (let folder of folders) {
+        if (!folder) continue;
 
-                // Match things like "FL145 - FL460" or "3500FT ALT - FL195"
+        // Recursively handle nested folders
+        if (folder.Folder) recurseFolders(folder.Folder);
+
+        const placemark = folder.Placemark;
+
+        // Placemark may also need normalization
+        if (!placemark) continue;
+
+        const placemarks = Array.isArray(placemark) ? placemark : [placemark];
+
+        for (let pm of placemarks) {
+            if (pm.name && pm.description) {
+                const name = pm.name.trim().toLowerCase();
+                const description = pm.description.trim();
                 const match = description.match(/([0-9]+FT ALT\s*-\s*FL[0-9]+|FL[0-9]+\s*-\s*FL[0-9]+)/);
                 altitudeLookup[name] = match ? match[0] : null;
             }
         }
     }
-
-    const rootFolders = jsonData?.kml?.Document?.Folder;
-    if (rootFolders) {
-        recurseFolders(rootFolders);
-        console.log("Altitude Lookup:", altitudeLookup); // debug output
-    } else {
-        console.warn("Could not find root Folder structure in altitude JSON");
-    }
+}
 }
 fetch('json.json')
-    .then(response => response.json())
-    .then(data => buildAltitudeLookup(data))
-    .catch(error => console.error("Failed to load altitude data:", error));	
+  .then(response => response.json())
+  .then(data => {
+    const rootFolders = data?.kml?.Document?.Folder;
+    if (rootFolders) {
+      buildAltitudeLookup(rootFolders);
+    } else {
+      console.warn("No top-level folders found.");
+    }
+  })
+  .catch(error => console.error("Failed to load altitude data:", error));	
 
 let longPressTimeout;
 let isLongPress = false;
