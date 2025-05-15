@@ -268,9 +268,8 @@ function handleLongPress(event) {
         }
         if (polygonInfos.length > 0) {
             popupContent += `<h3>Polygon Info</h3><ul>`;
-            polygonInfos.forEach(p => {
-		console.log(p);    
-		//WL.Execute("GetInfo", p);    
+            polygonInfos.forEach(p => {    
+		WL.Execute("GetInfo", p.name);    
                 popupContent += `<li>${p.name}</li>`;
             });
             popupContent += `</ul>`;
