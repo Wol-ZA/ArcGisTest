@@ -266,10 +266,10 @@ function handleLongPress(event) {
     </p>
 `;
         }
-
         if (polygonInfos.length > 0) {
             popupContent += `<h3>Polygon Info</h3><ul>`;
             polygonInfos.forEach(p => {
+		WL.Execute("GetInfo", p);    
                 popupContent += `<li>${p.name}</li>`;
             });
             popupContent += `</ul>`;
@@ -278,7 +278,7 @@ function handleLongPress(event) {
         if (!popupContent) {
             popupContent = "<p>No recognizable features clicked.</p>";
         }
-	console.log(polygonInfos);
+	
         showCustommPopup(popupContent);
     }).catch(error => {
         console.error("Error in hitTest:", error);
