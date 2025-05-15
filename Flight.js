@@ -203,6 +203,7 @@ function buildAltitudeLookup(jsonData) {
                 altitudeLookup[name] = match ? match[0] : null;
             }
         }
+	console.log("Altitude Lookup Built:", altitudeLookup);
     }
 
     if (jsonData && jsonData.Folder) {
