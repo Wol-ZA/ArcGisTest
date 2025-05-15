@@ -268,7 +268,7 @@ function handleLongPress(event) {
                     attributes
                 };
             } else if (geometryType === "polygon") {
-                let baseName = attributes.name || attributes.id || "Unnamed Polygon";
+                let baseName = (attributes.name || attributes.id || "Unnamed Polygon").trim();
 		let altitude = altitudeLookup[baseName];
 		let displayName = altitude ? `${baseName} - ${altitude}` : baseName;
 
@@ -278,6 +278,7 @@ function handleLongPress(event) {
 		});
             }
 		console.log(response.results);
+		console.log("Looking up altitude for:", baseName.toLowerCase(), "=>", altitude);
         }
 	
         let popupContent = "";
