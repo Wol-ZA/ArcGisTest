@@ -240,11 +240,12 @@ function handleLongPress(event) {
             } else if (geometryType === "polygon") {
                 polygonInfos.push({
                     name: attributes.name || attributes.id || "Unnamed Polygon",
-                    attributes
+                    attributes	
                 });
             }
+		console.log(response.results);
         }
-
+	
         let popupContent = "";
 
         if (iconInfo) {
