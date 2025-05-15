@@ -186,7 +186,36 @@ window.createGeoJSONLayer = function (url, colorHTML, alpha) {
     return layer;
 };
 
-	
+let altitudeLookup = {};
+
+function buildAltitudeLookup(jsonData) {
+    function recurseFolders(folders) {
+        for (let folder of folders) {
+            if (folder.Folder) recurseFolders(folder.Folder);
+
+            const placemark = folder.Placemark;
+            if (placemark && placemark.name && placemark.description) {
+                const name = placemark.name.trim();
+                const description = placemark.description.trim();
+
+                // Extract altitude info from the description using regex
+                const match = description.match(/([0-9]+FT ALT.*FL[0-9]+|FL[0-9]+ - FL[0-9]+)/);
+                altitudeLookup[name] = match ? match[0] : null;
+            }
+        }
+    }
+
+    if (jsonData && jsonData.Folder) {
+        recurseFolders(jsonData.Folder);
+    } else {
+        console.warn("Unexpected structure in altitude JSON");
+    }
+}
+
+fetch('json.json')
+    .then(response => response.json())
+    .then(data => buildAltitudeLookup(data))
+    .catch(error => console.error("Failed to load altitude data:", error));	
 
 let longPressTimeout;
 let isLongPress = false;
@@ -238,10 +267,14 @@ function handleLongPress(event) {
                     attributes
                 };
             } else if (geometryType === "polygon") {
-                polygonInfos.push({
-                    name: attributes.name || attributes.id || "Unnamed Polygon",
-                    attributes	
-                });
+                let baseName = attributes.name || attributes.id || "Unnamed Polygon";
+		let altitude = altitudeLookup[baseName];
+		let displayName = altitude ? `${baseName} - ${altitude}` : baseName;
+
+		polygonInfos.push({
+    		name: displayName,
+    		attributes	
+		});
             }
 		console.log(response.results);
         }
