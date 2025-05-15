@@ -278,7 +278,7 @@ function handleLongPress(event) {
         if (!popupContent) {
             popupContent = "<p>No recognizable features clicked.</p>";
         }
-	console.log(popupContent);
+	console.log(polygonInfos);
         showCustommPopup(popupContent);
     }).catch(error => {
         console.error("Error in hitTest:", error);
