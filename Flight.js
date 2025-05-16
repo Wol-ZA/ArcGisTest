@@ -279,7 +279,7 @@ if (polygonInfos.length > 0) {
     
     // Sort by name (optional, for the order you showed)
     namesArray.sort((a, b) => a.name.localeCompare(b.name));
-
+    console.log(popupContent);
     WL.Execute("GetInfo", JSON.stringify(namesArray),popupContent);
 }
 
