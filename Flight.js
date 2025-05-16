@@ -278,6 +278,7 @@ if (polygonInfos.length > 0) {
     popupContent += `</ul>`;
     
     // Send the namesArray (or join into a string, if needed)
+	console.log(namesArray);
     WL.Execute("GetInfo", JSON.stringify(namesArray));
 }
 
