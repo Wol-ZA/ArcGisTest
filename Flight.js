@@ -280,15 +280,14 @@ if (polygonInfos.length > 0) {
     // Sort by name (optional, for the order you showed)
     namesArray.sort((a, b) => a.name.localeCompare(b.name));
 
-    console.log(namesArray);
-    WL.Execute("GetInfo", JSON.stringify(namesArray));
+    WL.Execute("GetInfo", JSON.stringify(namesArray),popupContent);
 }
 
 if (!popupContent) {
     popupContent = "<p>No recognizable features clicked.</p>";
 }
 	
-        showCustommPopup(popupContent);
+        //showCustommPopup(popupContent);
     }).catch(error => {
         console.error("Error in hitTest:", error);
     });
@@ -308,7 +307,7 @@ window.handleReport = function(name) {
 let popupTimeout = null;
 let countdownInterval = null;
 
-function showCustommPopup(htmlContent) {
+window.showCustommPopup = function(htmlContent) {
     let popup = document.getElementById("customPopup");
 
     // Create popup if it doesn't exist
