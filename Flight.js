@@ -267,18 +267,20 @@ function handleLongPress(event) {
 `;
         }
 if (polygonInfos.length > 0) {
-    let namesArray = []; // Collect names here
+    let namesArray = []; // Collect name objects here
     popupContent += `<h3>Polygon Info</h3><ul>`;
     
     polygonInfos.forEach(p => {
-        namesArray.push(p.name); // Add to names array
+        namesArray.push({ name: p.name }); // Push as object
         popupContent += `<li>${p.name}</li>`;
     });
     
     popupContent += `</ul>`;
     
-    // Send the namesArray (or join into a string, if needed)
-	console.log(namesArray);
+    // Sort by name (optional, for the order you showed)
+    namesArray.sort((a, b) => a.name.localeCompare(b.name));
+
+    console.log(namesArray);
     WL.Execute("GetInfo", JSON.stringify(namesArray));
 }
 
