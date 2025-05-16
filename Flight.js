@@ -279,8 +279,7 @@ if (polygonInfos.length > 0) {
     
     // Sort by name (optional, for the order you showed)
     namesArray.sort((a, b) => a.name.localeCompare(b.name));
-    console.log(popupContent);
-    WL.Execute("GetInfo", JSON.stringify(namesArray),popupContent);
+    //WL.Execute("GetInfo", JSON.stringify(namesArray),popupContent);
 }
 
 if (!popupContent) {
@@ -309,7 +308,6 @@ let countdownInterval = null;
 
 window.showCustommPopup = function(htmlContent) {
     let popup = document.getElementById("customPopup");
-
     // Create popup if it doesn't exist
     if (!popup) {
         popup = document.createElement("div");
