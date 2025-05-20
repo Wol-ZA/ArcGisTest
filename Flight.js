@@ -626,7 +626,7 @@ setInterval(() => isUserInteracting = false, 4000); // Adjust timing as needed
 let flightPathPoints = []; // Stores all coordinates
 let flightPathGraphic = null; // Holds the polyline graphic
 let lastDotTimestamp = 0;
-const dotInterval = 10000;	
+const dotInterval = 20000;	
 function addUserLocationMarker(location, heading) {
 		
     const userPoint = {
@@ -645,7 +645,7 @@ function addUserLocationMarker(location, heading) {
         symbol: {
             type: "simple-marker",
             style: "circle",
-            color: [255, 0, 0, 0.7], // Semi-transparent red
+            color: [0, 0, 255, 0.7], // Semi-transparent red
             size: 5,
             outline: {
                 color: [255, 255, 255, 0.8],
