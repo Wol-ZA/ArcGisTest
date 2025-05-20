@@ -626,7 +626,8 @@ setInterval(() => isUserInteracting = false, 4000); // Adjust timing as needed
 let flightPathPoints = []; // Stores all coordinates
 let flightPathGraphic = null; // Holds the polyline graphic
 let lastDotTimestamp = 0;
-const dotInterval = 20000;	
+const dotInterval = 20000;
+let trailDots = [];
 function addUserLocationMarker(location, heading) {
 		
     const userPoint = {
@@ -655,6 +656,7 @@ function addUserLocationMarker(location, heading) {
     });
 
     graphicsLayer.add(dotGraphic);
+    trailDots.push(dotGraphic);
 }	
     // Limit trail length to 1000 points
     if (flightPathPoints.length > 1000) {
@@ -1073,7 +1075,8 @@ window.EndTracking = function() {
             flightPathGraphic = null;
         }
         flightPathPoints = [];
-
+	trailDots.forEach(dot => graphicsLayer.remove(dot));
+	trailDots = [];
         // Stop geolocation tracking
         navigator.geolocation.clearWatch(watchId);
 
