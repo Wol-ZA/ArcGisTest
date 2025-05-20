@@ -625,6 +625,8 @@ view.on("pointer-move", () => isUserInteracting = true);
 setInterval(() => isUserInteracting = false, 4000); // Adjust timing as needed
 let flightPathPoints = []; // Stores all coordinates
 let flightPathGraphic = null; // Holds the polyline graphic
+let lastDotTimestamp = 0;
+const dotInterval = 10000;	
 function addUserLocationMarker(location, heading) {
 		
     const userPoint = {
@@ -633,7 +635,27 @@ function addUserLocationMarker(location, heading) {
         latitude: location[1]
     };
     flightPathPoints.push([userPoint.longitude, userPoint.latitude]);
+	
+    const now = Date.now();
+	if (now - lastDotTimestamp >= dotInterval) {
+    	lastDotTimestamp = now;
 
+    	const dotGraphic = new Graphic({
+        geometry: userPoint,
+        symbol: {
+            type: "simple-marker",
+            style: "circle",
+            color: [255, 0, 0, 0.7], // Semi-transparent red
+            size: 5,
+            outline: {
+                color: [255, 255, 255, 0.8],
+                width: 1
+            }
+        }
+    });
+
+    graphicsLayer.add(dotGraphic);
+}	
     // Limit trail length to 1000 points
     if (flightPathPoints.length > 1000) {
         flightPathPoints.shift();
@@ -646,7 +668,7 @@ function addUserLocationMarker(location, heading) {
 
     const trailSymbol = {
         type: "simple-line",
-        color: [0, 255, 0, 0.7], // Green trail
+        color: [0, 0, 255, 0.7], // Blue trail
         width: 2
     };
 
