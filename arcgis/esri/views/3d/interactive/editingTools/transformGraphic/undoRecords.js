@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","../../../../../chunks/vec3f64"],function(g,e){function m(a){let d=a.geometry,c=null;return{undo(b){c=b.geometry;b.geometry=d},redo(b){d=b.geometry;b.geometry=c}}}function n(a,d,c){let b=d?.clone(),h=e.clone(c.origin),k=null,l=null;return{undo:f=>{k=a.transform?.clone();l=e.clone(c.origin);a.transform=b;a.vertexSpace.origin=h;f.notifyMeshTransformChanged()},redo:f=>{b=a.transform?.clone();h=e.clone(c.origin);a.transform=k;a.vertexSpace.origin=l;f.notifyMeshTransformChanged()}}}function p(a){let d=
+a.vertexAttributes.clonePositional(),c;return{undo:b=>{c=a.vertexAttributes.clonePositional();a.vertexAttributes=d;b.notifyGeometryChanged()},redo:b=>{d=a.vertexAttributes.clonePositional();a.vertexAttributes=c;b.notifyGeometryChanged()}}}g.createGraphicGeometryUndoRecord=function(a){null!=a.geometry&&"mesh"===a.geometry.type?(a=a.geometry,a=a.vertexSpace.isRelative?n(a,a.transform,a.vertexSpace):p(a)):a=m(a);return a};Object.defineProperty(g,Symbol.toStringTag,{value:"Module"})});

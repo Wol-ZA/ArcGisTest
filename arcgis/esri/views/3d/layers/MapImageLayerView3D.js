@@ -1,0 +1,6 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define("../../../chunks/tslib.es6 ../../../core/Logger ../../../core/accessorSupport/ensureType ../../../core/arrayUtils ../../../core/has ../../../core/Error ../../../core/accessorSupport/decorators/subclass ./DynamicLayerView3D ../../layers/MapImageLayerView ../../layers/support/MapServiceLayerViewHelper ../../support/drapedUtils".split(" "),function(d,a,l,m,n,p,e,f,g,h,k){a=class extends g(f){constructor(){super(...arguments);this.type="map-image-3d"}initialize(){this._updatingHandles.add(()=>
+this.exportImageVersion,()=>this._updatingHandles.addPromise(this.refreshDebounced()));this._popupHighlightHelper=new h.MapServiceLayerViewHelper({createFetchPopupFeaturesQueryGeometry:(b,c)=>k.createQueryGeometry(b,c,this.view),layerView:this,updatingHandles:this._updatingHandles})}destroy(){this._popupHighlightHelper?.destroy()}fetchPopupFeatures(b,c){return this._popupHighlightHelper.fetchPopupFeatures(b,c)}getFetchOptions(){return{timeExtent:this.timeExtent}}};return a=d.__decorate([e.subclass("esri.views.3d.layers.MapImageLayerView3D")],
+a)});

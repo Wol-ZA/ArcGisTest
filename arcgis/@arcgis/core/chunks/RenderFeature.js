@@ -1,0 +1,5 @@
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+*/
+import{h as e}from"./typedArrayUtil.js";import{N as i}from"./NestedMap.js";import{R as t}from"./RenderState.js";var s;function o(o=!e("disable-feature:high-quality-idle"),n=null){const a=new i;return o?(a.set(t.IDLE,s.Antialiasing,"low"!==n),a.set(t.IDLE,s.HighResolutionAtmosphere,"low"!==n),a.set(t.IDLE,s.HighQualityTransparency,!0),a.set(t.IDLE,s.SSAO,!0),a.set(t.IDLE,s.WaterReflection,!0),a.set(t.IDLE,s.PhysicalPixelRendering,!0)):(a.set(t.ANIMATING,s.HighResolutionShadows,!0),a.set(t.INTERACTING,s.HighResolutionShadows,!0)),a.set(t.IDLE,s.HighResolutionShadows,!0),a.set(t.IDLE,s.HighResolutionVoxel,!0),a}!function(e){e[e.Antialiasing=0]="Antialiasing",e[e.HighQualityTransparency=1]="HighQualityTransparency",e[e.HighResolutionVoxel=2]="HighResolutionVoxel",e[e.HighResolutionAtmosphere=3]="HighResolutionAtmosphere",e[e.SSAO=4]="SSAO",e[e.WaterReflection=5]="WaterReflection",e[e.HighResolutionShadows=6]="HighResolutionShadows",e[e.PhysicalPixelRendering=7]="PhysicalPixelRendering"}(s||(s={}));export{s as R,o as s};

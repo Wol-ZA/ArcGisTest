@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","../../../../core/Accessor","../core/shaderLibrary/ShaderOutput"],function(a,e,b){const d={required:[]},f={required:[b.ShaderOutput.Depth]},g={required:[b.ShaderOutput.CompositeColor]},h={required:[b.ShaderOutput.Highlight]};b={required:[b.ShaderOutput.Depth,b.ShaderOutput.Normal]};class c extends e{consumes(){return d}get usedMemory(){return 0}get isDecoration(){return!1}get running(){return!1}}class k extends c{}class l extends c{}class m extends c{}class n extends c{}class p extends c{}
+a.ASyncPreparesRenderPlugin=p;a.AsyncRenderPlugin=n;a.ConsumesCompositeColor=g;a.ConsumesDepth=f;a.ConsumesDepthNormal=b;a.ConsumesHighlight=h;a.ConsumesNone=d;a.SyncPrepareRenderPlugin=l;a.SyncPreparesRenderPlugin=m;a.SyncRenderPlugin=k;Object.defineProperty(a,Symbol.toStringTag,{value:"Module"})});

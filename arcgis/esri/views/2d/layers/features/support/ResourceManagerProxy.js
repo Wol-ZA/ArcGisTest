@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["../../../../../core/promiseUtils"],function(e){class f{constructor(a){this._remoteClient=a;this._resourceMap=new Map;this._inFlightResourceMap=new Map;this.geometryEnginePromise=this.geometryEngine=null}destroy(){}async fetchResource(a,g){const d=this._resourceMap;var b=d.get(a);if(b||(b=this._inFlightResourceMap.get(a)))return b;try{b=this._remoteClient.invoke("tileRenderer.fetchResource",{url:a},{...g}),this._inFlightResourceMap.set(a,b),b.then(c=>{this._inFlightResourceMap.delete(a);d.set(a,
+c);return c})}catch(c){return e.isAbortError(c)?null:{width:0,height:0}}return b}getResource(a){return this._resourceMap.get(a)??null}loadFont(a){return Promise.resolve(null)}}return f});

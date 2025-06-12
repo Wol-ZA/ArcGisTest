@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["../../../../core/maybe","../../engine/FeatureContainer","./GraphicBoundsRenderer","../../../webgl/enums"],function(d,e,f,g){return class extends e.FeatureContainer{constructor(a){super(a);this.checkHighlight=()=>!0}destroy(){super.destroy();this._boundsRenderer=d.destroyMaybe(this._boundsRenderer)}enableRenderingBounds(a){this._boundsRenderer=new f(a);this.requestRender()}get hasHighlight(){return this.checkHighlight()}onTileData(a,c){a.patch(c);this.contains(a)||this.addChild(a);this.requestRender()}onTileError(a){a.clear();
+this.contains(a)||this.addChild(a)}_renderChildren(a,c){for(const b of this.children)b.isReady&&b.hasData&&(b.commit(a),a.context.setStencilFunction(g.CompareFunction.EQUAL,b.stencilRef,255),b.getDisplayList().replay(a,b,c))}}});

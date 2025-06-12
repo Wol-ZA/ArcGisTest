@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define("../../chunks/tslib.es6 ../../core/Clonable ../../core/JSONSupport ../../core/Logger ../../core/accessorSupport/ensureType ../../core/arrayUtils ../../core/has ../../core/Error ../../core/accessorSupport/decorators/enumeration ../../core/accessorSupport/decorators/subclass".split(" "),function(b,a,c,f,g,h,k,l,d,e){a=class extends a.ClonableMixin(c.JSONSupport){constructor(){super({});this.type="georeferenced";this.isRelative=!1;this.isGeoreferenced=!0}};b.__decorate([d.enumeration({georeferenced:"georeferenced"},
+{readOnly:!0})],a.prototype,"type",void 0);return a=b.__decorate([e.subclass("esri.geometry.support.MeshGeoreferencedVertexSpace")],a)});

@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define("exports ../../../../../chunks/tslib.es6 ../../../../../core/Accessor ../../../../../core/maybe ../../../../../core/accessorSupport/decorators/property ../../../../../core/accessorSupport/ensureType ../../../../../core/arrayUtils ../../../../../core/has ../../../../../core/accessorSupport/decorators/subclass".split(" "),function(a,c,e,f,d,h,k,l,g){a.ComponentObject=class extends e{constructor(){super(...arguments);this.visible=a.State.Hidden}destroy(){this.intersectionGeometry=f.destroyMaybe(this.intersectionGeometry)}};
+c.__decorate([d.property({autoDestroy:!0})],a.ComponentObject.prototype,"renderable",void 0);c.__decorate([d.property({autoDestroy:!0})],a.ComponentObject.prototype,"components",void 0);a.ComponentObject=c.__decorate([g.subclass("esri.views.3d.webgl-engine.collections.Component.ComponentObject")],a.ComponentObject);a.State=void 0;(function(b){b[b.Hidden=0]="Hidden";b[b.Visible=1]="Visible"})(a.State||(a.State={}));Object.defineProperty(a,Symbol.toStringTag,{value:"Module"})});

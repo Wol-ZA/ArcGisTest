@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define("exports ../../../../chunks/tslib.es6 ../../../../core/accessorSupport/decorators/property ../../../../core/accessorSupport/decorators/subclass ./RenderPlugin ../lib/RenderSlot".split(" "),function(a,c,e,f,d,g){a.CompositeRenderNode=class extends d.SyncRenderPlugin{ready(){return!0}consumes(){return d.ConsumesCompositeColor}constructor(b){super(b);this.produces=new Map([[g.RenderSlot.COMPOSITE,()=>null!=this._context&&this.ready()]])}initialize(){this.view._stage.addRenderPlugin(this)}destroy(){this.view._stage.removeRenderPlugin(this)}renderNode(b,
+k,h,l){return this.render(b,h)}initializeRenderContext(b){this._context=b}uninitializeRenderContext(){}};c.__decorate([e.property({constructOnly:!0})],a.CompositeRenderNode.prototype,"view",void 0);a.CompositeRenderNode=c.__decorate([f.subclass("esri.views.3d.webgl-engine.effects.CompositeRenderNode")],a.CompositeRenderNode);Object.defineProperty(a,Symbol.toStringTag,{value:"Module"})});

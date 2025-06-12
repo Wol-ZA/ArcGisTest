@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","./css","../../../widgets/support/widgetUtils","../../../widgets/support/jsxFactory"],function(d,a,g,b){d.TooltipContentWithHelpMessage=function({className:h,helpMessage:e,mode:f,onDiscard:k,onkeydown:l},...c){c=c.flat(10).filter(m=>!!m);return b.tsx("div",{class:g.classes(h,a.content,"input"===f&&a.contentInputMode),onkeydown:l},"input"===f?b.tsx("div",{class:a.contentHeader,key:"tooltip-content-header"},b.tsx("calcite-button",{appearance:"transparent",iconFlipRtl:"both",iconStart:"chevron-left",
+kind:"neutral",onclick:k,scale:"s",tabIndex:-1})):null,0<c.length?b.tsx("div",{class:a.table},...c):null,e?b.tsx("div",{class:a.helpMessage,key:"help-message"},e):null)};Object.defineProperty(d,Symbol.toStringTag,{value:"Module"})});

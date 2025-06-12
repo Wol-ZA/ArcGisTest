@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports"],function(a){a.activePolygonSymbol={type:"simple-fill",style:"solid",color:[255,102,102,.5],outline:null};a.activeSourcePointSymbol={type:"simple-marker",size:15,style:"circle",color:[255,102,102,.5],outline:null};a.coverageMapSymbol={type:"simple-fill",style:"solid",color:[0,200,0,.5]};a.crossSymbol={type:"simple-marker",size:8,style:"x",color:[255,0,0],outline:{color:[255,0,0],width:2,style:"solid"}};a.diamondSymbol={type:"simple-marker",size:10,style:"diamond",color:[255,102,
+102],outline:null};a.polygonSymbol={type:"simple-fill",style:"solid",color:[0,128,192,.5],outline:null};a.sourcePointSymbol={type:"simple-marker",size:10,style:"circle",color:[0,128,192,.5],outline:null};Object.defineProperty(a,Symbol.toStringTag,{value:"Module"})});

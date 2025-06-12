@@ -1,0 +1,6 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","./utils","../../portal/support/portalItemUtils"],function(c,f,d){function g(a){if("imagery"===a.type)return{isValid:!0};({raster:a}=a);a="Function"===a?.datasetFormat?a.primaryRasters?.rasters[0]:a;return{isValid:"RasterTileServer"===a?.datasetFormat&&("Raster"===a.tileType||"Map"===a.tileType),errorMessage:"imagery tile layer should be created from a tiled image service."}}function h(a){a=a.layerJSON;return Promise.resolve(a&&Object.keys(a).length?a:null)}async function k(a,b){const {parsedUrl:e,
+title:l,fullExtent:m}=a;b.url=e.path;b.title||(b.title=l);b.extent=await d.getWGS84ExtentForItem(m);"imagery-tile"===a.type&&d.addTypeKeyword(b,d.TypeKeyword.TILED_IMAGERY)}c.save=async function(a,b){return f.save({layer:a,itemType:"Image Service",validateLayer:g,createItemData:h,errorNamePrefix:"imagery"===a.type?"imagery-layer-save":"imagery-tile-layer-save"},b)};c.saveAs=async function(a,b,e){return f.saveAs({layer:a,itemType:"Image Service",validateLayer:g,createItemData:h,errorNamePrefix:"imagery"===
+a.type?"imagery-layer-save-as":"imagery-tile-layer-save-as",newItem:b,setItemProperties:k},e)};Object.defineProperty(c,Symbol.toStringTag,{value:"Module"})});

@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","../../../chunks/vec3f64","../../../layers/graphics/dehydratedPoint","../../../support/elevationInfoUtils"],function(c,d,f,g){function h(a,b,e){if(null==a)return null;if(null==b)return d.fromValues(a.x,a.y,a.z??0);if("2d"===b.type)return d.fromValues(a.x,a.y,0);b=g.getConvertedElevation(b,a,e,g.absoluteHeightElevationInfo)??0;return d.fromValues(a.x,a.y,b)}const k=f.makeDehydratedPoint(0,0,0,null);c.clone=function(a){return d.clone(a)};c.create=function(a,b,e){return d.fromValues(a,
+b,e)};c.fromAnyMapPoint=function(a,b,{coordinateHelper:e,elevationInfo:l}){return a?h(e.vectorToDehydratedPoint(a,k),b,l):null};c.fromPoint=h;c.fromValues=function(a,b,e){return d.fromValues(a,b,e)};c.fromVec3=function(a){return a};c.toDehydratedPoint=function(a,b){return f.makeDehydratedPoint(a[0],a[1],a[2],b)};c.toWritableVec3=function(a){return d.clone(a)};Object.defineProperty(c,Symbol.toStringTag,{value:"Module"})});

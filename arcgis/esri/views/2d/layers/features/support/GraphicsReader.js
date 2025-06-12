@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","../../../../../geometry/support/jsonUtils","../../../../../layers/graphics/featureConversionUtils","./FeatureSetReader","./FeatureSetReaderJSON"],function(f,h,k,l,m){class c extends m.FeatureSetReaderJSON{static from(a,d,e){const n=l.FeatureSetReader.createInstance(),g=[];a=a.filter(b=>!!b.geometry);for(const b of a)a=h.getJsonType(b.geometry),k.convertFromGraphics(g,[b],a,!1,!1,d);return new c(n,g,e)}constructor(a,d,e){super(a,d,null);this._transform=e}get geometryType(){const a=
+this._current;return a?a.geometryType:null}get insertAfter(){return this._current.insertAfter}readGraphic(){return this._current}getCursor(){return this.copy()}copy(){const a=new c(this.instance,this._features,this._transform);this.copyInto(a);return a}}f.GraphicsReader=c;Object.defineProperty(f,Symbol.toStringTag,{value:"Module"})});

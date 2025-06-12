@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkRemoteClient=self.webpackChunkRemoteClient||[]).push([[9914],{89914:(e,t,s)=>{s.d(t,{S:()=>o});var n=s(62062);class o extends n.O{notify(){const e=this._observers;if(e&&e.length>0){const t=e.slice();for(const e of t)e.onInvalidated(),e.onCommitted()}}}}}]);

@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define("../../../../chunks/tslib.es6 ../../../../core/Logger ../../../../core/accessorSupport/ensureType ../../../../core/arrayUtils ../../../../core/has ../../../../core/Error ../../../../core/accessorSupport/decorators/subclass ../../engine/webgl/enums ./BaseGraphicContainer ../../../webgl/enums".split(" "),function(d,c,l,m,n,p,e,f,g,h){c=class extends g{get hasHighlight(){return this.children.some(a=>a.hasData)}renderChildren(a){if(a.drawPhase===f.WGLDrawPhase.HIGHLIGHT&&(this.attributeView.update(),
+this.children.some(k=>k.hasData))){this.attributeView.bindTextures(a.context);super.renderChildren(a);var {painter:b}=a;b=b.effects.highlight;b.bind(a);a.context.setColorMask(!0,!0,!0,!0);a.context.clear(h.ClearBufferBit.COLOR_BUFFER_BIT);this._renderChildren(a,b.defines.concat(["highlightAll"]));b.draw(a);b.unbind()}}};return c=d.__decorate([e.subclass("esri.views.2d.layers.support.HighlightGraphicContainer")],c)});

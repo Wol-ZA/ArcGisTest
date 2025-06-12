@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define("../../../chunks/tslib.es6 ../../../core/Accessor ../../../core/accessorSupport/decorators/property ../../../core/accessorSupport/ensureType ../../../core/arrayUtils ../../../core/has ../../../core/accessorSupport/decorators/subclass ../../../views/interactive/sketch/SketchLabelOptions ../../../views/interactive/sketch/SketchTooltipOptions".split(" "),function(b,a,c,h,k,l,f,d,e){a=class extends a{constructor(g){super(g);this.labelOptions=new d;this.tooltipOptions=new e}};b.__decorate([c.property({type:d,
+nonNullable:!0})],a.prototype,"labelOptions",void 0);b.__decorate([c.property({type:e,nonNullable:!0})],a.prototype,"tooltipOptions",void 0);return a=b.__decorate([f.subclass("esri.widgets.support.SketchTooltipControls.SketchTooltipControlsViewModel")],a)});

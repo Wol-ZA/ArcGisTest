@@ -1,0 +1,6 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["../../../../../chunks/vec2f64","../../../../webgl/rasterUtils"],function(h,l){const m={vsPath:"raster/common",fsPath:"raster/reproject",attributes:new Map([["a_position",0],["a_texcoord",1]])};return{createProgram:function(b,a){const {painter:d}=b,c=[],{interpolation:e,transformGrid:f}=a;a=!!b.rasterFunction?.parameters?.requireBilinear;b="bilinear"===e?!b.context.capabilities.textureFloat?.textureFloatLinear:a;"cubic"===e?c.push("bicubic"):b&&c.push("bilinear");f&&(c.push("applyProjection"),
+1===f.spacing[0]&&c.push("lookupProjection"));return d.materialManager.getProgram(m,c)},bindTextureAndUniforms:function(b,a,d){const {names:c,textures:e}=d.getTextures({forProcessing:!0});l.setTextures(b.context,a,c,e);a.setUniform1f("u_scale",1);a.setUniform2fv("u_offset",[0,0]);a.setUniform2fv("u_coordScale",[1,1]);a.setUniformMatrix3fv("u_dvsMat3",[2,0,0,0,2,0,-1,-1,0]);a.setUniform1i("u_flipY",0);a.setUniform1f("u_opacity",1);const {width:f,height:n,source:k,transformGrid:g}=d;a.setUniform2fv("u_srcImageSize",
+[k.width,k.height]);a.setUniform2fv("u_targetImageSize",[f,n]);a.setUniform2fv("u_transformSpacing",g?g.spacing:h.ZEROS);a.setUniform2fv("u_transformGridSize",g?g.size:h.ZEROS)}}});

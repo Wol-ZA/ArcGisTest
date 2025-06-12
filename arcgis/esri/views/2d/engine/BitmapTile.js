@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","../../../chunks/mat3f32","./Bitmap","./webgl/TiledDisplayObject"],function(b,c,f,g){class h extends g.TiledDisplayObject{constructor(a,k,l,m,d,e,n=null){super(a,k,l,m,d,e);this.bitmap=new f.Bitmap(n);this.bitmap.coordScale=[d,e];this.bitmap.once("isReady",()=>this.ready())}destroy(){super.destroy();this.bitmap.destroy()}beforeRender(a){this.bitmap.beforeRender(a);super.beforeRender(a)}afterRender(a){this.bitmap.afterRender(a);super.afterRender(a)}set stencilRef(a){this.bitmap.stencilRef=
+a}get stencilRef(){return this.bitmap.stencilRef}_createTransforms(){return{dvs:c.create(),tileMat3:c.create()}}setTransform(a){super.setTransform(a);this.bitmap.transforms.dvs=this.transforms.dvs}onAttach(){this.bitmap.stage=this.stage}onDetach(){this.bitmap&&(this.bitmap.stage=null)}}b.BitmapTile=h;Object.defineProperty(b,Symbol.toStringTag,{value:"Module"})});

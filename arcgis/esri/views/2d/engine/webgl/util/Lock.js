@@ -1,0 +1,4 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","../../../../../core/promiseUtils"],function(b,c){class d{constructor(){this._resolver=null}isHeld(){return!!this._resolver}async acquire(){this._resolver?(await this._resolver.promise,await this.acquire()):this._resolver=c.createResolver()}release(){const a=this._resolver;this._resolver=null;a?.resolve()}}b.Lock=d;b.withLock=async function(a,e,f){try{await a.acquire(),await e(f),a.release()}catch(g){throw a.release(),g;}};Object.defineProperty(b,Symbol.toStringTag,{value:"Module"})});

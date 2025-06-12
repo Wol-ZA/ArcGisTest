@@ -1,0 +1,6 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","../../../core/quantityUtils","../../../core/unitFormatUtils","../../../intl/number"],function(g,d,h,k){function e(b,a){return k.formatNumber(b,{style:"unit",unit:a,unitDisplay:"short"})}g.formatDistance=function(b,a,c){if(0===a)return"";let f=0;a=d.createLength(a,"meters");switch(c){case "metric":.01>a.value?{value:c,unit:a}=d.toUnit(a,"millimeters"):1>a.value?{value:c,unit:a}=d.toUnit(a,"centimeters"):1E3>a.value?{value:c,unit:a}=d.toUnit(a,"meters"):1E5>a.value?({value:c,unit:a}=
+d.toUnit(a,"kilometers"),f=1):{value:c,unit:a}=d.toUnit(a,"kilometers");break;case "imperial":.254>a.value?{value:c,unit:a}=d.toUnit(a,"inches"):160.9344>a.value?{value:c,unit:a}=d.toUnit(a,"feet"):160934.4>a.value?({value:c,unit:a}=d.toUnit(a,"miles"),f=1):{value:c,unit:a}=d.toUnit(a,"miles");break;default:({value:c,unit:a}=d.toUnit(a,c)),f=2}return h.formatDecimal(b,c,a,f)};g.formatDuration=function(b){if(0===b)return"";if(1>b)return e(Math.floor(60*b),"second");if(60>b)return e(Math.floor(b),"minute");
+const a=Math.floor(b/60);return 1440>b?(b=Math.floor(b%60),0===b?`${e(a,"hour")}`:`${e(a,"hour")} ${e(b,"minute")}`):e(a,"hour")};Object.defineProperty(g,Symbol.toStringTag,{value:"Module"})});

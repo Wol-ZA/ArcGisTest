@@ -1,0 +1,6 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define("exports ../../../../chunks/mat2d ../../../../chunks/mat2df32 ../../../../chunks/mat3 ../../../../chunks/mat3f32 ./definitions ./TiledDisplayObject".split(" "),function(h,k,l,m,n,p,r){class t{acquire(a){return{refCount:1,version:-1,labelMat2d:l.create(),tileMat3:n.create(),dvs:n.create()}}release(a){}}class d extends r.TiledDisplayObject{constructor(a,b,c,e){super(a,b,c,e,p.tileSize,p.tileSize)}destroy(){super.destroy();this._transforms&&d.TransformCache.release(this.key.hash)}setTransform(a){var b=
+this.resolution/a.resolution,c=this.transforms.tileMat3;const [e,q]=a.toScreenNoRotation([0,0],[this.x,this.y]);var f=this.width/this.rangeX*b;b*=this.height/this.rangeY;m.set(c,f,0,0,0,b,0,e,q,1);m.multiply(this.transforms.dvs,a.displayViewMat3,c);c=this.transforms.labelMat2d;const g=window.devicePixelRatio;f=k.set(l.create(),f*g,0,0,b*g,e*g,q*g);k.multiply(c,a.viewMat2d,f)}_createTransforms(){return d.TransformCache.acquire(this.key.hash)}}d.TransformCache=new t;h.WGLTile=d;Object.defineProperty(h,
+Symbol.toStringTag,{value:"Module"})});

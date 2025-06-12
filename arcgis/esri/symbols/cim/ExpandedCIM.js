@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","../../views/2d/engine/webgl/enums","../../views/2d/engine/webgl/materialKey/MaterialKey"],function(f,d,k){const l={marker:d.WGLGeometryType.MARKER,fill:d.WGLGeometryType.FILL,line:d.WGLGeometryType.LINE,text:d.WGLGeometryType.TEXT};class m{constructor(c,a,g,n){const e={minScale:a?.minScale,maxScale:a?.maxScale};var h=e.minScale||e.maxScale?e.minScale+"-"+e.maxScale:"";this.layers=c;this.data=a;this.hash=this._createHash()+h;this.rendererKey=g;a={isOutline:!1,placement:null,symbologyType:d.WGLSymbologyType.DEFAULT,
+vvFlags:g};for(const b of c)c=l[b.type],a.isOutline="line"===b.type&&b.isOutline,b.materialKey=k.createMaterialKey(c,a),b.maxVVSize=n,b.scaleInfo=e,b.templateHash+=h}get type(){return"expanded-cim"}_createHash(){let c="";for(const a of this.layers)c+=a.templateHash;return c}}f.ExpandedCIM=m;Object.defineProperty(f,Symbol.toStringTag,{value:"Module"})});

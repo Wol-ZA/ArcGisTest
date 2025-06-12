@@ -1,0 +1,6 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define("../../../../../chunks/tslib.es6 ../../../../../core/Accessor ../../../../../core/accessorSupport/decorators/property ../../../../../core/accessorSupport/ensureType ../../../../../core/arrayUtils ../../../../../core/has ../../../../../core/accessorSupport/decorators/subclass".split(" "),function(b,a,c,f,g,h,e){a=class extends a{initialize(){}destroy(){}get supportsTileUpdates(){return!1}get spatialReference(){const d=this.tileStore.tileScheme.spatialReference;return d&&d.toJSON()||null}};b.__decorate([c.property({readOnly:!0})],
+a.prototype,"supportsTileUpdates",null);b.__decorate([c.property({constructOnly:!0})],a.prototype,"remoteClient",void 0);b.__decorate([c.property({constructOnly:!0})],a.prototype,"service",void 0);b.__decorate([c.property()],a.prototype,"spatialReference",null);b.__decorate([c.property({constructOnly:!0})],a.prototype,"tileInfo",void 0);b.__decorate([c.property({constructOnly:!0})],a.prototype,"tileStore",void 0);return a=b.__decorate([e.subclass("esri.views.2d.layers.features.processors.BaseProcessor")],
+a)});

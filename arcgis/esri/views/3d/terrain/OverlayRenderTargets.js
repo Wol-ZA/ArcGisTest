@@ -1,0 +1,6 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define("exports ../../../core/has ./OverlayContent ./OverlayFramebufferObject ../webgl-engine/core/FBOCache ../webgl-engine/core/shaderLibrary/ShaderOutput".split(" "),function(e,k,c,l,h,d){class b{constructor(a,f,g,m=h.ColorFormat.RGBA_MIPMAP){this.output=f;this.content=g;this.fbo=new l.OverlayFramebufferObject(a,m)}get valid(){return this.fbo.valid}}class n{constructor(a){this.targets=[new b(a,d.ShaderOutput.Color,c.OverlayContent.Color),new b(a,d.ShaderOutput.Color,c.OverlayContent.ColorNoRasterImage),
+new b(a,d.ShaderOutput.Highlight,c.OverlayContent.Highlight,h.ColorFormat.RGBA4),new b(a,d.ShaderOutput.Normal,c.OverlayContent.WaterNormal),new b(a,d.ShaderOutput.Color,c.OverlayContent.Occluded)];k("enable-feature:objectAndLayerId-rendering")&&this.targets.push(new b(a,d.ShaderOutput.ObjectAndLayerIdColor,c.OverlayContent.ObjectAndLayerIdColor))}getTexture(a){return this.targets[a]?.fbo.texture}dispose(){for(const a of this.targets)a.fbo.dispose()}computeValidity(){return this.targets.reduce((a,
+f,g)=>f.valid?a|=1<<g:a,0)}}e.OverlayRenderTargets=n;e.RenderTargetDescriptor=b;Object.defineProperty(e,Symbol.toStringTag,{value:"Module"})});

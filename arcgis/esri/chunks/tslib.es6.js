@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports"],function(n){"function"===typeof SuppressedError?SuppressedError:function(f,c,a){a=Error(a);return a.name="SuppressedError",a.error=f,a.suppressed=c,a};n.__awaiter=function(f,c,a,d){function h(b){return b instanceof a?b:new a(function(e){e(b)})}return new (a||(a=Promise))(function(b,e){function k(g){try{l(d.next(g))}catch(m){e(m)}}function p(g){try{l(d["throw"](g))}catch(m){e(m)}}function l(g){g.done?b(g.value):h(g.value).then(k,p)}l((d=d.apply(f,c||[])).next())})};n.__decorate=
+function(f,c,a,d){var h=arguments.length,b=3>h?c:null===d?d=Object.getOwnPropertyDescriptor(c,a):d,e;if("object"===typeof Reflect&&"function"===typeof Reflect.decorate)b=Reflect.decorate(f,c,a,d);else for(var k=f.length-1;0<=k;k--)if(e=f[k])b=(3>h?e(b):3<h?e(c,a,b):e(c,a))||b;return 3<h&&b&&Object.defineProperty(c,a,b),b}});

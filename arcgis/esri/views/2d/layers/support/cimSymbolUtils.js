@@ -1,0 +1,6 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["require","exports","../../../../symbols/cim/cimAnalyzer","../../../../symbols/cim/ExpandedCIM"],function(m,g,n,p){const l=async(a,b,c)=>{b=new n.CIMAnalyzer(c,b);return new p.ExpandedCIM(await b.analyzeSymbolReference(a.data,!1),a.data,a.rendererKey,a.maxVVSize)};g.cimLayerToRasterizationInfo=function(a){if(!a)return null;const {avoidSDFRasterization:b,type:c,cim:e,url:h,materialHash:k,maxVVSize:f}=a,d={cim:e,type:c,mosaicHash:k,url:h,size:null,dashTemplate:null,path:null,text:null,fontName:null,
+animatedSymbolProperties:null,avoidSDFRasterization:b};switch(c){case "marker":f&&"size"in e&&(e.size=Math.max(f,e.size));d.size=a.size;d.path=a.path;d.animatedSymbolProperties=a.animatedSymbolProperties;break;case "line":d.dashTemplate=a.dashTemplate;break;case "text":d.text=a.text,d.fontName=a.fontName}return d};g.expandSymbol=async function(a,b,c,e){if(!a)return null;if("cim"===a.type)return l(a,b,c);if("web-style"===a.type){const {fetchCIMSymbolReference:h}=await new Promise((k,f)=>m(["./webStyleUtils"],
+k,f));a={type:"cim",data:await h(a,null,e)??void 0,rendererKey:a.rendererKey,maxVVSize:a.maxVVSize};return l(a,b,c)}return a};Object.defineProperty(g,Symbol.toStringTag,{value:"Module"})});

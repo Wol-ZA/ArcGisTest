@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","../../../../core/mathUtils","../../../../chunks/vec3"],function(f,l,n){function m(a,d,c,b,e,p=2){var g=1/(Math.abs(c)+Math.abs(b)+Math.abs(e));c*=g;b*=g;g=0>=e?(0<=b?1:-1)*(1-Math.abs(c)):b;d*=p;a[d]=h(0>=e?(0<=c?1:-1)*(1-Math.abs(b)):c);a[d+1]=h(g)}function h(a){return l.clamp(Math.round(32767*a),-32767,32767)}function k(a){return l.clamp(a/32767,-1,1)}f.compressNormal=m;f.compressNormals=function(a){const d=a.length/3,c=new Int16Array(2*d);let b=0;for(let e=0;e<d;++e)m(c,e,a[b++],
+a[b++],a[b++]);return c};f.decodeInt16=k;f.decompressNormal=function(a,d,c,b=2){b*=c;c=k(d[b]);d=k(d[b+1]);b=1-Math.abs(c)-Math.abs(d);a[2]=b;0>b?(a[0]=(0<=c?1:-1)*(1-Math.abs(d)),a[1]=(0<=d?1:-1)*(1-Math.abs(c))):(a[0]=c,a[1]=d);n.normalize(a,a)};f.encodeInt16=h;Object.defineProperty(f,Symbol.toStringTag,{value:"Module"})});

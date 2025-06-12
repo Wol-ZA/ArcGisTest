@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","../../../../chunks/mat3","../DisplayObject","../../tiling/TileKey"],function(f,g,k,l){class m extends k.DisplayObject{constructor(a,b,c,e,d,h,n=d,p=h){super();this.triangleCount=this.triangleCountReportedInDebug=0;this.texture=null;this.key=new l(a);this.resolution=b;this.x=c;this.y=e;this.width=d;this.height=h;this.rangeX=n;this.rangeY=p}destroy(){this.texture&&(this.texture.dispose(),this.texture=null)}setTransform(a){const b=this.resolution/(a.resolution*a.pixelRatio),c=this.transforms.tileMat3,
+[e,d]=a.toScreenNoRotation([0,0],[this.x,this.y]);g.set(c,this.width/this.rangeX*b,0,0,0,this.height/this.rangeY*b,0,e,d,1);g.multiply(this.transforms.dvs,a.displayViewMat3,c)}}f.TiledDisplayObject=m;Object.defineProperty(f,Symbol.toStringTag,{value:"Module"})});

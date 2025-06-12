@@ -1,0 +1,6 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","./DebugOverlay"],function(p,n){const u=()=>[1,.5,0,1,1,0,0,1,0,1,.5,1,0,.5,0,1],v=()=>[.05,.01,.15,.2];p.showCollisionBoxes=function(q,w){q.container.addChild(new n({getMesh:h=>{({pixelRatio:h}=h.state);let a=0;const k=[],l=[];for(const r of q._vectorTileContainer.children)if(r.symbols)for(const [,x]of r.symbols)for(const t of x)for(const g of t.colliders){const c=(g.xScreen+g.dxScreen)*h,d=(g.yScreen+g.dyScreen)*h,e=g.width*h,f=g.height*h;var b=.5<t.unique.parts[g.partIndex].targetOpacity;
+if(!b&&"all"!==w)continue;const m=n.makeFlags(b?2:0,b?3:0);k.push(c,d,m,c+e,d,m,c,d+f,m,c+e,d+f,m);l.push(a,a+1,a+2,a+1,a+3,a+2);a+=4;b=n.makeFlags(b?3:1,b?3:0);k.push(c,d,b,c+e,d,b,c,d+1,b,c+e,d+1,b);l.push(a,a+1,a+2,a+1,a+3,a+2);a+=4;k.push(c,d+f-1,b,c+e,d+f-1,b,c,d+f,b,c+e,d+f,b);l.push(a,a+1,a+2,a+1,a+3,a+2);a+=4;k.push(c,d,b,c+1,d,b,c,d+f,b,c+1,d+f,b);l.push(a,a+1,a+2,a+1,a+3,a+2);a+=4;k.push(c+e-1,d,b,c+e,d,b,c+e-1,d+f,b,c+e,d+f,b);l.push(a,a+1,a+2,a+1,a+3,a+2);a+=4}return{vertexData:new Int16Array(k),
+indexData:new Uint32Array(l)}},getColors:u,getOpacities:v}))};Object.defineProperty(p,Symbol.toStringTag,{value:"Module"})});

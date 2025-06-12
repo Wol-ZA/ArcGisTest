@@ -1,0 +1,6 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define("exports ../../../chunks/tslib.es6 ../../../core/Accessor ../../../core/mathUtils ../../../core/accessorSupport/decorators/property ../../../core/accessorSupport/decorators/cast ../../../core/arrayUtils ../../../core/has ../../../core/accessorSupport/decorators/subclass ../state/Constraints".split(" "),function(a,c,h,d,e,k,n,p,l,f){var m=d.rad2deg(f.TiltDefault.min),g=d.rad2deg(f.TiltDefault.max);a.TiltConstraint=class extends h{constructor(){super(...arguments);this.mode="auto"}get max(){return this._get("max")}set max(b){this._set("max",
+b);this.mode="manual"}castMax(b){return d.clamp(b,m,g)}autoUpdate(b){"auto"===this.mode&&this._get("max")!==b&&this._set("max",b)}};c.__decorate([e.property({type:["auto","manual"]})],a.TiltConstraint.prototype,"mode",void 0);c.__decorate([e.property({type:Number,value:g})],a.TiltConstraint.prototype,"max",null);c.__decorate([k.cast("max")],a.TiltConstraint.prototype,"castMax",null);a.TiltConstraint=c.__decorate([l.subclass("esri.views.3d.constraints.TiltConstraint")],a.TiltConstraint);Object.defineProperty(a,
+Symbol.toStringTag,{value:"Module"})});

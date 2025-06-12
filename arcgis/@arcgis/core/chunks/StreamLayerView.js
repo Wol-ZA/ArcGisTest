@@ -1,0 +1,5 @@
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+*/
+import{_ as s}from"./tslib.es6.js";import{property as e}from"../core/accessorSupport/decorators/property.js";import"./ensureType.js";import"./typedArrayUtil.js";import{subclass as t}from"../core/accessorSupport/decorators/subclass.js";import r from"../layers/support/FeatureFilter.js";const o=o=>{let i=class extends o{resume(){this._isUserPaused=!1,this.suspended||this._doResume()}pause(){this._isUserPaused=!0,this.suspended||this._doPause()}constructor(...s){super(...s),this._isUserPaused=!1,this.filter=null}get connectionStatus(){return this._isUserPaused?"paused":this._streamConnectionStatus}_onSuspendedChange(s){s?this._doPause():this._isUserPaused||this._doResume()}};return s([e()],i.prototype,"_isUserPaused",void 0),s([e({readOnly:!0})],i.prototype,"connectionStatus",null),s([e({type:r})],i.prototype,"filter",void 0),i=s([t("esri.layers.mixins.StreamLayerView")],i),i};export{o as S};

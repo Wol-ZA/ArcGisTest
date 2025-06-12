@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","../../../../core/ObjectPool"],function(b,c){class a{constructor(){this.color=[0,0,0,0];this.haloColor=[0,0,0,0];this.haloSize=0;this.size=12;this.vAnchor=this.hAnchor=this.offsetY=this.offsetX=this.angle=0}acquire(d,e,f,g,h,k,l,m,n){this.color=d;this.haloColor=e;this.haloSize=f;this.size=g;this.angle=h;this.offsetX=k;this.offsetY=l;this.hAnchor=m;this.vAnchor=n}release(){this.color[0]=this.color[1]=this.color[2]=this.color[3]=0;this.vAnchor=this.hAnchor=this.offsetY=this.offsetX=
+this.angle=this.size=this.haloSize=this.haloColor[0]=this.haloColor[1]=this.haloColor[2]=this.haloColor[3]=0}}a.pool=new c(a);b.TextProperties=a;Object.defineProperty(b,Symbol.toStringTag,{value:"Module"})});

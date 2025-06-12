@@ -1,0 +1,6 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define("../../../chunks/tslib.es6 ../../../core/Accessor ../../../core/accessorSupport/decorators/property ../../../core/accessorSupport/ensureType ../../../core/arrayUtils ../../../core/has ../../../core/accessorSupport/decorators/subclass ./SketchTooltipElevationOptions ./SketchTooltipVisibleElements".split(" "),function(b,a,c,h,k,l,f,d,e){a=class extends a{constructor(g){super(g);this.inputEnabled=this.enabled=!1;this.elevation=new d.SketchTooltipElevationOptions;this.visibleElements=new e.SketchTooltipVisibleElements;
+this.visualVariables=null}toJSON(){return{enabled:this.enabled,elevation:this.elevation,visibleElements:this.visibleElements}}};b.__decorate([c.property({type:Boolean,nonNullable:!0})],a.prototype,"enabled",void 0);b.__decorate([c.property({type:Boolean,nonNullable:!0})],a.prototype,"inputEnabled",void 0);b.__decorate([c.property({type:d.SketchTooltipElevationOptions,nonNullable:!0})],a.prototype,"elevation",void 0);b.__decorate([c.property({type:e.SketchTooltipVisibleElements,nonNullable:!0})],a.prototype,
+"visibleElements",void 0);b.__decorate([c.property()],a.prototype,"visualVariables",void 0);return a=b.__decorate([f.subclass("esri.widgets.Sketch.SketchTooltipOptions")],a)});

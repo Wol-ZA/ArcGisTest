@@ -1,0 +1,4 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","./GeoEventConnection","./WebSocketConnection","../../../support/ClientSideConnection"],function(c,d,e,f){c.createConnection=function(b,a,g,h,k,l,m,n){a={source:b,sourceSpatialReference:a,spatialReference:g,geometryType:h,filter:k,maxReconnectionAttempts:l,maxReconnectionInterval:m,customParameters:n};return b?b.path.startsWith("wss://")||b.path.startsWith("ws://")?new e.WebSocketConnection(a):new d(a):new f.ClientSideConnection(a)};Object.defineProperty(c,Symbol.toStringTag,{value:"Module"})});

@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","../definitions","./utils"],function(d,e,f){class g{constructor(a,b,c,h){this._animation=a;this._frameData=null;this.frameCount=this._animation.frameDurations.length;this.width=this._animation.width;this.height=this._animation.height;this._playHandle=f.play(this._animation,c,h,k=>{this._frameData=k;b.requestRender()})}destroy(){this._playHandle.remove()}bindFrame(a,b,c){a.bindTexture(b,c);a=this._frameData;null!=a&&(b.updateData(0,e.spritePadding,e.spritePadding,"width"in a?a.width:
+a.codedWidth,"height"in a?a.height:a.codedHeight,a),this._frameData=null)}}d.AnimatableTextureResource=g;Object.defineProperty(d,Symbol.toStringTag,{value:"Module"})});

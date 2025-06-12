@@ -1,0 +1,6 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define("exports ./DefaultVertexAttributeLocations ./DefaultVertexBufferLayouts ./VertexArrayObject ../../../webgl/BufferObject ../../../webgl/enums ../../../webgl/Texture ../../../webgl/TextureDescriptor".split(" "),function(e,l,g,m,n,f,p,q){e.createEmptyDepthTexture=function(c){const a=new q.TextureDescriptor(1);a.samplingMode=f.TextureSamplingMode.NEAREST;return new p.Texture(c,a,new Uint8Array([255,255,255,255]))};e.createEmptyTexture=function(c){const a=new q.TextureDescriptor(4);a.samplingMode=
+f.TextureSamplingMode.NEAREST;return new p.Texture(c,a)};e.createQuadVAO=function(c,a=g.Pos2,h=l.Default3D,b=-1,d=1){let k=null;switch(a){case g.Pos2Tex:k=new Float32Array([b,b,0,0,d,b,1,0,b,d,0,1,d,d,1,1]);break;default:k=new Float32Array([b,b,d,b,b,d,d,d])}return new m.VertexArrayObject(c,h,{geometry:a},{geometry:n.BufferObject.createVertex(c,f.Usage.STATIC_DRAW,k)})};e.createScreenSizeTriangleVAO=function(c,a=g.Pos2,h=l.Default3D){const b=new Float32Array([-1,-1,3,-1,-1,3]);return new m.VertexArrayObject(c,
+h,{geometry:a},{geometry:n.BufferObject.createVertex(c,f.Usage.STATIC_DRAW,b)})};Object.defineProperty(e,Symbol.toStringTag,{value:"Module"})});

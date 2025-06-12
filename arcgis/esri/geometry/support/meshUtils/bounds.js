@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","../../Extent","./georeference"],function(m,u,v){function p(d,g){let e=Infinity,f=Infinity,b=Infinity,c=-Infinity,h=-Infinity,k=-Infinity;const l=d.length;let a=0;for(;a<l;){const q=d[a++],r=d[a++],t=d[a++];e=Math.min(e,q);f=Math.min(f,r);b=Math.min(b,t);c=Math.max(c,q);h=Math.max(h,r);k=Math.max(k,t)}return new u({xmin:e,ymin:f,zmin:b,xmax:c,ymax:h,zmax:k,spatialReference:g})}let n=null;m.getExtentFromPositions=p;m.getProjectedExtent=function({xmin:d,xmax:g,ymin:e,ymax:f,zmin:b,
+zmax:c},h,k,l){b??(b=0);c??(c=0);n??(n=new Float64Array(24));const a=n;a[0]=d;a[1]=e;a[2]=b;a[3]=d;a[4]=f;a[5]=b;a[6]=g;a[7]=f;a[8]=b;a[9]=g;a[10]=e;a[11]=b;a[12]=d;a[13]=e;a[14]=c;a[15]=d;a[16]=f;a[17]=c;a[18]=g;a[19]=f;a[20]=c;a[21]=g;a[22]=e;a[23]=c;v.project({positions:a,transform:h,vertexSpace:k,inSpatialReference:l,outSpatialReference:l,outPositions:a});return p(a,l)};Object.defineProperty(m,Symbol.toStringTag,{value:"Module"})});

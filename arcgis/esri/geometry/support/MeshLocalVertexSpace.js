@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define("../../chunks/tslib.es6 ../../core/Clonable ../../core/JSONSupport ../../core/accessorSupport/decorators/property ../../core/accessorSupport/ensureType ../../core/arrayUtils ../../core/has ../../core/accessorSupport/decorators/enumeration ../../core/accessorSupport/decorators/subclass ../../chunks/vec3f64 ../Point".split(" "),function(c,a,g,h,p,q,r,k,l,f,m){a=class extends a.ClonableMixin(g.JSONSupport){constructor(b){super(b);this.type="local";this.isRelative=!0;this.isGeoreferenced=!1;this.origin=
+f.create()}getOriginPoint(b){const [d,e,n]=this.origin;return new m({x:d,y:e,z:n,spatialReference:b})}setOriginFromPoint({x:b,y:d,z:e}){this.origin=f.fromValues(b,d,e??0)}};c.__decorate([k.enumeration({local:"local"},{readOnly:!0})],a.prototype,"type",void 0);c.__decorate([h.property({type:[Number],nonNullable:!0,json:{write:!0}})],a.prototype,"origin",void 0);return a=c.__decorate([l.subclass("esri.geometry.support.MeshLocalVertexSpace")],a)});

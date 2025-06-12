@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","./MemCache"],function(h,e){class k{constructor(b,a){this._cache=b(a,(d,c)=>this._remove(d,c))}hitrate(){return this._cache.hitRate}destroy(){this._cache.destroy()}clear(){this._cache.clear()}pop(b){const a=this._cache.peek(b);if(a){var d=a.pop();if(0<a.length){const c=a.reduce((f,g)=>f+g.usedMemory,0);this._cache.updateSize(b,a,c)}else this._cache.pop(b);return d}}put(b,a,d=e.minPriority){const c=this._cache.peek(b);c?(c.push(a),a=c.reduce((f,g)=>f+g.usedMemory,0),this._cache.updateSize(b,
+c,a)):this._cache.put(b,[a],a.usedMemory,d)}_remove(b,a){switch(a){case e.RemoveMode.ALL:return b.forEach(d=>d.dispose()),0;case e.RemoveMode.SOME:return b.shift()?.dispose(),b.reduce((d,c)=>d+c.usedMemory,0)}}}h.MemCachePool=k;Object.defineProperty(h,Symbol.toStringTag,{value:"Module"})});

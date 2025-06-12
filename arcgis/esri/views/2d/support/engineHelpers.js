@@ -1,0 +1,6 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define("exports ../../../core/BidiText ../../../core/screenUtils ../engine/webgl/alignmentUtils ../engine/webgl/definitions ../engine/webgl/mesh/templates/shapingUtils".split(" "),function(e,l,d,g,h,m){async function k(a,c,b){const n=g.getXAnchorDirection("center"),p=g.getYAnchorDirection("middle");b=c.painter.textureManager.rasterizeItem(a.toJSON(),window.devicePixelRatio||1,void 0,b);[,c]=l.bidiText(a.text);b=(await b).glyphMosaicItems;return m.shapeGlyphs(b??[],c,{angle:a.angle??0,xOffset:d.pt2px(a.xoffset??
+0),yOffset:d.pt2px(a.yoffset??0),lineHeight:h.magicLabelLineHeight*Math.max(.25,a.lineHeight),maxLineWidth:Math.max(32,Math.min(d.pt2px(a.lineWidth),512)),decoration:a.font.decoration,scale:Math.min(Math.round(d.pt2px(a.font.size)),127)/h.glyphSize,hAlign:n,vAlign:p,isCIM:!1,hasBackground:!!a.backgroundColor,borderLineSize:a.borderLineSize}).boundsT}let f=k;e.getTextBounds=async function(a,c,b){return f(a,c.stage,b)};e.test={stubGetTextBounds:a=>f=a,restoreGetTextBounds:()=>f=k};Object.defineProperty(e,
+Symbol.toStringTag,{value:"Module"})});

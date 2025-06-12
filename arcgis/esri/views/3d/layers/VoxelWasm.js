@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["require","exports"],function(h,f){let g;const b=new Map;f.addLayerViewToWasm=async function(a){null==g&&(g=new Promise((c,k)=>h(["../../../layers/VoxelWasmPerSceneView"],l=>c(Object.freeze(Object.defineProperty({__proto__:null,default:l},Symbol.toStringTag,{value:"Module"}))),k)));const d=a.view,e=b.get(d);return e?e.addVoxelLayer(a):(await g.then(c=>{c=new c.default({view:d});b.set(d,c);return c})).addVoxelLayer(a)};f.getVoxelWasm=function(a){return b.get(a)};f.removeLayerViewFromWasm=function(a){const d=
+a.view,e=b.get(d);e&&1>e.removeVoxelLayer(a)&&(b.delete(d),0===b.size&&(g=null))};Object.defineProperty(f,Symbol.toStringTag,{value:"Module"})});

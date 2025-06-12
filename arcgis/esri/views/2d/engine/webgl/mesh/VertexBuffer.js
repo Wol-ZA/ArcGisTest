@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","../Utils"],function(k,h){class f{constructor(a,b){this.data=a;this.stride=b}static decode(a){const b=h.allocateTypedArrayBufferwithData(a.data,a.stride);return new f(b,a.stride)}static fromVertexVector(a){const b=h.allocateTypedArrayBufferwithData(a.data.buffer(),a.stride);return new f(b,a.stride)}}class g{constructor(a,b,c){this.geometryType=a;this.indexBuffer=new Uint32Array(b);this.namedBuffers=c}static decode(a){const b=a.geometryType,c=a.indexBuffer,d={};for(const e in a.namedBuffers)d[e]=
+f.decode(a.namedBuffers[e]);return new g(b,c,d)}static fromVertexData(a,b){const c=a.indices,d=h.allocateTypedArrayBufferwithData(a.vertices,a.stride);a={geometry:new f(d,a.stride)};return new g(b,c,a)}static fromVertexVectors(a){const b=a.geometryType,c=a.indexVector.buffer(),d={};let e;for(e in a.namedVectors)d[e]=f.fromVertexVector(a.namedVectors[e]);return new g(b,c,d)}}k.VertexBuffers=g;Object.defineProperty(k,Symbol.toStringTag,{value:"Module"})});

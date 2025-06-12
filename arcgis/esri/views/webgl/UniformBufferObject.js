@@ -1,0 +1,6 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define("exports ../../core/Logger ../../core/maybe ./BufferObject ./contextUtils ./enums ./UniformBufferLayout".split(" "),function(c,d,e,f,g,h,k){class l{constructor(a,b,m=h.Usage.DYNAMIC_DRAW){this._context=a;this._usage=m;this._dirtyRange={from:Infinity,to:-1};this._initialized=!1;this._context.type!==g.ContextType.WEBGL2&&d.getLogger("esri.views.webgl.UniformBufferObject").error("Attempting to create a uniform buffer without WebGL2!");this._data=new k.UniformBufferLayout(b)}get byteLength(){return this._data.byteLength}initialize(){this._initialized||
+(this.buffer=f.BufferObject.createUniform(this._context,this._usage,this._data.array),this._resetDirtyRange(),this._initialized=!0)}dispose(){this._context.unbindUBO(this);this.buffer=e.disposeMaybe(this.buffer)}set(a){this._data.setValues(a,this._dirtyRange)}setUniform(a,b){this._data.setValue(a,b,this._dirtyRange)}upload(){this.initialize();const {from:a,to:b}=this._dirtyRange;-1<b&&a<b&&(this.buffer.setSubData(this._data.arrayView32,a,a,b),this._resetDirtyRange())}_resetDirtyRange(){this._dirtyRange.from=
+Infinity;this._dirtyRange.to=-1}}c.UniformBufferObject=l;Object.defineProperty(c,Symbol.toStringTag,{value:"Module"})});

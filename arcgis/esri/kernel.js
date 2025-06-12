@@ -1,0 +1,6 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["exports","./core/has","./core/urlUtils","./support/revision"],function(a,f,g,e){Symbol.dispose??(Symbol.dispose=Symbol("Symbol.dispose"));Symbol.asyncDispose??(Symbol.asyncDispose=Symbol("Symbol.asyncDispose"));a.id=void 0;if(!f("host-webworker")){console.debug(`Using ArcGIS Maps SDK for JavaScript ${"4.28"} [Date: ${e.buildDate}, Revision: ${e.commitHash.slice(0,8)}]`);let b;"function"===typeof globalThis.require&&(b=globalThis.require);const d=c=>{const h=c.startsWith("@arcgis/core/")?
+c.replace("@arcgis/core/","esri/").replace(/.js$/,""):c;return new Promise(k=>b([h],k))};Object.defineProperty(globalThis,"$arcgis",{configurable:!1,enumerable:!0,writable:!1,value:{import:c=>b?Array.isArray(c)?Promise.all(c.map(d)):d(c):Promise.reject("global AMD `require` function not found")}})}a.buildDate=e.buildDate;a.revision=e.commitHash;a.addTokenParameter=function(b){const d=a.id?.findCredential(b);return d?.token?g.addQueryParameter(b,"token",d.token):b};a.fullVersion="4.28";a.setId=function(b){a.id=
+b};a.version="4.28";Object.defineProperty(a,Symbol.toStringTag,{value:"Module"})});

@@ -1,0 +1,4 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["../../../../../../geometry/GeometryCursor","../../../../../../symbols/cim/effects/CIMEffectHelper"],function(e,f){class g{constructor(){this._materialKey=null}bindFeature(b,c,a){}write(b,c,a,d){if(this._effects&&0<this._effects.length){if(a=e.GeometryCursor.fromFeatureSetReaderCIM(c)){a.invertY();const h=f.CIMEffectHelper.executeEffects(this._effects,a,b.tileKey,d.geometryEngine);for(;a=h.next();)a.invertY(),this._write(b,c,d,a)}}else this._write(b,c,d)}_write(b,c,a,d){}}return g});

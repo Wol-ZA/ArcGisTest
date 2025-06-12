@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(function(){class e{constructor(a=[],b=[],c=!1){this.lengths=a??[];this.coords=b??[];this.hasIndeterminateRingOrder=c}static fromRect(a){const [b,c,f,d]=a;a=f-b;const g=d-c;return new e([5],[b,c,a,0,0,g,-a,0,0,-g])}get isPoint(){return 0===this.lengths.length}get maxLength(){return Math.max(...this.lengths)}get size(){return this.lengths.reduce((a,b)=>a+b)}forEachVertex(a){let b=0;this.lengths.length||a(this.coords[0],this.coords[1]);for(let c=0;c<this.lengths.length;c++){const f=this.lengths[c];
+for(let d=0;d<f;d++)a(this.coords[2*(d+b)],this.coords[2*(d+b)+1]);b+=f}}clone(a){return a?(a.set(this.coords),new e(this.lengths.slice(),a,this.hasIndeterminateRingOrder)):new e(this.lengths.slice(),this.coords.slice(),this.hasIndeterminateRingOrder)}}return e});

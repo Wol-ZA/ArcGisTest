@@ -1,0 +1,5 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define(["../enums","./WGLGeometryBrushMarker","../techniques/utils","../../../../webgl/enums"],function(d,e,f,g){class h extends e{supportsSymbology(a){return a===d.WGLSymbologyType.PIE_CHART}_drawMarkers(a,c,b,k,l,m,n){({context:c}=a);({rendererInfo:a}=a);({rendererSchema:a}=a);f.assertRendererSchema(a,"pie-chart");b.setUniform4fv("u_colors",a.colors);b.setUniform4fv("u_defaultColor",a.defaultColor);b.setUniform4fv("u_othersColor",a.othersColor);b.setUniform4fv("u_outlineColor",a.outlineColor);b.setUniform1f("u_donutRatio",
+a.holePercentage);b.setUniform1f("u_sectorThreshold",a.sectorThreshold);b.setUniform1f("u_outlineWidth",a.outlineWidth);c.drawElements(k,l,g.DataType.UNSIGNED_INT,m)}}return h});

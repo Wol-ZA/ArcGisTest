@@ -1,0 +1,6 @@
+// All material copyright Esri, All Rights Reserved, unless otherwise specified.
+// See https://js.arcgis.com/4.28/esri/copyright.txt for details.
+//>>built
+define("../../chunks/tslib.es6 ../../core/Evented ../../core/reactiveUtils ../../core/accessorSupport/decorators/property ../../core/accessorSupport/ensureType ../../core/arrayUtils ../../core/has ../../core/accessorSupport/decorators/subclass".split(" "),function(c,b,g,d,k,l,m,h){b=class extends b.EventedAccessor{constructor(e){super(e);this.location=null;this.screenLocationEnabled=!1;this.view=null;this.addHandles([g.when(()=>{const a=this.screenLocationEnabled?this.view:null;return a?[a.size,"3d"===
+a.type?a.camera:a.viewpoint]:null},()=>this.notifyChange("screenLocation")),g.watch(()=>this.screenLocation,(a,f)=>{null!=a&&null!=f&&this.emit("view-change")})])}destroy(){this.view=null}get screenLocation(){const {location:e,view:a,screenLocationEnabled:f}=this;return f&&null!=e&&null!=a&&a.ready?a.toScreen(e):null}};c.__decorate([d.property()],b.prototype,"location",void 0);c.__decorate([d.property()],b.prototype,"screenLocation",null);c.__decorate([d.property()],b.prototype,"screenLocationEnabled",
+void 0);c.__decorate([d.property()],b.prototype,"view",void 0);return b=c.__decorate([h.subclass("esri.widgets.support.AnchorElementViewModel")],b)});
