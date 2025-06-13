@@ -1039,7 +1039,7 @@ window.StartTracking = function() {
         }, function(error) {
             console.error("Geolocation error: ", error);
         }, {
-            enableHighAccuracy: true,
+            enableHighAccuracy: false,
             maximumAge: 0,
             timeout: 5000
         });
