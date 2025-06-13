@@ -1,4 +1,4 @@
-const CACHE_NAME = 'arcgis-map-cache-v2';
+const CACHE_NAME = 'arcgis-map-cache-v3';
 
 // Files to cache
 const urlsToCache = [
@@ -6,7 +6,7 @@ const urlsToCache = [
   '/ArcGisTest/ArcGis.html',           // explicitly cache index.html
   '/ArcGisTest/arcgis/init.js',
   '/ArcGisTest/arcgis/esri/themes/light/main.css',
-  '/ArcGisTest/Flight.js
+  '/ArcGisTest/Flight.js'
 ];
 
 // Install event: cache files
