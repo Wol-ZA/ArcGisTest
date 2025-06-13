@@ -6,6 +6,7 @@ const urlsToCache = [
   '/ArcGisTest/ArcGis.html',           // explicitly cache index.html
   '/ArcGisTest/arcgis/init.js',
   '/ArcGisTest/arcgis/esri/layers/graphics/sources/geojson/GeoJSONSourceWorker.js',
+  '/ArcGisTest/arcgis/esri/views/2d/layers/FeatureLayerView2D.js',
   '/ArcGisTest/arcgis/esri/themes/light/main.css',
   '/ArcGisTest/Flight.js',
   '/ArcGisTest/ACCFIS.geojson',
