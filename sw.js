@@ -1,4 +1,4 @@
-const CACHE_NAME = 'arcgis-map-cache-v3';
+const CACHE_NAME = 'arcgis-map-cache-v5';
 
 // Files to cache
 const urlsToCache = [
@@ -67,7 +67,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        console.log('Opened cache');
+        alert('Opened cache');
         return cache.addAll(urlsToCache);
       })
   );
@@ -80,7 +80,7 @@ self.addEventListener('activate', (event) => {
       Promise.all(
         cacheNames.map((cache) => {
           if (cache !== CACHE_NAME) {
-            console.log('Deleting old cache:', cache);
+            alert('Deleting old cache:', cache);
             return caches.delete(cache);
           }
         })
