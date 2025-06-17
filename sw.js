@@ -13,6 +13,7 @@ const urlsToCache = [
   '/ArcGisTest/arcgis/esri/layers/support/labelUtils.js',
   '/ArcGisTest/arcgis/esri/layers/mixins/ArcGISCachedService.js',
   '/ArcGisTest/arcgis/esri/views/layers/support/ClipRect.js',
+  '/ArcGisTest/arcgis/esri/chunks/libtess.js',
   '/ArcGisTest/arcgis/esri/core/workers/init.js',
   'https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer/resources/styles/root.json',
   'https://cdn.arcgis.com/sharing/rest/content/items/7dc6cea0b1764a1f9af2e679f642f0f5/resources/styles/root.json?f=json',
