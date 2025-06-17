@@ -1,4 +1,4 @@
-const CACHE_NAME = 'arcgis-map-cache-v6';
+const CACHE_NAME = 'arcgis-map-cache-v7';
 
 // Files to cache
 const urlsToCache = [
