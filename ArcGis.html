@@ -266,10 +266,8 @@
      if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/ArcGisTest/sw.js')
     .then((registration) => {
-      alert('Service Worker registered with scope:', registration.scope);
     })
     .catch((error) => {
-      alert('Service Worker registration failed:', error);
     });
 }
   </script>
