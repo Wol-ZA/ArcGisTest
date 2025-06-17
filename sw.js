@@ -1,4 +1,4 @@
-const CACHE_NAME = 'arcgis-map-cache-v12';
+const CACHE_NAME = 'arcgis-map-cache-v13';
 
 // Files to cache
 const urlsToCache = [
@@ -26,6 +26,8 @@ const urlsToCache = [
   '/ArcGisTest/arcgis/esri/chunks/geometryEngineBase.js',
   '/ArcGisTest/arcgis/esri/core/workers/init.js',
   '/ArcGisTest/arcgis/esri/geometry/geometryAdapters/hydrated.js',
+  '/ArcGisTest/arcgis/esri/views/2d/webglDeps.js',
+  '/ArcGisTest/arcgis/esri/views/2d/mapViewDeps.js',
   'https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer/resources/styles/root.json',
   'https://cdn.arcgis.com/sharing/rest/content/items/7dc6cea0b1764a1f9af2e679f642f0f5/resources/styles/root.json?f=json',
   'https://services.arcgisonline.com/arcgis/rest/services/Elevation/World_Hillshade/MapServer?f=json',
