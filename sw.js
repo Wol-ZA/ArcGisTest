@@ -67,7 +67,6 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        alert('Opened cache');
         return cache.addAll(urlsToCache);
       })
   );
@@ -80,7 +79,6 @@ self.addEventListener('activate', (event) => {
       Promise.all(
         cacheNames.map((cache) => {
           if (cache !== CACHE_NAME) {
-            alert('Deleting old cache:', cache);
             return caches.delete(cache);
           }
         })
