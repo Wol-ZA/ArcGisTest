@@ -1,4 +1,4 @@
-const CACHE_NAME = 'arcgis-map-cache-v11';
+const CACHE_NAME = 'arcgis-map-cache-v12';
 
 // Files to cache
 const urlsToCache = [
@@ -9,7 +9,14 @@ const urlsToCache = [
   '/ArcGisTest/arcgis/esri/views/2d/layers/FeatureLayerView2D.js',
   '/ArcGisTest/arcgis/esri/views/2d/layers/LayerView2D.js',
   '/ArcGisTest/arcgis/esri/chunks/libtess.js',
+  '/ArcGisTest/arcgis/esri/layers/TileLayer.js',
+  '/ArcGisTest/arcgis/esri/layers/VectorTileLayer.js',
+  '/ArcGisTest/arcgis/esri/layers/TileLayer.js',
+  '/ArcGisTest/arcgis/esri/t9n/basemaps_en.json',
+  '/ArcGisTest/arcgis/esri/t9n/basemaps.json',
+  '/ArcGisTest/arcgis/esri/widgets/Attribution/t9n/Attribution_en.json',
   '/ArcGisTest/arcgis/esri/geometry/support/geodesicUtils.js',
+  '/ArcGisTest/arcgis/esri/widgets/Zoom/t9n/Zoom_en.json',
   '/ArcGisTest/arcgis/esri/views/2d/layers/features/Pipeline.js',
   '/ArcGisTest/arcgis/esri/layers/support/labelUtils.js',
   '/ArcGisTest/arcgis/esri/layers/mixins/ArcGISCachedService.js',
