@@ -10,6 +10,7 @@ const urlsToCache = [
   '/ArcGisTest/arcgis/esri/views/2d/layers/LayerView2D.js',
   '/ArcGisTest/arcgis/esri/views/2d/layers/features/Pipeline.js',
   '/ArcGisTest/arcgis/esri/layers/support/labelUtils.js',
+  '/ArcGisTest/arcgis/esri/core/image/apng.js',
   '/ArcGisTest/arcgis/esri/layers/support/labelFormatUtils.js',
   '/ArcGisTest/arcgis/esri/support/arcadeUtils.js',
   '/ArcGisTest/arcgis/esri/themes/light/main.css',
