@@ -19,7 +19,7 @@ require([
 
     // Create the map
    window.map = new Map({
-        basemap: "topo-vector"
+        basemap: "topo"
     });
 
     // Create the MapView centered on George, South Africa
