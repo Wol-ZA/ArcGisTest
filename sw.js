@@ -15,6 +15,7 @@ const urlsToCache = [
   '/ArcGisTest/arcgis/esri/views/layers/support/ClipRect.js',
   '/ArcGisTest/arcgis/esri/core/workers/init.js',
   'https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer/resources/styles/root.json',
+  'https://services.arcgisonline.com/arcgis/rest/services/Elevation/World_Hillshade/MapServer?f=json',
   'https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer/resources/sprites/sprite.json',
   'https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer/resources/sprites/sprite.png',
   'https://static.arcgis.com/fonts/Arial Unicode MS Regular/0-255.pbf',
