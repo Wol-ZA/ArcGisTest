@@ -10,8 +10,11 @@ const urlsToCache = [
   '/ArcGisTest/arcgis/esri/views/2d/layers/LayerView2D.js',
   '/ArcGisTest/arcgis/esri/views/2d/layers/features/Pipeline.js',
   '/ArcGisTest/arcgis/esri/layers/support/labelUtils.js',
+  '/ArcGisTest/arcgis/esri/core/workers/init.js',
   '/ArcGisTest/arcgis/esri/core/image/apng.js',
   '/ArcGisTest/arcgis/esri/layers/support/labelFormatUtils.js',
+  '/ArcGisTest/arcgis/esri/layers/support/LercWorker.js',
+  '/ArcGisTest/arcgis/esri/widgets/Popup.js',
   '/ArcGisTest/arcgis/esri/support/arcadeUtils.js',
   '/ArcGisTest/arcgis/esri/themes/light/main.css',
   '/ArcGisTest/Flight.js',
@@ -66,10 +69,7 @@ const urlsToCache = [
   '/ArcGisTest/sacaa_1.png',
   '/ArcGisTest/unlicensed.png',
   '/ArcGisTest/unlicensed_1.png',
-  '/ArcGisTest/wind.png',
-
-  // Optional fallback tile for broken tiles
-  '/ArcGisTest/fallback-tile.png'
+  '/ArcGisTest/wind.png'
 ];
 
 // Install event: Cache files gracefully (continue even if some fail)
