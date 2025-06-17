@@ -13,6 +13,7 @@ const urlsToCache = [
   '/ArcGisTest/arcgis/esri/support/arcadeUtils.js',
   '/ArcGisTest/arcgis/esri/themes/light/main.css',
   '/ArcGisTest/Flight.js',
+  '/ArcGisTest/ATNS.geojson',
   '/ArcGisTest/ACCFIS.geojson',
   '/ArcGisTest/AORRA.geojson',
   '/ArcGisTest/ATZ_CTR.geojson',
