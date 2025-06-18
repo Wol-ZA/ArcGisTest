@@ -1,11 +1,7 @@
-const CACHE_NAME = 'arcgis-map-cache-v15';
-const OFFLINE_PAGE = '/ArcGisTest/ArcGis.html';
-const FALLBACK_TILE = '/ArcGisTest/fallback-tile.png';
-
+const CACHE_NAME = 'arcgis-map-cache-v14';
 
 // Files to cache
 const urlsToCache = [
-  OFFLINE_PAGE,
   '/ArcGisTest/',
   '/ArcGisTest/ArcGis.html',
   '/ArcGisTest/arcgis/init.js',
@@ -117,10 +113,12 @@ const urlsToCache = [
   '/ArcGisTest/wind.png'
 ];
 
-// Install event: Precache files
+// Install event: Cache files gracefully (continue even if some fail)
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
+    caches.open(CACHE_NAME).then((cache) =>
+      Promise.allSettled(urlsToCache.map((url) => cache.add(url)))
+    )
   );
 });
 
@@ -137,42 +135,21 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch event: Cache-first for known static assets + dynamic caching for tiles and styles
+// Fetch event: Cache first → then Network fallback → fallback for navigation and tiles
 self.addEventListener('fetch', (event) => {
-  const { request } = event;
+  // Handle navigation requests (like index.html or ArcGis.html)
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request).catch(() => caches.match('/ArcGisTest/ArcGis.html'))
+    );
+    return;
+  }
 
+
+  // Default: Try cache first → then network
   event.respondWith(
-    caches.match(request).then((cachedResponse) => {
-      // If found in cache, return it
-      if (cachedResponse) return cachedResponse;
-
-      return fetch(request)
-        .then((networkResponse) => {
-          // Dynamically cache map tiles, sprites, fonts
-          if (
-            request.url.includes('/VectorTileServer/tile/') ||
-            request.url.includes('/sprites/') ||
-            request.url.includes('.pbf') ||
-            request.url.includes('/resources/styles/')
-          ) {
-            caches.open(CACHE_NAME).then((cache) => cache.put(request, networkResponse.clone()));
-          }
-
-          return networkResponse;
-        })
-        .catch(() => {
-          // Fallback logic when offline and not cached
-          if (request.destination === 'document') {
-            return caches.match(OFFLINE_PAGE);
-          }
-          if (request.url.includes('/tile/')) {
-            return caches.match(FALLBACK_TILE);
-          }
-          return new Response('Offline and resource not cached.', {
-            status: 503,
-            statusText: 'Offline',
-          });
-        });
+    caches.match(event.request).then((cachedResponse) => {
+      return cachedResponse || fetch(event.request);
     })
   );
 });
