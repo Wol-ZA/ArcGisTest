@@ -1,6 +1,6 @@
 const CACHE_NAME = 'arcgis-map-cache-v14';
 
-// Files to cache
+// Only cache same-origin resources here for install event
 const urlsToCache = [
   '/ArcGisTest/',
   '/ArcGisTest/ArcGis.html',
@@ -11,11 +11,9 @@ const urlsToCache = [
   '/ArcGisTest/arcgis/esri/chunks/libtess.js',
   '/ArcGisTest/arcgis/esri/layers/TileLayer.js',
   '/ArcGisTest/arcgis/esri/layers/VectorTileLayer.js',
-  '/ArcGisTest/arcgis/esri/layers/TileLayer.js',
   '/ArcGisTest/arcgis/esri/t9n/basemaps_en.json',
   '/ArcGisTest/arcgis/esri/t9n/basemaps.json',
   '/ArcGisTest/arcgis/esri/widgets/Attribution/t9n/Attribution_en.json',
-  '/ArcGisTest/arcgis/esri/views/2d/layers/VectorTileLayerView2D.js',
   '/ArcGisTest/arcgis/esri/views/2d/layers/VectorTileLayerView2D.js',
   '/ArcGisTest/arcgis/esri/views/2d/layers/TileLayerView2D.js',
   '/ArcGisTest/arcgis/esri/views/2d/layers/GraphicsLayerView2D.js',
@@ -25,25 +23,12 @@ const urlsToCache = [
   '/ArcGisTest/arcgis/esri/layers/support/labelUtils.js',
   '/ArcGisTest/arcgis/esri/layers/mixins/ArcGISCachedService.js',
   '/ArcGisTest/arcgis/esri/core/libs/libtess/libtess.wasm',
-  '/ArcGisTest/arcgis/esri/geometry/support/geodesicUtils.js',
   '/ArcGisTest/arcgis/esri/views/layers/support/ClipRect.js',
-  '/ArcGisTest/arcgis/esri/chunks/libtess.js',
   '/ArcGisTest/arcgis/esri/chunks/geometryEngineBase.js',
   '/ArcGisTest/arcgis/esri/core/workers/init.js',
   '/ArcGisTest/arcgis/esri/geometry/geometryAdapters/hydrated.js',
   '/ArcGisTest/arcgis/esri/views/2d/webglDeps.js',
   '/ArcGisTest/arcgis/esri/views/2d/mapViewDeps.js',
-  'https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer/resources/styles/root.json',
-  'https://cdn.arcgis.com/sharing/rest/content/items/7dc6cea0b1764a1f9af2e679f642f0f5/resources/sprites/sprite.png',
-  'https://cdn.arcgis.com/sharing/rest/content/items/7dc6cea0b1764a1f9af2e679f642f0f5/resources/styles/root.json?f=json',
-  'https://services.arcgisonline.com/arcgis/rest/services/Elevation/World_Hillshade/MapServer?f=json',
-  'https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer/resources/sprites/sprite.json',
-  'https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer/resources/sprites/sprite.png',
-  'https://cdn.arcgis.com/sharing/rest/content/items/7dc6cea0b1764a1f9af2e679f642f0f5/resources/sprites/sprite.json',
-  'https://static.arcgis.com/fonts/Arial Unicode MS Regular/0-255.pbf',
-  'https://static.arcgis.com/fonts/Arial Unicode MS Regular/256-511.pbf',
-  'https://static.arcgis.com/fonts/Arial Unicode MS Regular/512-767.pbf',
-  'https://static.arcgis.com/fonts/Arial Unicode MS Regular/768-1023.pbf',
   '/ArcGisTest/arcgis/esri/views/layers/support/Path.js',
   '/ArcGisTest/arcgis/esri/geometry/Circle.js',
   '/ArcGisTest/arcgis/esri/views/MapView.js',
@@ -113,43 +98,79 @@ const urlsToCache = [
   '/ArcGisTest/wind.png'
 ];
 
-// Install event: Cache files gracefully (continue even if some fail)
+// INSTALL: Cache same-origin resources only
 self.addEventListener('install', (event) => {
+  self.skipWaiting(); // Activate worker immediately
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) =>
-      Promise.allSettled(urlsToCache.map((url) => cache.add(url)))
+    caches.open(CACHE_NAME).then(cache =>
+      Promise.allSettled(urlsToCache.map(url => cache.add(url)))
     )
   );
 });
 
-// Activate event: Clean up old caches
+// ACTIVATE: Clean old caches and claim clients immediately
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) =>
-      Promise.all(
+    caches.keys()
+      .then(cacheNames => Promise.all(
         cacheNames
-          .filter((cache) => cache !== CACHE_NAME)
-          .map((cache) => caches.delete(cache))
-      )
-    )
+          .filter(name => name !== CACHE_NAME)
+          .map(name => caches.delete(name))
+      ))
+      .then(() => self.clients.claim())
   );
 });
 
-// Fetch event: Cache first → then Network fallback → fallback for navigation and tiles
+// FETCH: Cache-first for same-origin, network fallback with cache, fallback on failure
 self.addEventListener('fetch', (event) => {
-  // Handle navigation requests (like index.html or ArcGis.html)
+  const requestURL = new URL(event.request.url);
+
+  // Handle navigation requests (pages)
   if (event.request.mode === 'navigate') {
     event.respondWith(
-      fetch(event.request).catch(() => caches.match('/ArcGisTest/ArcGis.html'))
+      fetch(event.request)
+        .then(response => {
+          // Optionally cache the page here if you want
+          return response;
+        })
+        .catch(() => caches.match('/ArcGisTest/ArcGis.html'))
     );
     return;
   }
 
+  // Handle tile requests fallback (images under /tile/)
+  if (requestURL.pathname.includes('/tile/')) {
+    event.respondWith(
+      fetch(event.request).catch(() => caches.match('/ArcGisTest/fallback-tile.png'))
+    );
+    return;
+  }
 
-  // Default: Try cache first → then network
+  // For same-origin requests: cache first, then network
+  if (requestURL.origin === self.location.origin) {
+    event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
+        return cachedResponse || fetch(event.request)
+          .then(networkResponse => {
+            // Optionally cache runtime new requests here
+            return networkResponse;
+          })
+          .catch(() => {
+            // Fallback for images
+            if (event.request.destination === 'image') {
+              return caches.match('/ArcGisTest/fallback-tile.png');
+            }
+          });
+      })
+    );
+    return;
+  }
+
+  // For cross-origin requests, just try network, fallback empty response or nothing
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      return cachedResponse || fetch(event.request);
+    fetch(event.request).catch(() => {
+      // Could add fallback here if needed
+      return new Response('', { status: 408, statusText: 'Request Timeout' });
     })
   );
 });
