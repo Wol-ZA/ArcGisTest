@@ -1,7 +1,11 @@
-const CACHE_NAME = 'arcgis-map-cache-v14';
+const CACHE_NAME = 'arcgis-map-cache-v15';
+const OFFLINE_PAGE = '/ArcGisTest/ArcGis.html';
+const FALLBACK_TILE = '/ArcGisTest/fallback-tile.png';
+
 
 // Files to cache
 const urlsToCache = [
+  OFFLINE_PAGE,
   '/ArcGisTest/',
   '/ArcGisTest/ArcGis.html',
   '/ArcGisTest/arcgis/init.js',
@@ -113,12 +117,10 @@ const urlsToCache = [
   '/ArcGisTest/wind.png'
 ];
 
-// Install event: Cache files gracefully (continue even if some fail)
+// Install event: Precache files
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) =>
-      Promise.allSettled(urlsToCache.map((url) => cache.add(url)))
-    )
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
   );
 });
 
@@ -135,28 +137,42 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch event: Cache first → then Network fallback → fallback for navigation and tiles
+// Fetch event: Cache-first for known static assets + dynamic caching for tiles and styles
 self.addEventListener('fetch', (event) => {
-  // Handle navigation requests (like index.html or ArcGis.html)
-  if (event.request.mode === 'navigate') {
-    event.respondWith(
-      fetch(event.request).catch(() => caches.match('/ArcGisTest/ArcGis.html'))
-    );
-    return;
-  }
+  const { request } = event;
 
-  // Handle tile requests fallback
-  if (event.request.url.includes('/tile/')) {
-    event.respondWith(
-      fetch(event.request).catch(() => caches.match('/ArcGisTest/fallback-tile.png'))
-    );
-    return;
-  }
-
-  // Default: Try cache first → then network
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      return cachedResponse || fetch(event.request);
+    caches.match(request).then((cachedResponse) => {
+      // If found in cache, return it
+      if (cachedResponse) return cachedResponse;
+
+      return fetch(request)
+        .then((networkResponse) => {
+          // Dynamically cache map tiles, sprites, fonts
+          if (
+            request.url.includes('/VectorTileServer/tile/') ||
+            request.url.includes('/sprites/') ||
+            request.url.includes('.pbf') ||
+            request.url.includes('/resources/styles/')
+          ) {
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, networkResponse.clone()));
+          }
+
+          return networkResponse;
+        })
+        .catch(() => {
+          // Fallback logic when offline and not cached
+          if (request.destination === 'document') {
+            return caches.match(OFFLINE_PAGE);
+          }
+          if (request.url.includes('/tile/')) {
+            return caches.match(FALLBACK_TILE);
+          }
+          return new Response('Offline and resource not cached.', {
+            status: 503,
+            statusText: 'Offline',
+          });
+        });
     })
   );
 });
