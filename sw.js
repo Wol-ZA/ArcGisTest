@@ -24,6 +24,7 @@ const urlsToCache = [
   '/ArcGisTest/arcgis/esri/views/2d/layers/features/Pipeline.js',
   '/ArcGisTest/arcgis/esri/layers/support/labelUtils.js',
   '/ArcGisTest/arcgis/esri/layers/mixins/ArcGISCachedService.js',
+  '/ArcGisTest/arcgis/esri/core/libs/libtess/libtess.wasm',
   '/ArcGisTest/arcgis/esri/geometry/support/geodesicUtils.js',
   '/ArcGisTest/arcgis/esri/views/layers/support/ClipRect.js',
   '/ArcGisTest/arcgis/esri/chunks/libtess.js',
