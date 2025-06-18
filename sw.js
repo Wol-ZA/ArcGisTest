@@ -16,7 +16,6 @@ const urlsToCache = [
   '/ArcGisTest/arcgis/esri/t9n/basemaps.json',
   '/ArcGisTest/arcgis/esri/widgets/Attribution/t9n/Attribution_en.json',
   '/ArcGisTest/arcgis/esri/views/2d/layers/VectorTileLayerView2D.js',
-  '/ArcGisTest/arcgis/esri/views/2d/layers/VectorTileLayerView2D.js',
   '/ArcGisTest/arcgis/esri/views/2d/layers/TileLayerView2D.js',
   '/ArcGisTest/arcgis/esri/views/2d/layers/GraphicsLayerView2D.js',
   '/ArcGisTest/arcgis/esri/geometry/support/geodesicUtils.js',
