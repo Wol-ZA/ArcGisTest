@@ -1274,19 +1274,23 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
   const midY = (y1 + y2) / 2;
 
   const arrow = new Graphic({
-    geometry: {
-      type: "point",
-      x: midX,
-      y: midY
-    },
-    symbol: {
-      type: "simple-marker",
-      style: "triangle",
-      color: [0, 0, 255, 1],
-      size: 8,
-      angle: angle
+  geometry: {
+    type: "point",
+    x: midX,
+    y: midY
+  },
+  symbol: {
+    type: "simple-marker",
+    style: "triangle",
+    color: [0, 0, 255, 1],         // Fill color (blue)
+    size: 6,
+    angle: angle,
+    outline: {
+      color: [0, 0, 255, 1],       // Outline color (blue)
+      width: 1
     }
-  });
+  }
+});
 
   draggableGraphicsLayer.add(arrow);
 }
