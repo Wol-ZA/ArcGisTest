@@ -1263,11 +1263,13 @@ view.on("click", (event) => {
     });
     draggableGraphicsLayer.add(polylineGraphic);
 
- for (let i = 0; i < polylineCoordinates.length - 1; i++) {
-  const [x1, y1] = polylineCoordinates[i];
-  const [x2, y2] = polylineCoordinates[i + 1];
+ const path = polylineCoordinates[0]; // extract first path
 
+for (let i = 0; i < path.length - 1; i++) {
+  const [x1, y1] = path[i];
+  const [x2, y2] = path[i + 1];
   const angle = Math.atan2(y2 - y1, x2 - x1) * (180 / Math.PI);
+
   const midX = (x1 + x2) / 2;
   const midY = (y1 + y2) / 2;
 
