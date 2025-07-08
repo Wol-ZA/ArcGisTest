@@ -1290,7 +1290,6 @@ for (let i = 0; i < path.length - 1; i++) {
 
   draggableGraphicsLayer.add(arrow);
 }
-});
     zoomToFlightPlan(polylineCoordinates, window.view);
  	// Add custom buttons to view
 	
