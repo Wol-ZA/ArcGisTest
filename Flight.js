@@ -1258,10 +1258,63 @@ view.on("click", (event) => {
     });
 
     const polylineGraphic = new Graphic({
-        geometry: { type: "polyline", paths: polylineCoordinates },
-        symbol: { type: "simple-line", color: [0, 0, 255, 0.5], width: 2 }
-    });
-    draggableGraphicsLayer.add(polylineGraphic);
+  geometry: {
+    type: "polyline",
+    paths: polylineCoordinates
+  },
+  symbol: {
+    type: "cim",
+    data: {
+      type: "CIMSymbolReference",
+      symbol: {
+        type: "CIMLineSymbol",
+        symbolLayers: [
+          {
+            type: "CIMSolidStroke",
+            enable: true,
+            color: [0, 0, 255, 128],
+            width: 2
+          },
+          {
+            type: "CIMVectorMarker",
+            enable: true,
+            size: 10,
+            markerPlacement: {
+              type: "CIMMarkerPlacementAlongLineSameSize",
+              placementTemplate: [50], // Spacing in points
+              angleToLine: true
+            },
+            markerGraphics: [
+              {
+                type: "CIMMarkerGraphic",
+                geometry: {
+                  rings: [
+                    [
+                      [0, 0],
+                      [2, 3],
+                      [0, 2],
+                      [-2, 3],
+                      [0, 0]
+                    ]
+                  ]
+                },
+                symbol: {
+                  type: "CIMSolidFill",
+                  enable: true,
+                  color: [0, 0, 255, 255]
+                }
+              }
+            ],
+            rotateClockwise: true,
+            rotationMode: "geographic"
+          }
+        ]
+      }
+    }
+  }
+});
+
+draggableGraphicsLayer.add(polylineGraphic);
     zoomToFlightPlan(polylineCoordinates, window.view);
  	// Add custom buttons to view
 	
