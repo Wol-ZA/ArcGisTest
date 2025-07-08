@@ -1263,32 +1263,31 @@ view.on("click", (event) => {
     });
     draggableGraphicsLayer.add(polylineGraphic);
 
-   polylineCoordinates.forEach(path => {
-  for (let i = 0; i < path.length - 1; i++) {
-    const [x1, y1] = path[i];
-    const [x2, y2] = path[i + 1];
-    const angle = Math.atan2(y2 - y1, x2 - x1) * (180 / Math.PI);
+ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
+  const [x1, y1] = polylineCoordinates[i];
+  const [x2, y2] = polylineCoordinates[i + 1];
 
-    const midX = (x1 + x2) / 2;
-    const midY = (y1 + y2) / 2;
+  const angle = Math.atan2(y2 - y1, x2 - x1) * (180 / Math.PI);
+  const midX = (x1 + x2) / 2;
+  const midY = (y1 + y2) / 2;
 
-    const arrow = new Graphic({
-      geometry: {
-        type: "point",
-        x: midX,
-        y: midY
-      },
-      symbol: {
-        type: "simple-marker",
-        style: "triangle",
-        color: [0, 0, 255, 1],
-        size: 8,
-        angle: angle
-      }
-    });
+  const arrow = new Graphic({
+    geometry: {
+      type: "point",
+      x: midX,
+      y: midY
+    },
+    symbol: {
+      type: "simple-marker",
+      style: "triangle",
+      color: [0, 0, 255, 1],
+      size: 8,
+      angle: angle
+    }
+  });
 
-    draggableGraphicsLayer.add(arrow);
-  }
+  draggableGraphicsLayer.add(arrow);
+}
 });
     zoomToFlightPlan(polylineCoordinates, window.view);
  	// Add custom buttons to view
