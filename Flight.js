@@ -1259,7 +1259,7 @@ view.on("click", (event) => {
 
     const polylineGraphic = new Graphic({
         geometry: { type: "polyline", paths: polylineCoordinates },
-        symbol: { type: "simple-line", color: [0, 0, 255, 0.5], width: 4 }
+        symbol: { type: "simple-line", color: [0, 0, 255, 0.5], width: 2 }
     });
     draggableGraphicsLayer.add(polylineGraphic);
     zoomToFlightPlan(polylineCoordinates, window.view);
