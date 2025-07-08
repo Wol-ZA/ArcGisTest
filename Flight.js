@@ -1293,19 +1293,6 @@ function getBearing(lat1, lon1, lat2, lon2) {
   return (bearing + 360) % 360;
 }
 
-// 1. Draw the polyline
-const polylineGraphic = new Graphic({
-  geometry: {
-    type: "polyline",
-    paths: [polylineCoordinates]
-  },
-  symbol: {
-    type: "simple-line",
-    color: [0, 0, 255, 0.5],
-    width: 2
-  }
-});
-draggableGraphicsLayer.add(polylineGraphic);
 
 // 2. Draw directional triangle + distance/bearing text on each segment
 for (let i = 0; i < polylineCoordinates.length - 1; i++) {
