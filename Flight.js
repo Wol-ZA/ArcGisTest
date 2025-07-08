@@ -1338,79 +1338,22 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
     latitude: midY
   },
   symbol: {
-    type: "cim",
-    data: {
-      type: "CIMSymbolReference",
-      symbol: {
-        type: "CIMPointSymbol",
-        symbolLayers: [
-          {
-            type: "CIMVectorMarker",
-            size: 50,
-            frame: {
-              xmin: -25,
-              ymin: -15,
-              xmax: 25,
-              ymax: 15
-            },
-            markerGraphics: [
-              // Background rectangle
-              {
-                type: "CIMMarkerGraphic",
-                geometry: {
-                  rings: [[
-                    [-25, -15],
-                    [25, -15],
-                    [25, 15],
-                    [-25, 15],
-                    [-25, -15]
-                  ]]
-                },
-                symbol: {
-                  type: "CIMSolidFill",
-                  color: [255, 255, 255, 255] // white
-                }
-              },
-              // Border
-              {
-                type: "CIMMarkerGraphic",
-                geometry: {
-                  rings: [[
-                    [-25, -15],
-                    [25, -15],
-                    [25, 15],
-                    [-25, 15],
-                    [-25, -15]
-                  ]]
-                },
-                symbol: {
-                  type: "CIMSolidStroke",
-                  width: 1,
-                  color: [0, 0, 0, 255] // black border
-                }
-              },
-              // Text
-              {
-                type: "CIMMarkerGraphic",
-                geometry: { x: 0, y: 0 },
-                symbol: {
-                  type: "CIMTextSymbol",
-                  fontFamilyName: "Arial",
-                  height: 8,
-                  horizontalAlignment: "Center",
-                  verticalAlignment: "Center",
-                  color: [0, 0, 0, 255],
-                  text: `${distance} nm\n${Math.round(bearing)}° MB`
-                }
-              }
-            ]
-          }
-        ]
-      }
-    }
+    type: "text",
+    text: `${distance} nm\n${Math.round(bearing)}° MB`,
+    color: "black",
+    font: {
+      size: 10,
+      weight: "bold",
+      family: "Arial"
+    },
+    haloColor: "white",
+    haloSize: 3,
+    horizontalAlignment: "center",
+    verticalAlignment: "middle",
+    yoffset: 12
   }
 });
-  draggableGraphicsLayer.add(textGraphic);
+draggableGraphicsLayer.add(textGraphic);
 }
 
     zoomToFlightPlan(polylineCoordinates, window.view);
