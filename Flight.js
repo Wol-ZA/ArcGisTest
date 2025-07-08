@@ -1265,35 +1265,107 @@ view.on("click", (event) => {
 
  const path = polylineCoordinates[0]; // extract first path
 
-for (let i = 0; i < polylineCoordinates.length - 1; i++) {
-  const [x1, y1] = polylineCoordinates[i];
-  const [x2, y2] = polylineCoordinates[i + 1];
+function toRadians(deg) {
+  return deg * Math.PI / 180;
+}
 
-  const angle = Math.atan2(y2 - y1, x2 - x1) * (180 / Math.PI);
-  const midX = (x1 + x2) / 2;
-  const midY = (y1 + y2) / 2;
+function toDegrees(rad) {
+  return rad * 180 / Math.PI;
+}
 
-  const arrow = new Graphic({
+function getDistanceNM(lat1, lon1, lat2, lon2) {
+  const R = 3440.1;
+  const dLat = toRadians(lat2 - lat1);
+  const dLon = toRadians(lon2 - lon1);
+  const a = Math.sin(dLat / 2) ** 2 +
+            Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
+            Math.sin(dLon / 2) ** 2;
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return (R * c).toFixed(1);
+}
+
+function getBearing(lat1, lon1, lat2, lon2) {
+  const y = Math.sin(toRadians(lon2 - lon1)) * Math.cos(toRadians(lat2));
+  const x = Math.cos(toRadians(lat1)) * Math.sin(toRadians(lat2)) -
+            Math.sin(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
+            Math.cos(toRadians(lon2 - lon1));
+  const bearing = toDegrees(Math.atan2(y, x));
+  return (bearing + 360) % 360;
+}
+
+// 1. Draw the polyline
+const polylineGraphic = new Graphic({
   geometry: {
-    type: "point",
-    x: midX,
-    y: midY
+    type: "polyline",
+    paths: [polylineCoordinates]
   },
   symbol: {
-    type: "simple-marker",
-    style: "triangle",
-    color: [0, 0, 255, 1],         // Fill color (blue)
-    size: 6,
-    angle: angle,
-    outline: {
-      color: [0, 0, 255, 1],       // Outline color (blue)
-      width: 1
-    }
+    type: "simple-line",
+    color: [0, 0, 255, 0.5],
+    width: 2
   }
 });
+draggableGraphicsLayer.add(polylineGraphic);
 
+// 2. Draw directional triangle + distance/bearing text on each segment
+for (let i = 0; i < polylineCoordinates.length - 1; i++) {
+  const [lon1, lat1] = polylineCoordinates[i];
+  const [lon2, lat2] = polylineCoordinates[i + 1];
+
+  const midX = (lon1 + lon2) / 2;
+  const midY = (lat1 + lat2) / 2;
+
+  const angle = Math.atan2(lat2 - lat1, lon2 - lon1) * (180 / Math.PI);
+  const distance = getDistanceNM(lat1, lon1, lat2, lon2);
+  const bearing = getBearing(lat1, lon1, lat2, lon2);
+
+  // 2A. Add arrow slightly offset from start of segment
+  const arrowX = lon1 + (lon2 - lon1) * 0.3;
+  const arrowY = lat1 + (lat2 - lat1) * 0.3;
+
+  const arrow = new Graphic({
+    geometry: {
+      type: "point",
+      longitude: arrowX,
+      latitude: arrowY
+    },
+    symbol: {
+      type: "simple-marker",
+      style: "triangle",
+      color: [0, 0, 255, 1],
+      size: 8,
+      angle: angle,
+      outline: {
+        color: [0, 0, 255, 1],
+        width: 1
+      }
+    }
+  });
   draggableGraphicsLayer.add(arrow);
+
+  // 2B. Add text label at midpoint
+  const textGraphic = new Graphic({
+    geometry: {
+      type: "point",
+      longitude: midX,
+      latitude: midY
+    },
+    symbol: {
+      type: "text",
+      text: `${distance} nm\n${Math.round(bearing)}° MB`,
+      color: "black",
+      font: {
+        size: 10,
+        weight: "bold"
+      },
+      haloColor: "white",
+      haloSize: 1,
+      yoffset: 10
+    }
+  });
+  draggableGraphicsLayer.add(textGraphic);
 }
+
     zoomToFlightPlan(polylineCoordinates, window.view);
  	// Add custom buttons to view
 	
