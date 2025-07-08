@@ -1257,64 +1257,39 @@ view.on("click", (event) => {
 
     });
 
-    const polylineGraphic = new Graphic({
-  geometry: {
-    type: "polyline",
-    paths: polylineCoordinates
-  },
-  symbol: {
-    type: "cim",
-    data: {
-      type: "CIMSymbolReference",
+   const polylineGraphic = new Graphic({
+        geometry: { type: "polyline", paths: polylineCoordinates },
+        symbol: { type: "simple-line", color: [0, 0, 255, 0.5], width: 2 }
+    });
+    draggableGraphicsLayer.add(polylineGraphic);
+
+   polylineCoordinates.forEach(path => {
+  for (let i = 0; i < path.length - 1; i++) {
+    const [x1, y1] = path[i];
+    const [x2, y2] = path[i + 1];
+    const angle = Math.atan2(y2 - y1, x2 - x1) * (180 / Math.PI);
+
+    const midX = (x1 + x2) / 2;
+    const midY = (y1 + y2) / 2;
+
+    const arrow = new Graphic({
+      geometry: {
+        type: "point",
+        x: midX,
+        y: midY
+      },
       symbol: {
-        type: "CIMLineSymbol",
-        symbolLayers: [
-          {
-            type: "CIMSolidStroke",
-            enable: true,
-            color: [0, 0, 255, 128],
-            width: 2
-          },
-          {
-            type: "CIMVectorMarker",
-            enable: true,
-            size: 10,
-            markerPlacement: {
-              type: "CIMMarkerPlacementAlongLineSameSize",
-              placementTemplate: [50], // Spacing in points
-              angleToLine: true
-            },
-            markerGraphics: [
-              {
-                type: "CIMMarkerGraphic",
-                geometry: {
-                  rings: [
-                    [
-                      [0, 0],
-                      [2, 3],
-                      [0, 2],
-                      [-2, 3],
-                      [0, 0]
-                    ]
-                  ]
-                },
-                symbol: {
-                  type: "CIMSolidFill",
-                  enable: true,
-                  color: [0, 0, 255, 255]
-                }
-              }
-            ],
-            rotateClockwise: true,
-            rotationMode: "geographic"
-          }
-        ]
+        type: "simple-marker",
+        style: "triangle",
+        color: [0, 0, 255, 1],
+        size: 8,
+        angle: angle
       }
-    }
+    });
+
+    draggableGraphicsLayer.add(arrow);
   }
 });
-
-draggableGraphicsLayer.add(polylineGraphic);
     zoomToFlightPlan(polylineCoordinates, window.view);
  	// Add custom buttons to view
 	
