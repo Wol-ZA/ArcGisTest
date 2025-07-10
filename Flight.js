@@ -1184,7 +1184,7 @@ window.addMarkersAndDrawLine = function (data) {
 
     // Create markers
     data.forEach((point, index) => {
-        const { latitude, longitude, name, description } = point;
+        const { latitude, longitude, name, description, variation } = point;
         polylineCoordinates.push([longitude, latitude]);
 
         const markerUrl = index === 0
