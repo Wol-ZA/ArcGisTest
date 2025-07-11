@@ -1304,7 +1304,14 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
 
   const angle = Math.atan2(lat2 - lat1, lon2 - lon1) * (180 / Math.PI);
   const distance = getDistanceNM(lat1, lon1, lat2, lon2);
-  const bearing = getBearing(lat1, lon1, lat2, lon2);
+  const trueBearing = getBearing(lat1, lon1, lat2, lon2);
+const variation = parseFloat(jsonData[i].variation); // get variation from source point
+
+let magneticBearing = trueBearing - variation;
+
+// Normalize to 0–360
+if (magneticBearing < 0) magneticBearing += 360;
+if (magneticBearing >= 360) magneticBearing -= 360;
 
   // 2A. Add arrow slightly offset from start of segment
   const arrowX = lon1 + (lon2 - lon1) * 0.3;
@@ -1339,7 +1346,7 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
   },
   symbol: {
     type: "text",
-    text: `${distance} nm\n${Math.round(bearing)}° MB`,
+    text: `${distance} nm\n${Math.round(magneticBearing)}° MB`,
     color: "black",
     font: {
       size: 10,
