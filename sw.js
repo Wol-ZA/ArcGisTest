@@ -12,6 +12,7 @@ const urlsToCache = [
   '/ArcGisTest/arcgis/esri/layers/TileLayer.js',
   '/ArcGisTest/arcgis/esri/layers/VectorTileLayer.js',
   '/ArcGisTest/arcgis/esri/layers/TileLayer.js',
+  '/ArcGisTest/arcgis/esri/views/layers/support/ClipArea.js',
   '/ArcGisTest/arcgis/esri/t9n/basemaps_en.json',
   '/ArcGisTest/arcgis/esri/t9n/basemaps.json',
   '/ArcGisTest/arcgis/esri/widgets/Attribution/t9n/Attribution_en.json',
