@@ -1284,7 +1284,7 @@ function getDistanceNM(lat1, lon1, lat2, lon2) {
   return (R * c).toFixed(1);
 }
 
-function getBearing(lat1, lon1, lat2, lon2, variation = 0) {
+function getMagneticBearing(lat1, lon1, lat2, lon2, variation = 0, eastIsPositive = true) {
   const φ1 = toRadians(lat1);
   const φ2 = toRadians(lat2);
   const Δλ = toRadians(lon2 - lon1);
@@ -1298,12 +1298,15 @@ function getBearing(lat1, lon1, lat2, lon2, variation = 0) {
     bearing = 360 - Math.abs(bearing);
   }
 
-  // Apply variation (decide sign convention: east-positive = subtract)
-  bearing -= variation;
+  // Apply variation
+  if (eastIsPositive) {
+    bearing -= variation;   // East positive → subtract
+  } else {
+    bearing += variation;   // West positive → add
+  }
 
-  // Normalize
-  while (bearing < 0) bearing += 360;
-  while (bearing >= 360) bearing -= 360;
+  // Normalize 0–360
+  bearing = (bearing + 360) % 360;
 
   return Math.round(bearing * 100) / 100;
 }
@@ -1319,10 +1322,10 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
 
   const angle = Math.atan2(lat2 - lat1, lon2 - lon1) * (180 / Math.PI);
   const distance = getDistanceNM(lat1, lon1, lat2, lon2);
-  const trueBearing = getBearing(lat1, lon1, lat2, lon2);
+  //const trueBearing = getBearing(lat1, lon1, lat2, lon2);
 const variation = parseFloat(jsonData[i].variation); // get variation from source point
 
-let magneticBearing = trueBearing - variation;
+let magneticBearing = getMagneticBearing(lat1, lon1, lat2, lon2, variation, true);
 
 // Normalize to 0–360
 if (magneticBearing < 0) magneticBearing += 360;
