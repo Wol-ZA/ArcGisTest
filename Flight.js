@@ -1284,7 +1284,7 @@ function getDistanceNM(lat1, lon1, lat2, lon2) {
   return (R * c).toFixed(1);
 }
 
-function getMagneticBearing(lat1, lon1, lat2, lon2, variation = 0, eastIsPositive = true) {
+function getMagneticBearing(lat1, lon1, lat2, lon2, variation = 0) {
   const φ1 = toRadians(lat1);
   const φ2 = toRadians(lat2);
   const Δλ = toRadians(lon2 - lon1);
@@ -1294,22 +1294,21 @@ function getMagneticBearing(lat1, lon1, lat2, lon2, variation = 0, eastIsPositiv
             Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ);
 
   let bearing = toDegrees(Math.atan2(y, x));
+
+  // Normalize true bearing to 0–360
   if (bearing < 0) {
     bearing = 360 - Math.abs(bearing);
   }
 
-  // Apply variation
-  if (eastIsPositive) {
-    bearing -= variation;   // East positive → subtract
-  } else {
-    bearing += variation;   // West positive → add
-  }
+  // 🔹 Apply variation EXACTLY as in your working code (add)
+  bearing += variation;
 
-  // Normalize 0–360
-  bearing = (bearing + 360) % 360;
+  // Normalize again to 0–360
+  if (bearing >= 360) bearing -= 360;
 
   return Math.round(bearing * 100) / 100;
 }
+
 
 
 // 2. Draw directional triangle + distance/bearing text on each segment
