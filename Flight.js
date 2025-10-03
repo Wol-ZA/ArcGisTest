@@ -1284,13 +1284,28 @@ function getDistanceNM(lat1, lon1, lat2, lon2) {
   return (R * c).toFixed(1);
 }
 
-function getBearing(lat1, lon1, lat2, lon2) {
-  const y = Math.sin(toRadians(lon2 - lon1)) * Math.cos(toRadians(lat2));
-  const x = Math.cos(toRadians(lat1)) * Math.sin(toRadians(lat2)) -
-            Math.sin(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
-            Math.cos(toRadians(lon2 - lon1));
-  const bearing = toDegrees(Math.atan2(y, x));
-  return (bearing + 360) % 360;
+function getBearing(lat1, lon1, lat2, lon2, variation = 0) {
+  const φ1 = toRadians(lat1);
+  const φ2 = toRadians(lat2);
+  const Δλ = toRadians(lon2 - lon1);
+
+  const y = Math.sin(Δλ) * Math.cos(φ2);
+  const x = Math.cos(φ1) * Math.sin(φ2) -
+            Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ);
+
+  let bearing = toDegrees(Math.atan2(y, x));
+  if (bearing < 0) {
+    bearing = 360 - Math.abs(bearing);
+  }
+
+  // Apply variation (decide sign convention: east-positive = subtract)
+  bearing -= variation;
+
+  // Normalize
+  while (bearing < 0) bearing += 360;
+  while (bearing >= 360) bearing -= 360;
+
+  return Math.round(bearing * 100) / 100;
 }
 
 
