@@ -1149,12 +1149,11 @@ function initWindy(lat, lon, zoom) {
     lat,
     lon,
     zoom,
-    container: "windyOverlay",
+    container: "windy", // must match the div ID
   }, (windyAPI) => {
     windyAPIInstance = windyAPI;
     windyAPI.map.setOpacity(0.6);
 
-    // Keep Windy synced with ArcGIS map
     view.watch(["center", "zoom"], () => {
       if (!windyAPIInstance) return;
       const { latitude, longitude } = view.center;
@@ -1162,7 +1161,6 @@ function initWindy(lat, lon, zoom) {
     });
   });
 }
-
 // ✅ Toggle Windy overlay
 window.toggleWindyOverlay = function (lat, lon, zoom) {
   // If overlay already exists, just toggle visibility
