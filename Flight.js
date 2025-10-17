@@ -1149,15 +1149,19 @@ function initWindy(lat, lon, zoom) {
     lat,
     lon,
     zoom,
-    container: "windy", // must match the div ID
+    container: "windy", // must match existing div
   }, (windyAPI) => {
     windyAPIInstance = windyAPI;
-    windyAPI.map.setOpacity(0.6);
 
+    // Set overlay opacity
+    const windyDiv = document.getElementById("windy");
+    if (windyDiv) windyDiv.style.opacity = "0.6";
+
+    // Keep Windy synced with ArcGIS map
     view.watch(["center", "zoom"], () => {
       if (!windyAPIInstance) return;
       const { latitude, longitude } = view.center;
-      windyAPI.map.setView([latitude, longitude], view.zoom);
+      windyAPIInstance.setPosition({ lat: latitude, lon: longitude, zoom: view.zoom });
     });
   });
 }
