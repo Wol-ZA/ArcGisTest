@@ -1127,7 +1127,7 @@ window.toggleWindyOverlay = function (lat, lon, zoom) {
 
   // ✅ Initialize Windy JS API overlay
   window.windyInit({
-    key: "YqQDXWMhsWkYyMH4ZMMxsGEW48onxJE0",
+    key: "jxPFhDOiI68tIKHugP4K9Tg6ofYtIFyJ",
     lat: lat,
     lon: lon,
     zoom: zoom,
