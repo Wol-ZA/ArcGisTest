@@ -1100,51 +1100,64 @@ window.windy = function () {
   toggleWindyOverlay(center.latitude, center.longitude, zoom);
 };
 
-// Global handle so we only init Windy once
+// Global handles
 let windyAPIInstance = null;
 let windyDiv = null;
 
-window.toggleWindyOverlay = function (lat, lon, zoom) {
-  // If already active, toggle visibility
-  if (windyDiv && windyAPIInstance) {
-    const isHidden = windyDiv.style.display === "none";
-    windyDiv.style.display = isHidden ? "block" : "none";
+// ✅ Helper: Wait for Windy API to be ready before calling
+function waitForWindy(lat, lon, zoom) {
+  if (typeof window.windyInit !== "function") {
+    console.log("⏳ Waiting for Windy API to load...");
+    setTimeout(() => waitForWindy(lat, lon, zoom), 300);
     return;
   }
 
-  // ✅ Create transparent Windy overlay inside viewDiv
-  windyDiv = document.createElement("div");
-  windyDiv.id = "windyOverlay";
-  windyDiv.style.position = "absolute";
-  windyDiv.style.top = 0;
-  windyDiv.style.left = 0;
-  windyDiv.style.width = "100%";
-  windyDiv.style.height = "100%";
-  windyDiv.style.zIndex = 5;              // Below your markers (zIndex 2000)
-  windyDiv.style.pointerEvents = "none";  // Pass clicks to ArcGIS
-  windyDiv.style.opacity = 0.6;           // See-through effect
-  document.getElementById("viewDiv").appendChild(windyDiv);
-
-  // ✅ Initialize Windy JS API overlay
+  // ✅ Initialize Windy overlay once API is ready
   window.windyInit({
-    key: "jxPFhDOiI68tIKHugP4K9Tg6ofYtIFyJ",
-    lat: lat,
-    lon: lon,
-    zoom: zoom,
+    key: "jxPFhDOiI68tIKHugP4K9Tg6ofYtIFyJ", // your API key
+    lat,
+    lon,
+    zoom,
     container: "windyOverlay",
-  }, function (windyAPI) {
+  }, (windyAPI) => {
     windyAPIInstance = windyAPI;
 
-    // Semi-transparent effect
+    // Make Windy semi-transparent
     windyAPI.map.setOpacity(0.6);
 
-    // Sync Windy position to ArcGIS view
+    // Keep Windy centered when ArcGIS moves
     view.watch(["center", "zoom"], () => {
       if (!windyAPIInstance) return;
       const { latitude, longitude } = view.center;
       windyAPI.map.setView([latitude, longitude], view.zoom);
     });
   });
+}
+
+// ✅ Main toggle overlay function
+window.toggleWindyOverlay = function (lat, lon, zoom) {
+  // If overlay already exists, just show/hide it
+  if (windyDiv && windyAPIInstance) {
+    const isHidden = windyDiv.style.display === "none";
+    windyDiv.style.display = isHidden ? "block" : "none";
+    return;
+  }
+
+  // Create transparent Windy overlay inside ArcGIS view
+  windyDiv = document.createElement("div");
+  windyDiv.id = "windyOverlay";
+  windyDiv.style.position = "absolute";
+  windyDiv.style.top = "0";
+  windyDiv.style.left = "0";
+  windyDiv.style.width = "100%";
+  windyDiv.style.height = "100%";
+  windyDiv.style.zIndex = "5";             // Below markers (your layer is zIndex 2000)
+  windyDiv.style.pointerEvents = "none";   // Pass clicks to ArcGIS
+  windyDiv.style.opacity = "0.6";          // Transparent overlay
+  document.getElementById("viewDiv").appendChild(windyDiv);
+
+  // ✅ Start Windy once it’s ready
+  waitForWindy(lat, lon, zoom);
 };
     
 function highlightUpcomingSector(sector) {
