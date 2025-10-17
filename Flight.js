@@ -1105,22 +1105,33 @@ let windyDiv = null;
 let windyScriptLoaded = false;
 
 // ✅ Dynamically load the Windy API if it's not present
+// Load Windy script dynamically if needed
 function loadWindyScript(callback) {
   if (typeof window.windyInit === "function") {
     callback();
     return;
   }
+  const script = document.createElement("script");
+  script.src = "https://api.windy.com/assets/map-forecast/libBoot.js";
+  script.async = true;
+  script.onload = callback;
+  document.head.appendChild(script);
+}
 
-  if (windyScriptLoaded) {
-    // Script already being loaded, wait for it
-    const check = setInterval(() => {
-      if (typeof window.windyInit === "function") {
-        clearInterval(check);
-        callback();
-      }
-    }, 300);
-    return;
-  }
+// Initialize Windy
+loadWindyScript(() => {
+  window.windyInit({
+    key: "jxPFhDOiI68tIKHugP4K9Tg6ofYtIFyJ",
+    lat: view.center.latitude,
+    lon: view.center.longitude,
+    zoom: view.zoom,
+    container: "windy"
+  }, (WindyAPI) => {
+    console.log("Windy loaded!", WindyAPI);
+    // Set overlay opacity
+    document.getElementById("windy").style.opacity = 0.6;
+  });
+});
 
   windyScriptLoaded = true;
   console.log("🌬️ Loading Windy API script...");
