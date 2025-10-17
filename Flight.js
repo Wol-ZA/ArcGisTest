@@ -1100,29 +1100,34 @@ window.windy = function(){
 }
 
 window.toggleWindyOverlay = function (lat, lon, zoom) {
-    // Check if the Windy iframe already exists
     const existingIframe = document.getElementById("windyIframe");
 
     if (existingIframe) {
-        // If the iframe exists, remove it
         existingIframe.remove();
     } else {
-        // Define the iframe for the Windy API overlay
         const windyIframe = document.createElement("iframe");
 
-        // Customize the iframe settings to match Windy overlay size and settings
         windyIframe.src = `https://embed.windy.com/embed2.html?lat=${lat}&lon=${lon}&zoom=${zoom}&level=surface&overlay=wind&menu=&message=true&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=&metricWind=default&metricTemp=default&windyApiKey=YqQDXWMhsWkYyMH4ZMMxsGEW48onxJE0`;
 
-        windyIframe.id = "windyIframe"; // Add an ID to the iframe for toggling
-        windyIframe.width = "100%"; // Set full width
-        windyIframe.height = "100%"; // Set full height
+        windyIframe.id = "windyIframe";
+        windyIframe.width = "100%";
+        windyIframe.height = "100%";
         windyIframe.style.position = "absolute";
         windyIframe.style.top = "0";
         windyIframe.style.left = "0";
-        windyIframe.style.zIndex = "1000"; // Ensure it overlays map
+        windyIframe.style.zIndex = "5"; // put under markers (your markers are zIndex 2000)
         windyIframe.style.border = "none";
 
-        // Append the iframe to the map container
+        // ✅ Allow clicks to go through to the ArcGIS map
+        windyIframe.style.pointerEvents = "none";
+
+        // ✅ Make the background transparent
+        windyIframe.style.backgroundColor = "transparent";
+        windyIframe.allow = "transparency";
+
+        // ✅ Optional: Apply semi-transparent look to blend Windy with ArcGIS
+        windyIframe.style.opacity = "0.7";
+
         document.getElementById("viewDiv").appendChild(windyIframe);
     }
 };
