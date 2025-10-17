@@ -1149,7 +1149,7 @@ loadWindyScript(() => {
     }, 300);
   };
   document.head.appendChild(script);
-}
+});
 
 // ✅ Wait until Windy is ready, then init
 function initWindy(lat, lon, zoom) {
