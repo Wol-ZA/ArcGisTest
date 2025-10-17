@@ -1126,7 +1126,7 @@ window.toggleWindyOverlay = function (lat, lon, zoom) {
   document.getElementById("viewDiv").appendChild(windyDiv);
 
   // ✅ Initialize Windy JS API overlay
-  windyInit({
+  window.windyInit({
     key: "YqQDXWMhsWkYyMH4ZMMxsGEW48onxJE0",
     lat: lat,
     lon: lon,
