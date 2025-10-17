@@ -1100,32 +1100,61 @@ window.windy = function () {
   toggleWindyOverlay(center.latitude, center.longitude, zoom);
 };
 
-// Global handles
 let windyAPIInstance = null;
 let windyDiv = null;
+let windyScriptLoaded = false;
 
-// ✅ Helper: Wait for Windy API to be ready before calling
-function waitForWindy(lat, lon, zoom) {
-  if (typeof window.windyInit !== "function") {
-    console.log("⏳ Waiting for Windy API to load...");
-    setTimeout(() => waitForWindy(lat, lon, zoom), 300);
+// ✅ Dynamically load the Windy API if it's not present
+function loadWindyScript(callback) {
+  if (typeof window.windyInit === "function") {
+    callback();
     return;
   }
 
-  // ✅ Initialize Windy overlay once API is ready
+  if (windyScriptLoaded) {
+    // Script already being loaded, wait for it
+    const check = setInterval(() => {
+      if (typeof window.windyInit === "function") {
+        clearInterval(check);
+        callback();
+      }
+    }, 300);
+    return;
+  }
+
+  windyScriptLoaded = true;
+  console.log("🌬️ Loading Windy API script...");
+
+  const script = document.createElement("script");
+  script.src = "https://api.windy.com/assets/map-forecast/libBoot.js";
+  script.async = true;
+  script.onload = () => {
+    console.log("✅ Windy API script loaded");
+    const check = setInterval(() => {
+      if (typeof window.windyInit === "function") {
+        clearInterval(check);
+        callback();
+      }
+    }, 300);
+  };
+  document.head.appendChild(script);
+}
+
+// ✅ Wait until Windy is ready, then init
+function initWindy(lat, lon, zoom) {
+  console.log("🌬️ Initializing Windy overlay...");
+
   window.windyInit({
-    key: "jxPFhDOiI68tIKHugP4K9Tg6ofYtIFyJ", // your API key
+    key: "jxPFhDOiI68tIKHugP4K9Tg6ofYtIFyJ",
     lat,
     lon,
     zoom,
     container: "windyOverlay",
   }, (windyAPI) => {
     windyAPIInstance = windyAPI;
-
-    // Make Windy semi-transparent
     windyAPI.map.setOpacity(0.6);
 
-    // Keep Windy centered when ArcGIS moves
+    // Keep Windy synced with ArcGIS map
     view.watch(["center", "zoom"], () => {
       if (!windyAPIInstance) return;
       const { latitude, longitude } = view.center;
@@ -1134,9 +1163,9 @@ function waitForWindy(lat, lon, zoom) {
   });
 }
 
-// ✅ Main toggle overlay function
+// ✅ Toggle Windy overlay
 window.toggleWindyOverlay = function (lat, lon, zoom) {
-  // If overlay already exists, just show/hide it
+  // If overlay already exists, just toggle visibility
   if (windyDiv && windyAPIInstance) {
     const isHidden = windyDiv.style.display === "none";
     windyDiv.style.display = isHidden ? "block" : "none";
@@ -1151,15 +1180,15 @@ window.toggleWindyOverlay = function (lat, lon, zoom) {
   windyDiv.style.left = "0";
   windyDiv.style.width = "100%";
   windyDiv.style.height = "100%";
-  windyDiv.style.zIndex = "5";             // Below markers (your layer is zIndex 2000)
+  windyDiv.style.zIndex = "5";             // Below markers
   windyDiv.style.pointerEvents = "none";   // Pass clicks to ArcGIS
-  windyDiv.style.opacity = "0.6";          // Transparent overlay
+  windyDiv.style.opacity = "0.6";
   document.getElementById("viewDiv").appendChild(windyDiv);
 
-  // ✅ Start Windy once it’s ready
-  waitForWindy(lat, lon, zoom);
+  // ✅ Ensure Windy script is loaded, then init
+  loadWindyScript(() => initWindy(lat, lon, zoom));
 };
-    
+
 function highlightUpcomingSector(sector) {
     const highlightedSymbol = {
         type: "simple-fill",
