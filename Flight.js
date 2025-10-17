@@ -1093,43 +1093,58 @@ window.EndTracking = function() {
 };
 
     
-window.windy = function(){
-    var center = view.center; // Get the map's current center
-    var zoom = view.zoom;
-    toggleWindyOverlay(center.latitude, center.longitude, zoom);
-}
+// --- WINDY OVERLAY FIX ---
+window.windy = function () {
+  const center = view.center;
+  const zoom = view.zoom;
+  toggleWindyOverlay(center.latitude, center.longitude, zoom);
+};
+
+// Global handle so we only init Windy once
+let windyAPIInstance = null;
+let windyDiv = null;
 
 window.toggleWindyOverlay = function (lat, lon, zoom) {
-    const existingIframe = document.getElementById("windyIframe");
+  // If already active, toggle visibility
+  if (windyDiv && windyAPIInstance) {
+    const isHidden = windyDiv.style.display === "none";
+    windyDiv.style.display = isHidden ? "block" : "none";
+    return;
+  }
 
-    if (existingIframe) {
-        existingIframe.remove();
-    } else {
-        const windyIframe = document.createElement("iframe");
+  // ✅ Create transparent Windy overlay inside viewDiv
+  windyDiv = document.createElement("div");
+  windyDiv.id = "windyOverlay";
+  windyDiv.style.position = "absolute";
+  windyDiv.style.top = 0;
+  windyDiv.style.left = 0;
+  windyDiv.style.width = "100%";
+  windyDiv.style.height = "100%";
+  windyDiv.style.zIndex = 5;              // Below your markers (zIndex 2000)
+  windyDiv.style.pointerEvents = "none";  // Pass clicks to ArcGIS
+  windyDiv.style.opacity = 0.6;           // See-through effect
+  document.getElementById("viewDiv").appendChild(windyDiv);
 
-        windyIframe.src = `https://embed.windy.com/embed2.html?lat=${lat}&lon=${lon}&zoom=${zoom}&level=surface&overlay=wind&menu=&message=true&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=&metricWind=default&metricTemp=default&windyApiKey=YqQDXWMhsWkYyMH4ZMMxsGEW48onxJE0`;
+  // ✅ Initialize Windy JS API overlay
+  windyInit({
+    key: "YqQDXWMhsWkYyMH4ZMMxsGEW48onxJE0",
+    lat: lat,
+    lon: lon,
+    zoom: zoom,
+    container: "windyOverlay",
+  }, function (windyAPI) {
+    windyAPIInstance = windyAPI;
 
-        windyIframe.id = "windyIframe";
-        windyIframe.width = "100%";
-        windyIframe.height = "100%";
-        windyIframe.style.position = "absolute";
-        windyIframe.style.top = "0";
-        windyIframe.style.left = "0";
-        windyIframe.style.zIndex = "5"; // put under markers (your markers are zIndex 2000)
-        windyIframe.style.border = "none";
+    // Semi-transparent effect
+    windyAPI.map.setOpacity(0.6);
 
-        // ✅ Allow clicks to go through to the ArcGIS map
-        windyIframe.style.pointerEvents = "none";
-
-        // ✅ Make the background transparent
-        windyIframe.style.backgroundColor = "transparent";
-        windyIframe.allow = "transparency";
-
-        // ✅ Optional: Apply semi-transparent look to blend Windy with ArcGIS
-        windyIframe.style.opacity = "0.7";
-
-        document.getElementById("viewDiv").appendChild(windyIframe);
-    }
+    // Sync Windy position to ArcGIS view
+    view.watch(["center", "zoom"], () => {
+      if (!windyAPIInstance) return;
+      const { latitude, longitude } = view.center;
+      windyAPI.map.setView([latitude, longitude], view.zoom);
+    });
+  });
 };
     
 function highlightUpcomingSector(sector) {
