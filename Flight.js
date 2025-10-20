@@ -1167,27 +1167,21 @@ function initWindy(lat, lon, zoom) {
 }
 // ✅ Toggle Windy overlay
 window.toggleWindyOverlay = function (lat, lon, zoom) {
-  // If overlay already exists, just toggle visibility
-  if (windyDiv && windyAPIInstance) {
+  const windyDiv = document.getElementById("windy");
+
+  if (!windyDiv) {
+    console.error("Windy div not found in DOM");
+    return;
+  }
+
+  // ✅ Toggle visibility
+  if (windyAPIInstance) {
     const isHidden = windyDiv.style.display === "none";
     windyDiv.style.display = isHidden ? "block" : "none";
     return;
   }
 
-  // Create transparent Windy overlay inside ArcGIS view
-  windyDiv = document.createElement("div");
-  windyDiv.id = "windyOverlay";
-  windyDiv.style.position = "absolute";
-  windyDiv.style.top = "0";
-  windyDiv.style.left = "0";
-  windyDiv.style.width = "100%";
-  windyDiv.style.height = "100%";
-  windyDiv.style.zIndex = "5";             // Below markers
-  windyDiv.style.pointerEvents = "none";   // Pass clicks to ArcGIS
-  windyDiv.style.opacity = "0.6";
-  document.getElementById("viewDiv").appendChild(windyDiv);
-
-  // ✅ Ensure Windy script is loaded, then init
+  // ✅ Load Windy only once
   loadWindyScript(() => initWindy(lat, lon, zoom));
 };
 
