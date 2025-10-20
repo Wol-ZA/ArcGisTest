@@ -1144,29 +1144,43 @@ function loadWindyScript(callback) {
 function initWindy(lat, lon, zoom) {
   console.log("🌬️ Initializing Windy overlay...");
 
+  // Ensure the div exists
+  const windyDiv = document.getElementById("windy");
+  if (!windyDiv) {
+    console.error("❌ Windy container not found in DOM");
+    return;
+  }
+
+  // Initialize Windy once the script is fully ready
   window.windyInit({
-    key: "jxPFhDOiI68tIKHugP4K9Tg6ofYtIFyJ",
-    lat,
-    lon,
-    zoom,
-    container: "windy", // must match existing div
-  }, (windyAPI) => {
+    key: "jxPFhDOiI68tIKHugP4K9Tg6ofYtIFyJ", // ✅ your API key
+    lat: lat || -33.96,  // Default near George, SA
+    lon: lon || 22.46,
+    zoom: zoom || 6,
+    container: "windy",
+    overlay: "wind", // Default overlay
+  }, windyAPI => {
+    if (!windyAPI) {
+      console.error("❌ Windy API failed to initialize");
+      return;
+    }
+
+    console.log("✅ Windy API initialized");
     windyAPIInstance = windyAPI;
 
-    // Set overlay opacity
-    const windyDiv = document.getElementById("windy");
-    if (windyDiv) windyDiv.style.opacity = "0.6";
+    // Slight fade-in for visibility
+    windyDiv.style.opacity = "0.6";
+    windyDiv.style.display = "block";
 
-    // Keep Windy synced with ArcGIS map
+    // Sync with ArcGIS map center
     view.watch(["center", "zoom"], () => {
-      if (!windyAPIInstance) return;
       const { latitude, longitude } = view.center;
-      windyAPIInstance.setPosition({ lat: latitude, lon: longitude, zoom: view.zoom });
+      windyAPIInstance.map.setView([latitude, longitude], view.zoom);
     });
   });
 }
 // ✅ Toggle Windy overlay
-window.toggleWindyOverlay = function (lat, lon, zoom) {
+window.toggleWindyOverlay = function(lat, lon, zoom) {
   const windyDiv = document.getElementById("windy");
 
   if (!windyDiv) {
@@ -1174,14 +1188,14 @@ window.toggleWindyOverlay = function (lat, lon, zoom) {
     return;
   }
 
-  // ✅ Toggle visibility
   if (windyAPIInstance) {
+    // Toggle visibility
     const isHidden = windyDiv.style.display === "none";
     windyDiv.style.display = isHidden ? "block" : "none";
     return;
   }
 
-  // ✅ Load Windy only once
+  // Load script if needed
   loadWindyScript(() => initWindy(lat, lon, zoom));
 };
 
