@@ -1168,6 +1168,16 @@ function initWindy(lat, lon, zoom) {
     console.log("✅ Windy API initialized");
     windyAPIInstance = windyAPI;
 
+	setTimeout(() => {
+  	const { latitude, longitude } = view.center;
+  	windyAPIInstance.map.invalidateSize(); // force resize & repaint
+  	windyAPIInstance.map.setView([latitude, longitude], view.zoom);
+  	console.log("🌀 Windy forced to refresh after init");
+	}, 500);
+
+	windyAPIInstance.store.set('overlay', 'wind');
+	windyAPIInstance.map.panBy([0,0]); 
+
     // Slight fade-in for visibility
     windyDiv.style.opacity = "0.6";
     windyDiv.style.display = "block";
