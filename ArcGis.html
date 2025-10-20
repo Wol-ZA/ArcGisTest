@@ -221,84 +221,80 @@
   </style>
 </head>
 <body>
-  <!-- Map container -->
-  <div id="viewDiv"></div>
+  <!-- ArcGIS map container -->
+  <div id="viewDiv" style="position: relative; width: 100%; height: 100%;"></div>
 
-  <!-- Button to toggle the layer control panel -->
-<div id="titleBar">Current Airspace</div>
+  <!-- Windy overlay (transparent, floating above ArcGIS) -->
+  <div id="windy"
+       style="position:absolute; top:0; left:0; width:100%; height:100%;
+              pointer-events:none; z-index:5; opacity:0.7;"></div>
 
- Info Panel (Sliding Window)
-<div id="infoPanel" class="sliding-window">
-    <button id="closeBtn" class="close-btn">X</button>
-    <div id="infoContent">
-        <h2 id="featureName">Airspace</h2>
-        <p id="featureDetails">Additional info about the feature...</p>
-    </div>
-</div>
-  
-<div id="viewDiv" style="position: relative; width: 100%; height: 100%;">
-  <div id="windy" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:5;"></div>
-</div>
+  <!-- Title bar -->
+  <div id="titleBar">Current Airspace</div>
+
+  <!-- Info Panel (Sliding Window) -->
+  <div id="infoPanel" class="sliding-window">
+      <button id="closeBtn" class="close-btn">X</button>
+      <div id="infoContent">
+          <h2 id="featureName">Airspace</h2>
+          <p id="featureDetails">Additional info about the feature...</p>
+      </div>
+  </div>
+
   <!-- Toggle Panel for layers -->
   <div class="layer-toggle" id="layerTogglePanel">
-    <!-- Section for airspace polygon layers -->
-    <h3>Airspaces</h3>
-    <label><input type="checkbox" id="accfisLayerToggle" checked> ACCFIS</label>
-    <label><input type="checkbox" id="atzCtrLayerToggle" checked> ATZ_CTR</label>
-    <label><input type="checkbox" id="ctaLayerToggle" checked> CTA</label>
-    <label><input type="checkbox" id="tmaLayerToggle" checked> TMA</label>
-    <label><input type="checkbox" id="fadFapFarLayerToggle" checked> FAD_FAP_FAR</label>
-    
-    <!-- Divider between sections -->
-    <h3>Points of Interest</h3>
-    
-    <!-- Section for point icon layers with icons displayed next to labels -->
-    <label><img src="sacaa.png" alt="SACAA Icon"><input type="checkbox" id="sacaaLayerToggle" checked> SACAA</label>
-    <label><img src="aip.png" alt="Aerodrome AIP Icon"><input type="checkbox" id="aerodromeAipLayerToggle" checked> Aerodrome AIP</label>
-    <label><img src="aic.png" alt="Aerodrome AIC Icon"><input type="checkbox" id="aerodromeAicLayerToggle" checked> Aerodrome AIC</label>
-    <label><img src="unlicensed.png" alt="Un-Licensed Icon"><input type="checkbox" id="unlicensedLayerToggle" checked> Un-Licensed</label>
-    <label><img src="atns.png" alt="ATNS Icon"><input type="checkbox" id="atnsLayerToggle" checked> ATNS</label>
-    <label><img src="military.png" alt="Military Icon"><input type="checkbox" id="militaryLayerToggle" checked> Military</label>
-    <label><img src="helistops.png" alt="Helistops Icon"><input type="checkbox" id="helistopsLayerToggle" checked> Helistops</label>
+      <h3>Airspaces</h3>
+      <label><input type="checkbox" id="accfisLayerToggle" checked> ACCFIS</label>
+      <label><input type="checkbox" id="atzCtrLayerToggle" checked> ATZ_CTR</label>
+      <label><input type="checkbox" id="ctaLayerToggle" checked> CTA</label>
+      <label><input type="checkbox" id="tmaLayerToggle" checked> TMA</label>
+      <label><input type="checkbox" id="fadFapFarLayerToggle" checked> FAD_FAP_FAR</label>
 
-    <h3>Waypoints</h3>
-    
-    <!-- Section for point icon layers with icons displayed next to labels -->
-    <label><img src="ENR.png" alt="ENR Icon"><input type="checkbox" id="ENRLayerToggle" checked> Reporting</label>
-    <label><img src="Iorra.png" alt="Iorra Icon"><input type="checkbox" id="IORRALayerToggle" checked> IORRA</label>
-    <label><img src="Rnav.png" alt=" Icon"><input type="checkbox" id="RNAVLayerToggle" checked> RNAV</label>
-</div>
-  <div id="mapContainer" style="position: relative; width: 100%; height: 500px;">
-    <div id="viewDiv" style="position: relative; width: 100%; height: 100%;"></div>
-    <!-- UI Elements Overlay -->
-    <div id="overlayUI" style="position: absolute; top: 10px; right: 10px; z-index: 1100; background: rgba(255, 255, 255, 0.8); padding: 10px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
-        <label for="layerSelect">Choose Overlay:</label>
-        <select id="layerSelect">
-            <option value="wind">Wind</option>
-            <option value="clouds">Clouds</option>
-            <option value="rain">Rain</option>
-            <option value="temp">Temperature</option>
-        </select>
-        <button onclick="applyLayer()">Apply</button>
-    </div>
-</div>
-  <!-- Link to the JavaScript file -->
+      <h3>Points of Interest</h3>
+      <label><img src="sacaa.png"><input type="checkbox" id="sacaaLayerToggle" checked> SACAA</label>
+      <label><img src="aip.png"><input type="checkbox" id="aerodromeAipLayerToggle" checked> Aerodrome AIP</label>
+      <label><img src="aic.png"><input type="checkbox" id="aerodromeAicLayerToggle" checked> Aerodrome AIC</label>
+      <label><img src="unlicensed.png"><input type="checkbox" id="unlicensedLayerToggle" checked> Un-Licensed</label>
+      <label><img src="atns.png"><input type="checkbox" id="atnsLayerToggle" checked> ATNS</label>
+      <label><img src="military.png"><input type="checkbox" id="militaryLayerToggle" checked> Military</label>
+      <label><img src="helistops.png"><input type="checkbox" id="helistopsLayerToggle" checked> Helistops</label>
+
+      <h3>Waypoints</h3>
+      <label><img src="ENR.png"><input type="checkbox" id="ENRLayerToggle" checked> Reporting</label>
+      <label><img src="Iorra.png"><input type="checkbox" id="IORRALayerToggle" checked> IORRA</label>
+      <label><img src="Rnav.png"><input type="checkbox" id="RNAVLayerToggle" checked> RNAV</label>
+  </div>
+
+  <!-- Weather overlay selector -->
+  <div id="overlayUI"
+       style="position: absolute; top: 10px; right: 10px; z-index: 1100;
+              background: rgba(255, 255, 255, 0.8); padding: 10px;
+              border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.3);">
+      <label for="layerSelect">Choose Overlay:</label>
+      <select id="layerSelect">
+          <option value="wind">Wind</option>
+          <option value="clouds">Clouds</option>
+          <option value="rain">Rain</option>
+          <option value="temp">Temperature</option>
+      </select>
+      <button onclick="applyLayer()">Apply</button>
+  </div>
+
+  <!-- Scripts -->
   <script src="Flight.js"></script>
- <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/ArcGisTest/sw.js', { scope: '/ArcGisTest/' })
-      .then((registration) => {
-        console.log('Service Worker registered with scope:', registration.scope);
-      })
-      .catch((error) => {
-        console.error('Service Worker registration failed:', error);
-      });
-  } else {
-    console.warn('Service Workers are not supported in this browser.');
-  }
-</script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/ArcGisTest/sw.js', { scope: '/ArcGisTest/' })
+        .then(r => console.log('Service Worker registered with scope:', r.scope))
+        .catch(e => console.error('Service Worker registration failed:', e));
+    } else {
+      console.warn('Service Workers are not supported in this browser.');
+    }
+  </script>
 </body>
+
 </html>
+
 
 
 
