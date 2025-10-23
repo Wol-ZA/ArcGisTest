@@ -1451,7 +1451,7 @@ console.log("Adding chevron at", arrowGeometry);
 // 3️⃣ Create the symbol
 const arrowSymbol = {
   type: "text",
-  text: "❯",
+  text: "➤",
   color: "blue",
   font: { size: 24, weight: "bold", family: "sans-serif" },
   angle: arrowRotation,
