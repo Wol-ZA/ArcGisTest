@@ -1425,8 +1425,7 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
   //const trueBearing = getBearing(lat1, lon1, lat2, lon2);
 const variationValue = Number.isFinite(+data[i]?.variation) ? +data[i].variation : 0;
 const magneticBearing = getMagneticBearing(lat1, lon1, lat2, lon2, variationValue);
-let bearing = (magneticBearing + 360) % 360;
-let arrowRotation = (bearing - 90 + 360) % 360;
+
 // Normalize to 0–360
 if (magneticBearing < 0) magneticBearing += 360;
 if (magneticBearing >= 360) magneticBearing -= 360;
@@ -1435,41 +1434,23 @@ if (magneticBearing >= 360) magneticBearing -= 360;
   const arrowX = lon1 + (lon2 - lon1) * 0.3;
   const arrowY = lat1 + (lat2 - lat1) * 0.3;
 
-const midLon = lon1 + (lon2 - lon1) * 0.5;
-const midLat = lat1 + (lat2 - lat1) * 0.5 + 0.01; // small bump so it’s visible
-
-// 1️⃣ Define the geometry BEFORE logging or adding
-const arrowGeometry = {
-  type: "point",
-  longitude: midLon,
-  latitude: midLat
-};
-
-// 2️⃣ Log it if you want to check positions
-console.log("Adding chevron at", arrowGeometry);
-
-// 3️⃣ Create the symbol
-const arrowSymbol = {
-  type: "text",
-  text: "➤",
-  color: "blue",
-  font: { size: 24, weight: "bold", family: "sans-serif" },
-  angle: arrowRotation,
-  haloColor: "white",
-  haloSize: 2,
-  yoffset: -10
-};
-
-// 4️⃣ Add to layer
-const arrowGraphic = new Graphic({
-  geometry: arrowGeometry,
-  symbol: arrowSymbol
+const arrow = new Graphic({
+  geometry: {
+    type: "point",
+    longitude: arrowX,
+    latitude: arrowY
+  },
+  symbol: {
+    type: "simple-marker",
+    style: "triangle",
+    color: [0, 0, 255, 1],
+    size: 8,
+    angle: angle,
+    outline: { color: [0, 0, 255, 1], width: 1 }
+  }
 });
-draggableGraphicsLayer.add(arrowGraphic);
-draggableGraphicsLayer.add(new Graphic({
-  geometry: arrowGeometry,
-  symbol: arrowSymbol
-}));
+  draggableGraphicsLayer.add(arrow);
+
   // 2B. Add text label at midpoint
  const textGraphic = new Graphic({
   geometry: {
