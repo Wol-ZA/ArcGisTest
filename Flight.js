@@ -1434,6 +1434,13 @@ if (magneticBearing >= 360) magneticBearing -= 360;
   const arrowX = lon1 + (lon2 - lon1) * 0.3;
   const arrowY = lat1 + (lat2 - lat1) * 0.3;
 
+// Replace your triangle marker with this chevron version:
+const chevronSVG = `
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="blue">
+  <path d="M4 6l8 8 8-8" stroke="blue" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+
 const arrow = new Graphic({
   geometry: {
     type: "point",
@@ -1441,15 +1448,17 @@ const arrow = new Graphic({
     latitude: arrowY
   },
   symbol: {
-    type: "simple-marker",
-    style: "triangle",
-    color: [0, 0, 255, 1],
-    size: 8,
+    type: "picture-marker",
+    url: "data:image/svg+xml;base64," + btoa(chevronSVG),
+    width: "20px",
+    height: "20px",
     angle: angle,
-    outline: { color: [0, 0, 255, 1], width: 1 }
+    xoffset: 0,
+    yoffset: 0
   }
 });
-  draggableGraphicsLayer.add(arrow);
+draggableGraphicsLayer.add(arrow);
+
 
   // 2B. Add text label at midpoint
  const textGraphic = new Graphic({
