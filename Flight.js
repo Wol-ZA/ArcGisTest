@@ -1434,22 +1434,26 @@ if (magneticBearing >= 360) magneticBearing -= 360;
   const arrowX = lon1 + (lon2 - lon1) * 0.3;
   const arrowY = lat1 + (lat2 - lat1) * 0.3;
 
-const arrow = new Graphic({
+// --- Chevron-style direction arrow ---
+const arrowSymbol = {
+  type: "text",
+  text: "❯", // or "⮞", "❯", "▶", pick your style
+  color: [0, 0, 255, 1],
+  font: { size: 18, weight: "bold", family: "Arial Unicode MS" },
+  angle: trueBearing, // use your existing bearing angle
+  haloColor: "white",
+  haloSize: 2
+};
+
+const arrowGraphic = new Graphic({
   geometry: {
     type: "point",
-    longitude: arrowX,
-    latitude: arrowY
+    longitude: lon1 + (lon2 - lon1) * 0.3,
+    latitude: lat1 + (lat2 - lat1) * 0.3
   },
-  symbol: {
-    type: "simple-marker",
-    style: "triangle",
-    color: [0, 0, 255, 1],
-    size: 8,
-    angle: angle,
-    outline: { color: [0, 0, 255, 1], width: 1 }
-  }
+  symbol: arrowSymbol
 });
-  draggableGraphicsLayer.add(arrow);
+draggableGraphicsLayer.add(arrowGraphic);
 
   // 2B. Add text label at midpoint
  const textGraphic = new Graphic({
