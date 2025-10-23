@@ -1437,12 +1437,14 @@ if (magneticBearing >= 360) magneticBearing -= 360;
 // --- Chevron-style direction arrow ---
 const arrowSymbol = {
   type: "text",
-  text: "❯", // or "⮞", "❯", "▶", pick your style
-  color: [0, 0, 255, 1],
-  font: { size: 18, weight: "bold", family: "Arial Unicode MS" },
-  angle: trueBearing, // use your existing bearing angle
+  text: "➤", // guaranteed visible arrow
+  color: "blue",
+  font: { size: 24, weight: "bold", family: "sans-serif" },
+  angle: trueBearing,
   haloColor: "white",
-  haloSize: 2
+  haloSize: 2,
+  xoffset: 0,
+  yoffset: -10 // move it slightly above the line so it isn’t hidden
 };
 
 const arrowGraphic = new Graphic({
@@ -1454,7 +1456,11 @@ const arrowGraphic = new Graphic({
   symbol: arrowSymbol
 });
 draggableGraphicsLayer.add(arrowGraphic);
-
+console.log("Adding chevron at", arrowGeometry);
+draggableGraphicsLayer.add(new Graphic({
+  geometry: arrowGeometry,
+  symbol: arrowSymbol
+}));
   // 2B. Add text label at midpoint
  const textGraphic = new Graphic({
   geometry: {
