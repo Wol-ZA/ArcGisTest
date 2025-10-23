@@ -1168,6 +1168,18 @@ function initWindy(lat, lon, zoom) {
     console.log("✅ Windy API initialized");
     windyAPIInstance = windyAPI;
 
+	windyAPIInstance.map.options.zoomAnimation = false;
+	windyAPIInstance.map.options.fadeAnimation = false;
+
+	// keep windy map synced with arcgis during panning/zooming
+	view.on(["drag", "pointer-move", "mouse-wheel"], () => {
+  		if (windyAPIInstance) {
+    		const { latitude, longitude } = view.center;
+    		const windyZoom = Math.min(Math.max(view.zoom, 3), 12);
+    		windyAPIInstance.map.setView([latitude, longitude], windyZoom, { animate: false });
+  		}
+	});  
+
 	setTimeout(() => {
   	const { latitude, longitude } = view.center;
   	windyAPIInstance.map.invalidateSize(); // force resize & repaint
