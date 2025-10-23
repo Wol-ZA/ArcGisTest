@@ -1425,7 +1425,8 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
   //const trueBearing = getBearing(lat1, lon1, lat2, lon2);
 const variationValue = Number.isFinite(+data[i]?.variation) ? +data[i].variation : 0;
 const magneticBearing = getMagneticBearing(lat1, lon1, lat2, lon2, variationValue);
-
+let bearing = (magneticBearing + 360) % 360;
+let arrowRotation = (bearing - 90 + 360) % 360;
 // Normalize to 0–360
 if (magneticBearing < 0) magneticBearing += 360;
 if (magneticBearing >= 360) magneticBearing -= 360;
@@ -1450,10 +1451,10 @@ console.log("Adding chevron at", arrowGeometry);
 // 3️⃣ Create the symbol
 const arrowSymbol = {
   type: "text",
-  text: "➤",
+  text: "❯",
   color: "blue",
   font: { size: 24, weight: "bold", family: "sans-serif" },
-  angle: trueBearing,
+  angle: arrowRotation,
   haloColor: "white",
   haloSize: 2,
   yoffset: -10
