@@ -1238,6 +1238,9 @@ function highlightUpcomingSector(sector) {
 
     
 window.addMarkersAndDrawLine = function (data) {
+	if (window.draggableGraphicsLayer) {
+ 	 window.draggableGraphicsLayer.removeAll();
+	}
     const layerIcons = {
         sacaaLayer: "sacaa.png",
         aerodromeAipLayer: "aip.png",
@@ -1403,7 +1406,10 @@ function getMagneticBearing(lat1, lon1, lat2, lon2, variation = 0) {
   return Math.round(bearing * 100) / 100;
 }
 
-
+const oldLegGraphics = draggableGraphicsLayer.graphics.filter(
+  g => g.symbol?.type === "text" || g.symbol?.style === "triangle"
+);
+draggableGraphicsLayer.removeMany(oldLegGraphics);
 
 // 2. Draw directional triangle + distance/bearing text on each segment
 for (let i = 0; i < polylineCoordinates.length - 1; i++) {
@@ -1416,7 +1422,7 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
   const angle = Math.atan2(lat2 - lat1, lon2 - lon1) * (180 / Math.PI);
   const distance = getDistanceNM(lat1, lon1, lat2, lon2);
   //const trueBearing = getBearing(lat1, lon1, lat2, lon2);
-const variation = parseFloat(jsonData[i].variation); // get variation from source point
+const variation = parseFloat(data[i].variation); // get variation from source point
 
 let magneticBearing = getMagneticBearing(lat1, lon1, lat2, lon2, variation, true);
 
