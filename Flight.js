@@ -1179,7 +1179,7 @@ function initWindy(lat, lon, zoom) {
 	windyAPIInstance.map.panBy([0,0]); 
 
     // Slight fade-in for visibility
-    windyDiv.style.opacity = "0.6";
+    windyDiv.style.opacity = "0.4";
     windyDiv.style.display = "block";
 
     // Sync with ArcGIS map center
