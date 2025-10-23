@@ -1419,7 +1419,8 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
   const midX = (lon1 + lon2) / 2;
   const midY = (lat1 + lat2) / 2;
 
-  const angle = Math.atan2(lat2 - lat1, lon2 - lon1) * (180 / Math.PI);
+  const trueBearing = getMagneticBearing(lat1, lon1, lat2, lon2, 0); // variation 0 for pure geometry
+  const angle = trueBearing;
   const distance = getDistanceNM(lat1, lon1, lat2, lon2);
   //const trueBearing = getBearing(lat1, lon1, lat2, lon2);
 const variationValue = Number.isFinite(+data[i]?.variation) ? +data[i].variation : 0;
@@ -1433,24 +1434,21 @@ if (magneticBearing >= 360) magneticBearing -= 360;
   const arrowX = lon1 + (lon2 - lon1) * 0.3;
   const arrowY = lat1 + (lat2 - lat1) * 0.3;
 
-  const arrow = new Graphic({
-    geometry: {
-      type: "point",
-      longitude: arrowX,
-      latitude: arrowY
-    },
-    symbol: {
-      type: "simple-marker",
-      style: "triangle",
-      color: [0, 0, 255, 1],
-      size: 8,
-      angle: angle,
-      outline: {
-        color: [0, 0, 255, 1],
-        width: 1
-      }
-    }
-  });
+const arrow = new Graphic({
+  geometry: {
+    type: "point",
+    longitude: arrowX,
+    latitude: arrowY
+  },
+  symbol: {
+    type: "simple-marker",
+    style: "triangle",
+    color: [0, 0, 255, 1],
+    size: 8,
+    angle: angle,
+    outline: { color: [0, 0, 255, 1], width: 1 }
+  }
+});
   draggableGraphicsLayer.add(arrow);
 
   // 2B. Add text label at midpoint
