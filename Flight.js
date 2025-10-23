@@ -1434,29 +1434,37 @@ if (magneticBearing >= 360) magneticBearing -= 360;
   const arrowX = lon1 + (lon2 - lon1) * 0.3;
   const arrowY = lat1 + (lat2 - lat1) * 0.3;
 
-// --- Chevron-style direction arrow ---
+const midLon = lon1 + (lon2 - lon1) * 0.5;
+const midLat = lat1 + (lat2 - lat1) * 0.5 + 0.01; // small bump so it’s visible
+
+// 1️⃣ Define the geometry BEFORE logging or adding
+const arrowGeometry = {
+  type: "point",
+  longitude: midLon,
+  latitude: midLat
+};
+
+// 2️⃣ Log it if you want to check positions
+console.log("Adding chevron at", arrowGeometry);
+
+// 3️⃣ Create the symbol
 const arrowSymbol = {
   type: "text",
-  text: "➤", // guaranteed visible arrow
+  text: "➤",
   color: "blue",
   font: { size: 24, weight: "bold", family: "sans-serif" },
   angle: trueBearing,
   haloColor: "white",
   haloSize: 2,
-  xoffset: 0,
-  yoffset: -10 // move it slightly above the line so it isn’t hidden
+  yoffset: -10
 };
 
+// 4️⃣ Add to layer
 const arrowGraphic = new Graphic({
-  geometry: {
-    type: "point",
-    longitude: lon1 + (lon2 - lon1) * 0.3,
-    latitude: lat1 + (lat2 - lat1) * 0.3
-  },
+  geometry: arrowGeometry,
   symbol: arrowSymbol
 });
 draggableGraphicsLayer.add(arrowGraphic);
-console.log("Adding chevron at", arrowGeometry);
 draggableGraphicsLayer.add(new Graphic({
   geometry: arrowGeometry,
   symbol: arrowSymbol
