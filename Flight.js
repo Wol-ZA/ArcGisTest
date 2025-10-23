@@ -1422,9 +1422,8 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
   const angle = Math.atan2(lat2 - lat1, lon2 - lon1) * (180 / Math.PI);
   const distance = getDistanceNM(lat1, lon1, lat2, lon2);
   //const trueBearing = getBearing(lat1, lon1, lat2, lon2);
-const variation = parseFloat(data[i].variation); // get variation from source point
-
-let magneticBearing = getMagneticBearing(lat1, lon1, lat2, lon2, variation);
+const variationValue = Number.isFinite(+data[i]?.variation) ? +data[i].variation : 0;
+const magneticBearing = getMagneticBearing(lat1, lon1, lat2, lon2, variationValue);
 
 // Normalize to 0–360
 if (magneticBearing < 0) magneticBearing += 360;
