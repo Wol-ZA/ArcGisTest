@@ -1424,7 +1424,7 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
   //const trueBearing = getBearing(lat1, lon1, lat2, lon2);
 const variation = parseFloat(data[i].variation); // get variation from source point
 
-let magneticBearing = getMagneticBearing(lat1, lon1, lat2, lon2, variation, true);
+let magneticBearing = getMagneticBearing(lat1, lon1, lat2, lon2, variation);
 
 // Normalize to 0–360
 if (magneticBearing < 0) magneticBearing += 360;
@@ -1688,6 +1688,56 @@ function generatePopupHTML(content, pointsWithinRadius) {
                         type: "polyline", 
                         paths: [...polylineCoordinates] 
                     };
+					// Remove old arrows and labels
+const oldLegGraphics = draggableGraphicsLayer.graphics.filter(
+  g => g.symbol?.type === "text" || g.symbol?.style === "triangle"
+);
+draggableGraphicsLayer.removeMany(oldLegGraphics);
+
+// Redraw leg labels for updated geometry
+for (let i = 0; i < polylineCoordinates.length - 1; i++) {
+  const [lon1, lat1] = polylineCoordinates[i];
+  const [lon2, lat2] = polylineCoordinates[i + 1];
+
+  const midX = (lon1 + lon2) / 2;
+  const midY = (lat1 + lat2) / 2;
+
+  const angle = Math.atan2(lat2 - lat1, lon2 - lon1) * (180 / Math.PI);
+  const distance = getDistanceNM(lat1, lon1, lat2, lon2);
+  const variation = parseFloat(data[i]?.variation || 0);
+  const magneticBearing = getMagneticBearing(lat1, lon1, lat2, lon2, variation);
+
+  // Add arrow
+  const arrow = new Graphic({
+    geometry: { type: "point", longitude: lon1 + (lon2 - lon1) * 0.3, latitude: lat1 + (lat2 - lat1) * 0.3 },
+    symbol: {
+      type: "simple-marker",
+      style: "triangle",
+      color: [0, 0, 255, 1],
+      size: 8,
+      angle: angle,
+      outline: { color: [0, 0, 255, 1], width: 1 }
+    }
+  });
+  draggableGraphicsLayer.add(arrow);
+
+  // Add text label
+  const textGraphic = new Graphic({
+    geometry: { type: "point", longitude: midX, latitude: midY },
+    symbol: {
+      type: "text",
+      text: `${distance} nm\n${Math.round(magneticBearing)}° MB`,
+      color: "black",
+      font: { size: 10, weight: "bold", family: "Arial" },
+      haloColor: "white",
+      haloSize: 3,
+      horizontalAlignment: "center",
+      verticalAlignment: "middle",
+      yoffset: 12
+    }
+  });
+  draggableGraphicsLayer.add(textGraphic);
+}
                 }
 
                 // Notify the backend about the updated marker
