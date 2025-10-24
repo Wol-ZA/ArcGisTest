@@ -1765,7 +1765,7 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
     function createCircle(mapPoint) {
         const circleGeometry = new Circle({
             center: mapPoint,
-            radius: 27520, // 20 nautical miles in meters
+            radius: 37520, // 20 nautical miles in meters
             geodesic: true
         });
 
