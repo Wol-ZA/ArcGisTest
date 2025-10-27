@@ -1469,7 +1469,7 @@ draggableGraphicsLayer.add(arrow);
   },
   symbol: {
     type: "text",
-    text: `${distance} nm\n${Math.round(magneticBearing)}° MB`,
+    text: `${distance} nm\n${Math.round(magneticBearing)}° TT`,
     color: "black",
     font: {
       size: 10,
