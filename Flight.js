@@ -513,7 +513,7 @@ window.createIconGeoJSONLayer = function(url, iconUrl) {
                 }
             },
             labelPlacement: "above-center",
-            minScale: 500000,
+            minScale: 1000000,
             maxScale: 0
         }];
 
