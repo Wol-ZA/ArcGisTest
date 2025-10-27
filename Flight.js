@@ -1732,7 +1732,7 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
     geometry: { type: "point", longitude: midX, latitude: midY },
     symbol: {
       type: "text",
-      text: `${distance} nm\n${Math.round(magneticBearing)}° MB`,
+      text: `${distance} nm\n${Math.round(magneticBearing)}° TT`,
       color: "black",
       font: { size: 10, weight: "bold", family: "Arial" },
       haloColor: "white",
