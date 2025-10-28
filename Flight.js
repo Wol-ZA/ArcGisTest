@@ -1722,7 +1722,7 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
       style: "triangle",
       color: [0, 0, 255, 1],
       size: 8,
-      angle: angle + 180,
+      angle: angle,
       outline: { color: [0, 0, 255, 1], width: 1 }
     }
   });
