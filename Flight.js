@@ -1908,39 +1908,120 @@ if (activeCircleGraphic && activeCircleGraphic.geometry) {
 
     });
 
-  customPopup.addEventListener("click", (event) => {
-    if (event.target.classList.contains("delete-button")) {
-        console.log("Delete button clicked");
+customPopup.addEventListener("click", (event) => {
+  if (event.target.classList.contains("delete-button")) {
+    console.log("Delete button clicked");
 
-        if (view.draggedGraphic) {
-            // Remove the dragged marker
-            const index = markerGraphics.indexOf(view.draggedGraphic);
-            if (index !== -1) {
-                markerGraphics.splice(index, 1);
-                polylineCoordinates.splice(index, 1);
+    if (view.draggedGraphic) {
+      const index = markerGraphics.indexOf(view.draggedGraphic);
+      if (index !== -1) {
+        // Remove marker and corresponding coordinate
+        markerGraphics.splice(index, 1);
+        polylineCoordinates.splice(index, 1);
 
-                // Update the polyline
-                polylineGraphic.geometry = { type: "polyline", paths: [...polylineCoordinates] };
-                hitDetectionPolyline.geometry = { 
-                    type: "polyline", 
-                    paths: [...polylineCoordinates] 
-                };
+        // Update the polyline geometry
+        polylineGraphic.geometry = { type: "polyline", paths: [...polylineCoordinates] };
+        hitDetectionPolyline.geometry = { type: "polyline", paths: [...polylineCoordinates] };
 
-                // Remove from the graphics layer
-                draggableGraphicsLayer.remove(view.draggedGraphic);
-                console.log("Marker deleted:", view.draggedGraphic);
+        // Remove the marker itself from the map
+        draggableGraphicsLayer.remove(view.draggedGraphic);
+        console.log("Marker deleted:", view.draggedGraphic);
+
+        // ✅ Remove old chevrons + labels
+        const oldLegGraphics = draggableGraphicsLayer.graphics.filter(g => {
+          if (g.symbol?.type === "text") return true;
+          if (g.symbol?.type === "simple-marker" && g.symbol.style === "triangle") return true;
+          const url = g.symbol?.url || "";
+          if (g.symbol?.type === "picture-marker" && typeof url === "string" &&
+              url.includes("data:image/svg+xml")) return true;
+          return false;
+        });
+        if (oldLegGraphics.length) draggableGraphicsLayer.removeMany(oldLegGraphics);
+
+        // ✅ Redraw chevrons and text for remaining legs
+        for (let i = 0; i < polylineCoordinates.length - 1; i++) {
+          const [lon1, lat1] = polylineCoordinates[i];
+          const [lon2, lat2] = polylineCoordinates[i + 1];
+
+          const midX = (lon1 + lon2) / 2;
+          const midY = (lat1 + lat2) / 2;
+
+          const trueBearing = getMagneticBearing(lat1, lon1, lat2, lon2, 0);
+          const angle = trueBearing;
+          const distance = getDistanceNM(lat1, lon1, lat2, lon2);
+
+          const variationValue = Number.isFinite(+data[i]?.variation) ? +data[i].variation : 0;
+          let magneticBearing = getMagneticBearing(lat1, lon1, lat2, lon2, variationValue);
+
+          // Normalize 0–360
+          if (magneticBearing < 0) magneticBearing += 360;
+          if (magneticBearing >= 360) magneticBearing -= 360;
+
+          const arrowX = lon1 + (lon2 - lon1) * 0.3;
+          const arrowY = lat1 + (lat2 - lat1) * 0.3;
+
+          const chevronSVG = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="blue">
+              <path d="M4 6l8 8 8-8" stroke="blue" stroke-width="3" fill="none"
+                stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          `;
+
+          const arrow = new Graphic({
+            geometry: {
+              type: "point",
+              longitude: arrowX,
+              latitude: arrowY
+            },
+            symbol: {
+              type: "picture-marker",
+              url: "data:image/svg+xml;base64," + btoa(chevronSVG),
+              width: "20px",
+              height: "20px",
+              angle: angle + 180, // flip if needed
+              xoffset: 0,
+              yoffset: 0
             }
+          });
+          draggableGraphicsLayer.add(arrow);
 
-            // Notify the backend (optional)
-            WL.Execute("AlertMe", getFlightPlanAsJSON());
-
-            // Hide popup after deletion
-            hideCustomPopup();
-        } else {
-            console.warn("No marker selected for deletion.");
+          const textGraphic = new Graphic({
+            geometry: {
+              type: "point",
+              longitude: midX,
+              latitude: midY
+            },
+            symbol: {
+              type: "text",
+              text: `${distance} nm\n${Math.round(magneticBearing)}° TT`,
+              color: "black",
+              font: {
+                size: 10,
+                weight: "bold",
+                family: "Arial"
+              },
+              haloColor: "white",
+              haloSize: 3,
+              horizontalAlignment: "center",
+              verticalAlignment: "middle",
+              yoffset: 12
+            }
+          });
+          draggableGraphicsLayer.add(textGraphic);
         }
+      }
+
+      // Update backend (optional)
+      WL.Execute("AlertMe", getFlightPlanAsJSON());
+
+      // Hide popup
+      hideCustomPopup();
+    } else {
+      console.warn("No marker selected for deletion.");
     }
+  }
 });
+
 
 
 	
