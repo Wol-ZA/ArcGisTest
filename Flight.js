@@ -1739,7 +1739,7 @@ const arrow = new Graphic({
     yoffset: 0
   }
 });
-
+draggableGraphicsLayer.add(arrow);
   // Add text label
   const textGraphic = new Graphic({
     geometry: { type: "point", longitude: midX, latitude: midY },
