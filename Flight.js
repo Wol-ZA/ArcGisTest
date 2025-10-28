@@ -81,7 +81,29 @@ window.recenterToUser = function() {
                     target: userPoint,
                     zoom: 14
                 }).catch((err) => {
-                    console.error("Failed to go to user location:", err);
+                    console.error("Failed to go to user location:", err const chevronSVG = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <path d="M4 6l8 8 8-8" stroke="blue" stroke-width="3" fill="none"
+      stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  `;
+
+  const arrow = new Graphic({
+    geometry: {
+      type: "point",
+      longitude: lon1 + (lon2 - lon1) * 0.3,
+      latitude: lat1 + (lat2 - lat1) * 0.3
+    },
+    symbol: {
+      type: "picture-marker",
+      url: "data:image/svg+xml;base64," + btoa(chevronSVG),
+      width: "20px",
+      height: "20px",
+      angle: angle + 180 // keep alignment consistent with initial draw
+    }
+  });
+
+  draggableGraphicsLayer.add(arrow););
                 });
             },
             (error) => {
@@ -1440,7 +1462,7 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
   // Most SVGs are drawn pointing "up" (north). ArcGIS picture-marker angle rotates clockwise
   // where 0 points east or north depending on the SVG baseline; tweak to match your SVG.
   // Try this: convert bearing (degrees clockwise from north) into symbol.angle
-  let symbolAngle = (bearing - 90 + 360) % 360; // the -90 fix aligns many chevron SVGs
+  let symbolAngle = Math.atan2(lat2 - lat1, lon2 - lon1) * (180 / Math.PI); // the -90 fix aligns many chevron SVGs
   // If the chevron still points the wrong way, try +90 or +180 instead:
   // symbolAngle = (bearing + 90) % 360;
   // symbolAngle = (bearing + 180) % 360;
@@ -1464,7 +1486,7 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
       url: "data:image/svg+xml;base64," + btoa(chevronSVG),
       width: "20px",
       height: "20px",
-      angle: symbolAngle
+      angle: symbolAngle + 180
     }
   });
   draggableGraphicsLayer.add(arrow);
