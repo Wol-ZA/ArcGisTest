@@ -1440,7 +1440,7 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
   // Most SVGs are drawn pointing "up" (north). ArcGIS picture-marker angle rotates clockwise
   // where 0 points east or north depending on the SVG baseline; tweak to match your SVG.
   // Try this: convert bearing (degrees clockwise from north) into symbol.angle
-  let symbolAngle = (bearing - 90 + 360) % 360; // the -90 fix aligns many chevron SVGs
+  let symbolAngle = Math.atan2(lat2 - lat1, lon2 - lon1) * (180 / Math.PI); // the -90 fix aligns many chevron SVGs
   // If the chevron still points the wrong way, try +90 or +180 instead:
   // symbolAngle = (bearing + 90) % 360;
   // symbolAngle = (bearing + 180) % 360;
@@ -1464,7 +1464,7 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
       url: "data:image/svg+xml;base64," + btoa(chevronSVG),
       width: "20px",
       height: "20px",
-      angle: symbolAngle
+      angle: symbolAngle + 180
     }
   });
   draggableGraphicsLayer.add(arrow);
