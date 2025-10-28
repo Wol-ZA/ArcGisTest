@@ -1715,18 +1715,29 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
   const magneticBearing = getMagneticBearing(lat1, lon1, lat2, lon2, variation);
 
   // Add arrow
-  const arrow = new Graphic({
-    geometry: { type: "point", longitude: lon1 + (lon2 - lon1) * 0.3, latitude: lat1 + (lat2 - lat1) * 0.3 },
-    symbol: {
-      type: "simple-marker",
-      style: "triangle",
-      color: [0, 0, 255, 1],
-      size: 8,
-      angle: angle,
-      outline: { color: [0, 0, 255, 1], width: 1 }
-    }
-  });
-  draggableGraphicsLayer.add(arrow);
+const chevronSVG = `
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="blue">
+  <path d="M4 6l8 8 8-8" stroke="blue" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+
+const arrow = new Graphic({
+  geometry: {
+    type: "point",
+    longitude: arrowX,
+    latitude: arrowY
+  },
+  symbol: {
+    type: "picture-marker",
+    url: "data:image/svg+xml;base64," + btoa(chevronSVG),
+    width: "20px",
+    height: "20px",
+	style: "triangle",
+    angle: angle + 180, // rotate to match SVG’s base orientation
+    xoffset: 0,
+    yoffset: 0
+  }
+});
 
   // Add text label
   const textGraphic = new Graphic({
