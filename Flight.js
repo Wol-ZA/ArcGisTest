@@ -1452,6 +1452,7 @@ const arrow = new Graphic({
     url: "data:image/svg+xml;base64," + btoa(chevronSVG),
     width: "20px",
     height: "20px",
+	style: "triangle",
     angle: angle + 180, // rotate to match SVG’s base orientation
     xoffset: 0,
     yoffset: 0
