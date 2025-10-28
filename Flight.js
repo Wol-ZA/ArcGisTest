@@ -1945,93 +1945,259 @@ if (activeCircleGraphic && activeCircleGraphic.geometry) {
 
 	
     // Event listener for Cancel button
- customPopup.addEventListener("click", (event) => {
-    if (event.target.classList.contains("cancel")) {
-        console.log("Cancel button clicked");
+customPopup.addEventListener("click", (event) => {
+  if (event.target.classList.contains("cancel")) {
+    console.log("Cancel button clicked");
 
-        if (view.draggedGraphic && originalPositionMark) {
-            console.log("Resetting marker to:", originalPositionMark);
+    if (view.draggedGraphic && originalPositionMark) {
+      console.log("Resetting marker to:", originalPositionMark);
 
-            // Reset marker position
-            view.draggedGraphic.geometry = originalPositionMark.clone();
+      // Reset marker position
+      view.draggedGraphic.geometry = originalPositionMark.clone();
 
-            // Force a refresh of the graphic
-            draggableGraphicsLayer.remove(view.draggedGraphic);
-            draggableGraphicsLayer.add(view.draggedGraphic);
+      // Force a refresh of the graphic
+      draggableGraphicsLayer.remove(view.draggedGraphic);
+      draggableGraphicsLayer.add(view.draggedGraphic);
 
-            // Reset polyline coordinates
-            const index = markerGraphics.indexOf(view.draggedGraphic);
-            if (index !== -1) {
-                polylineCoordinates[index] = [originalPositionMark.longitude, originalPositionMark.latitude];
-                polylineGraphic.geometry = { type: "polyline", paths: [...polylineCoordinates] };
-                hitDetectionPolyline.geometry = { 
-                    type: "polyline", 
-                    paths: [...polylineCoordinates] 
-                };
-                console.log("Polyline reset");
+      // Reset polyline coordinates
+      const index = markerGraphics.indexOf(view.draggedGraphic);
+      if (index !== -1) {
+        polylineCoordinates[index] = [
+          originalPositionMark.longitude,
+          originalPositionMark.latitude,
+        ];
+        polylineGraphic.geometry = { type: "polyline", paths: [...polylineCoordinates] };
+        hitDetectionPolyline.geometry = { type: "polyline", paths: [...polylineCoordinates] };
+        console.log("Polyline reset");
+
+        // ✅ Remove old chevrons + labels
+        const oldLegGraphics = draggableGraphicsLayer.graphics.filter(g => {
+          if (g.symbol?.type === "text") return true;
+          if (g.symbol?.type === "simple-marker" && g.symbol.style === "triangle") return true;
+          const url = g.symbol?.url || "";
+          if (g.symbol?.type === "picture-marker" && typeof url === "string" &&
+              url.includes("data:image/svg+xml")) return true;
+          return false;
+        });
+        if (oldLegGraphics.length) draggableGraphicsLayer.removeMany(oldLegGraphics);
+
+        // ✅ Redraw chevrons and text labels (same logic as Create)
+        for (let i = 0; i < polylineCoordinates.length - 1; i++) {
+          const [lon1, lat1] = polylineCoordinates[i];
+          const [lon2, lat2] = polylineCoordinates[i + 1];
+
+          const midX = (lon1 + lon2) / 2;
+          const midY = (lat1 + lat2) / 2;
+
+          const trueBearing = getMagneticBearing(lat1, lon1, lat2, lon2, 0);
+          const angle = trueBearing;
+          const distance = getDistanceNM(lat1, lon1, lat2, lon2);
+
+          const variationValue = Number.isFinite(+data[i]?.variation) ? +data[i].variation : 0;
+          let magneticBearing = getMagneticBearing(lat1, lon1, lat2, lon2, variationValue);
+
+          // Normalize 0–360
+          if (magneticBearing < 0) magneticBearing += 360;
+          if (magneticBearing >= 360) magneticBearing -= 360;
+
+          const arrowX = lon1 + (lon2 - lon1) * 0.3;
+          const arrowY = lat1 + (lat2 - lat1) * 0.3;
+
+          const chevronSVG = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="blue">
+              <path d="M4 6l8 8 8-8" stroke="blue" stroke-width="3" fill="none"
+                stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          `;
+
+          const arrow = new Graphic({
+            geometry: {
+              type: "point",
+              longitude: arrowX,
+              latitude: arrowY
+            },
+            symbol: {
+              type: "picture-marker",
+              url: "data:image/svg+xml;base64," + btoa(chevronSVG),
+              width: "20px",
+              height: "20px",
+              angle: angle + 180, // adjust if backward
+              xoffset: 0,
+              yoffset: 0
             }
+          });
+          draggableGraphicsLayer.add(arrow);
 
-            // Hide popup
-            hideCustomPopup();
-        } else {
-            console.warn("No dragged graphic or original position found.");
+          const textGraphic = new Graphic({
+            geometry: {
+              type: "point",
+              longitude: midX,
+              latitude: midY
+            },
+            symbol: {
+              type: "text",
+              text: `${distance} nm\n${Math.round(magneticBearing)}° TT`,
+              color: "black",
+              font: {
+                size: 10,
+                weight: "bold",
+                family: "Arial"
+              },
+              haloColor: "white",
+              haloSize: 3,
+              horizontalAlignment: "center",
+              verticalAlignment: "middle",
+              yoffset: 12
+            }
+          });
+          draggableGraphicsLayer.add(textGraphic);
         }
+      }
+
+      // Hide popup
+      hideCustomPopup();
+    } else {
+      console.warn("No dragged graphic or original position found.");
     }
+  }
 });
 
+
 customPopup.addEventListener("click", (event) => {
-    if (event.target.tagName === "BUTTON" && event.target.textContent.trim() === "Create") {
-        console.log("Create button clicked");
+  if (event.target.tagName === "BUTTON" && event.target.textContent.trim() === "Create") {
+    console.log("Create button clicked");
 
-        const waypointNameInput = customPopup.querySelector("input[placeholder='Enter waypoint name']");
-        const identifierInput = customPopup.querySelector("input[placeholder='Enter identifier']");
+    const waypointNameInput = customPopup.querySelector("input[placeholder='Enter waypoint name']");
+    const identifierInput = customPopup.querySelector("input[placeholder='Enter identifier']");
 
-        if (waypointNameInput && identifierInput) {
-            const waypointName = waypointNameInput.value.trim();
-            const identifier = identifierInput.value.trim();
+    if (waypointNameInput && identifierInput) {
+      const waypointName = waypointNameInput.value.trim();
+      const identifier = identifierInput.value.trim();
 
-            if (!waypointName || !identifier) {
-                alert("Please fill in both the Waypoint Name and Identifier.");
-                return;
-            }
+      if (!waypointName || !identifier) {
+        alert("Please fill in both the Waypoint Name and Identifier.");
+        return;
+      }
 
-            if (view.draggedGraphic) {
-                // Update the dragged graphic's attributes with new name and identifier
-                view.draggedGraphic.attributes.name = waypointName;
-                view.draggedGraphic.attributes.description = identifier;
+      if (view.draggedGraphic) {
+        // Update the dragged marker’s attributes
+        view.draggedGraphic.attributes.name = waypointName;
+        view.draggedGraphic.attributes.description = identifier;
 
-                // Persist its current position as the "original position"
-                originalPositionMark = view.draggedGraphic.geometry.clone();
-                console.log("New position saved:", originalPositionMark);
+        // Persist its current position as the "original position"
+        originalPositionMark = view.draggedGraphic.geometry.clone();
+        console.log("New position saved:", originalPositionMark);
 
-                // Optionally update marker symbol to reflect the change
-                draggableGraphicsLayer.remove(view.draggedGraphic);
-                draggableGraphicsLayer.add(view.draggedGraphic);
+        // Refresh marker on layer
+        draggableGraphicsLayer.remove(view.draggedGraphic);
+        draggableGraphicsLayer.add(view.draggedGraphic);
 
-                // Update the polyline with the new position
-                const index = markerGraphics.indexOf(view.draggedGraphic);
-                if (index !== -1) {
-                    polylineCoordinates[index] = [
-                        originalPositionMark.longitude,
-                        originalPositionMark.latitude,
-                    ];
-                    polylineGraphic.geometry = { type: "polyline", paths: [...polylineCoordinates] };
-                    hitDetectionPolyline.geometry = { 
-                    type: "polyline", 
-                    paths: [...polylineCoordinates] 
-                    };
-                    console.log("Polyline updated");
-					
-                }
-                 WL.Execute("AlertMe", getFlightPlanAsJSON());
-                // Hide the popup after saving
-                hideCustomPopup();
-            }
-        } else {
-            console.warn("Input fields not found in popup.");
+        // Update polyline geometry
+        const index = markerGraphics.indexOf(view.draggedGraphic);
+        if (index !== -1) {
+          polylineCoordinates[index] = [
+            originalPositionMark.longitude,
+            originalPositionMark.latitude,
+          ];
+          polylineGraphic.geometry = { type: "polyline", paths: [...polylineCoordinates] };
+          hitDetectionPolyline.geometry = { type: "polyline", paths: [...polylineCoordinates] };
+          console.log("Polyline updated");
+
+          // ✅ Remove old chevrons + labels
+          const oldLegGraphics = draggableGraphicsLayer.graphics.filter(g => {
+            if (g.symbol?.type === "text") return true;
+            if (g.symbol?.type === "simple-marker" && g.symbol.style === "triangle") return true;
+            const url = g.symbol?.url || "";
+            if (g.symbol?.type === "picture-marker" && typeof url === "string" &&
+                url.includes("data:image/svg+xml")) return true;
+            return false;
+          });
+          if (oldLegGraphics.length) draggableGraphicsLayer.removeMany(oldLegGraphics);
+
+          // ✅ Redraw chevrons and text labels using your preferred logic
+          for (let i = 0; i < polylineCoordinates.length - 1; i++) {
+            const [lon1, lat1] = polylineCoordinates[i];
+            const [lon2, lat2] = polylineCoordinates[i + 1];
+
+            const midX = (lon1 + lon2) / 2;
+            const midY = (lat1 + lat2) / 2;
+
+            const trueBearing = getMagneticBearing(lat1, lon1, lat2, lon2, 0); // geometric
+            const angle = trueBearing;
+            const distance = getDistanceNM(lat1, lon1, lat2, lon2);
+
+            const variationValue = Number.isFinite(+data[i]?.variation) ? +data[i].variation : 0;
+            let magneticBearing = getMagneticBearing(lat1, lon1, lat2, lon2, variationValue);
+
+            // Normalize 0–360
+            if (magneticBearing < 0) magneticBearing += 360;
+            if (magneticBearing >= 360) magneticBearing -= 360;
+
+            const arrowX = lon1 + (lon2 - lon1) * 0.3;
+            const arrowY = lat1 + (lat2 - lat1) * 0.3;
+
+            const chevronSVG = `
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="blue">
+                <path d="M4 6l8 8 8-8" stroke="blue" stroke-width="3" fill="none"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            `;
+
+            const arrow = new Graphic({
+              geometry: {
+                type: "point",
+                longitude: arrowX,
+                latitude: arrowY
+              },
+              symbol: {
+                type: "picture-marker",
+                url: "data:image/svg+xml;base64," + btoa(chevronSVG),
+                width: "20px",
+                height: "20px",
+                style: "triangle", // harmless, but you can remove this line if you want
+                angle: angle + 180, // adjust if pointing backward
+                xoffset: 0,
+                yoffset: 0
+              }
+            });
+            draggableGraphicsLayer.add(arrow);
+
+            const textGraphic = new Graphic({
+              geometry: {
+                type: "point",
+                longitude: midX,
+                latitude: midY
+              },
+              symbol: {
+                type: "text",
+                text: `${distance} nm\n${Math.round(magneticBearing)}° TT`,
+                color: "black",
+                font: {
+                  size: 10,
+                  weight: "bold",
+                  family: "Arial"
+                },
+                haloColor: "white",
+                haloSize: 3,
+                horizontalAlignment: "center",
+                verticalAlignment: "middle",
+                yoffset: 12
+              }
+            });
+            draggableGraphicsLayer.add(textGraphic);
+          }
         }
+
+        // Update backend / WinDev bridge
+        WL.Execute("AlertMe", getFlightPlanAsJSON());
+        hideCustomPopup();
+      }
+    } else {
+      console.warn("Input fields not found in popup.");
     }
-});    
+  }
+});
+   
 
 view.on("click", (event) => {
     if (customPopup.style.display === "block" && view.draggedGraphic && originalPositionMark) {
