@@ -1709,7 +1709,7 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
   const midX = (lon1 + lon2) / 2;
   const midY = (lat1 + lat2) / 2;
 
-  const angle = Math.atan2(lat2 - lat1, lon2 - lon1) * (180 / Math.PI);
+  const angle = getMagneticBearing(lat1, lon1, lat2, lon2, 0);
   const distance = getDistanceNM(lat1, lon1, lat2, lon2);
   const variation = parseFloat(data[i]?.variation || 0);
   const magneticBearing = getMagneticBearing(lat1, lon1, lat2, lon2, variation);
@@ -1722,7 +1722,7 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
       style: "triangle",
       color: [0, 0, 255, 1],
       size: 8,
-      angle: angle,
+      angle: angle + 180,
       outline: { color: [0, 0, 255, 1], width: 1 }
     }
   });
