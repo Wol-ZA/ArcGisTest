@@ -1713,7 +1713,8 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
   const distance = getDistanceNM(lat1, lon1, lat2, lon2);
   const variation = parseFloat(data[i]?.variation || 0);
   const magneticBearing = getMagneticBearing(lat1, lon1, lat2, lon2, variation);
-
+  const arrowX = lon1 + (lon2 - lon1) * 0.3;
+  const arrowY = lat1 + (lat2 - lat1) * 0.3;
   // Add arrow
 const chevronSVG = `
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="blue">
