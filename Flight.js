@@ -1969,6 +1969,73 @@ if (activeCircleGraphic && activeCircleGraphic.geometry) {
                     paths: [...polylineCoordinates] 
                 };
                 console.log("Polyline reset");
+				 const trueBearing = getMagneticBearing(lat1, lon1, lat2, lon2, 0); // variation 0 for pure geometry
+  const angle = trueBearing;
+  const distance = getDistanceNM(lat1, lon1, lat2, lon2);
+  //const trueBearing = getBearing(lat1, lon1, lat2, lon2);
+const variationValue = Number.isFinite(+data[i]?.variation) ? +data[i].variation : 0;
+const magneticBearing = getMagneticBearing(lat1, lon1, lat2, lon2, variationValue);
+
+// Normalize to 0–360
+if (magneticBearing < 0) magneticBearing += 360;
+if (magneticBearing >= 360) magneticBearing -= 360;
+
+  // 2A. Add arrow slightly offset from start of segment
+  const arrowX = lon1 + (lon2 - lon1) * 0.3;
+  const arrowY = lat1 + (lat2 - lat1) * 0.3;
+
+// Replace your triangle marker with this chevron version:
+const chevronSVG = `
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="blue">
+  <path d="M4 6l8 8 8-8" stroke="blue" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+
+const arrow = new Graphic({
+  geometry: {
+    type: "point",
+    longitude: arrowX,
+    latitude: arrowY
+  },
+  symbol: {
+    type: "picture-marker",
+    url: "data:image/svg+xml;base64," + btoa(chevronSVG),
+    width: "20px",
+    height: "20px",
+	style: "triangle",
+    angle: angle + 180, // rotate to match SVG’s base orientation
+    xoffset: 0,
+    yoffset: 0
+  }
+});
+draggableGraphicsLayer.add(arrow);
+
+
+  // 2B. Add text label at midpoint
+ const textGraphic = new Graphic({
+  geometry: {
+    type: "point",
+    longitude: midX,
+    latitude: midY
+  },
+  symbol: {
+    type: "text",
+    text: `${distance} nm\n${Math.round(magneticBearing)}° TT`,
+    color: "black",
+    font: {
+      size: 10,
+      weight: "bold",
+      family: "Arial"
+    },
+    haloColor: "white",
+    haloSize: 3,
+    horizontalAlignment: "center",
+    verticalAlignment: "middle",
+    yoffset: 12
+  }
+});
+draggableGraphicsLayer.add(textGraphic);
+}
             }
 
             // Hide popup
@@ -2021,6 +2088,7 @@ customPopup.addEventListener("click", (event) => {
                     paths: [...polylineCoordinates] 
                     };
                     console.log("Polyline updated");
+					
                 }
                  WL.Execute("AlertMe", getFlightPlanAsJSON());
                 // Hide the popup after saving
