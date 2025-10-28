@@ -1406,25 +1406,12 @@ function getMagneticBearing(lat1, lon1, lat2, lon2, variation = 0) {
   return Math.round(bearing * 100) / 100;
 }
 
-const oldLegGraphics = draggableGraphicsLayer.graphics.filter(g => {
-  // remove old text labels
-  if (g.symbol?.type === "text") return true;
+const oldLegGraphics = draggableGraphicsLayer.graphics.filter(
+  g => g.symbol?.type === "text" || g.symbol?.style === "triangle"
+);
+draggableGraphicsLayer.removeMany(oldLegGraphics);
 
-  // remove triangle simple-markers (legacy)
-  if (g.symbol?.type === "simple-marker" && g.symbol.style === "triangle") return true;
-
-  // remove picture-marker chevrons (SVG data URIs or known chevron url)
-  const url = g.symbol?.url || "";
-  if (g.symbol?.type === "picture-marker" && typeof url === "string" &&
-      (url.includes("data:image/svg+xml") || url.toLowerCase().includes("chevron") )) {
-    return true;
-  }
-
-  return false;
-});
-if (oldLegGraphics.length) draggableGraphicsLayer.removeMany(oldLegGraphics);
-
-// redraw chevrons + text
+// 2. Draw directional triangle + distance/bearing text on each segment
 for (let i = 0; i < polylineCoordinates.length - 1; i++) {
   const [lon1, lat1] = polylineCoordinates[i];
   const [lon2, lat2] = polylineCoordinates[i + 1];
@@ -1432,65 +1419,71 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
   const midX = (lon1 + lon2) / 2;
   const midY = (lat1 + lat2) / 2;
 
-  // Use your magnetic-bearing util so rotation is consistent with other code
-  const variation = Number.isFinite(+data[i]?.variation) ? +data[i].variation : 0;
-  let bearing = getMagneticBearing(lat1, lon1, lat2, lon2, variation); // 0..360
-
-  // Adjust orientation so the SVG chevron points along the leg.
-  // Most SVGs are drawn pointing "up" (north). ArcGIS picture-marker angle rotates clockwise
-  // where 0 points east or north depending on the SVG baseline; tweak to match your SVG.
-  // Try this: convert bearing (degrees clockwise from north) into symbol.angle
-  let symbolAngle = Math.atan2(lat2 - lat1, lon2 - lon1) * (180 / Math.PI); // the -90 fix aligns many chevron SVGs
-  // If the chevron still points the wrong way, try +90 or +180 instead:
-  // symbolAngle = (bearing + 90) % 360;
-  // symbolAngle = (bearing + 180) % 360;
-
-  // build chevron SVG (keep simple; color via stroke)
-  const chevronSVG = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
-      <path d="M4 6l8 8 8-8" stroke="#0b62ff" stroke-width="3" fill="none"
-            stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  `;
-
-  const arrow = new Graphic({
-    geometry: {
-      type: "point",
-      longitude: lon1 + (lon2 - lon1) * 0.3,
-      latitude: lat1 + (lat2 - lat1) * 0.3
-    },
-    symbol: {
-      type: "picture-marker",
-      url: "data:image/svg+xml;base64," + btoa(chevronSVG),
-      width: "20px",
-      height: "20px",
-      angle: symbolAngle + 180
-    }
-  });
-  draggableGraphicsLayer.add(arrow);
-
-  // text label at midpoint
+  const trueBearing = getMagneticBearing(lat1, lon1, lat2, lon2, 0); // variation 0 for pure geometry
+  const angle = trueBearing;
   const distance = getDistanceNM(lat1, lon1, lat2, lon2);
-  const textGraphic = new Graphic({
-    geometry: { type: "point", longitude: midX, latitude: midY },
-    symbol: {
-      type: "text",
-      text: `${distance} nm\n${Math.round(bearing)}° TT`,
-      color: "black",
-      font: { size: 10, weight: "bold", family: "Arial" },
-      haloColor: "white",
-      haloSize: 3,
-      horizontalAlignment: "center",
-      verticalAlignment: "middle",
-      yoffset: 12
-    }
-  });
-  draggableGraphicsLayer.add(textGraphic);
+  //const trueBearing = getBearing(lat1, lon1, lat2, lon2);
+const variationValue = Number.isFinite(+data[i]?.variation) ? +data[i].variation : 0;
+const magneticBearing = getMagneticBearing(lat1, lon1, lat2, lon2, variationValue);
 
-  // OPTIONAL: debugging info in console for first few legs
-  if (i < 2) {
-    console.log(`leg ${i}: bearing=${bearing} symbolAngle=${symbolAngle}`);
+// Normalize to 0–360
+if (magneticBearing < 0) magneticBearing += 360;
+if (magneticBearing >= 360) magneticBearing -= 360;
+
+  // 2A. Add arrow slightly offset from start of segment
+  const arrowX = lon1 + (lon2 - lon1) * 0.3;
+  const arrowY = lat1 + (lat2 - lat1) * 0.3;
+
+// Replace your triangle marker with this chevron version:
+const chevronSVG = `
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="blue">
+  <path d="M4 6l8 8 8-8" stroke="blue" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+
+const arrow = new Graphic({
+  geometry: {
+    type: "point",
+    longitude: arrowX,
+    latitude: arrowY
+  },
+  symbol: {
+    type: "picture-marker",
+    url: "data:image/svg+xml;base64," + btoa(chevronSVG),
+    width: "20px",
+    height: "20px",
+    angle: angle + 180, // rotate to match SVG’s base orientation
+    xoffset: 0,
+    yoffset: 0
   }
+});
+draggableGraphicsLayer.add(arrow);
+
+
+  // 2B. Add text label at midpoint
+ const textGraphic = new Graphic({
+  geometry: {
+    type: "point",
+    longitude: midX,
+    latitude: midY
+  },
+  symbol: {
+    type: "text",
+    text: `${distance} nm\n${Math.round(magneticBearing)}° TT`,
+    color: "black",
+    font: {
+      size: 10,
+      weight: "bold",
+      family: "Arial"
+    },
+    haloColor: "white",
+    haloSize: 3,
+    horizontalAlignment: "center",
+    verticalAlignment: "middle",
+    yoffset: 12
+  }
+});
+draggableGraphicsLayer.add(textGraphic);
 }
 
     zoomToFlightPlan(polylineCoordinates, window.view);
@@ -1721,28 +1714,17 @@ for (let i = 0; i < polylineCoordinates.length - 1; i++) {
   const magneticBearing = getMagneticBearing(lat1, lon1, lat2, lon2, variation);
 
   // Add arrow
-  const chevronSVG = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-      <path d="M4 6l8 8 8-8" stroke="blue" stroke-width="3" fill="none"
-      stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  `;
-
   const arrow = new Graphic({
-    geometry: {
-      type: "point",
-      longitude: lon1 + (lon2 - lon1) * 0.3,
-      latitude: lat1 + (lat2 - lat1) * 0.3
-    },
+    geometry: { type: "point", longitude: lon1 + (lon2 - lon1) * 0.3, latitude: lat1 + (lat2 - lat1) * 0.3 },
     symbol: {
-      type: "picture-marker",
-      url: "data:image/svg+xml;base64," + btoa(chevronSVG),
-      width: "20px",
-      height: "20px",
-      angle: angle + 180 // keep alignment consistent with initial draw
+      type: "simple-marker",
+      style: "triangle",
+      color: [0, 0, 255, 1],
+      size: 8,
+      angle: angle,
+      outline: { color: [0, 0, 255, 1], width: 1 }
     }
   });
-
   draggableGraphicsLayer.add(arrow);
 
   // Add text label
