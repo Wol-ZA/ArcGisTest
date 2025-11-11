@@ -1140,6 +1140,16 @@ function loadWindyScript(callback) {
   document.head.appendChild(script);
 }
 
+// Convert ArcGIS zoom level to roughly equivalent Windy (Leaflet) zoom level
+function arcZoomToWindyZoom(arcZoom) {
+  // Mobile correction: Leaflet zooms are slightly shallower
+  if (window.innerWidth < 768) {
+    return Math.max(Math.min(arcZoom - 1.5, 12), 3);
+  } else {
+    return Math.max(Math.min(arcZoom - 0.7, 12), 3);
+  }
+}	
+
 // ✅ Wait until Windy is ready, then init
 function initWindy(lat, lon, zoom) {
   console.log("🌬️ Initializing Windy overlay...");
@@ -1175,8 +1185,8 @@ function initWindy(lat, lon, zoom) {
 	view.on(["drag", "pointer-move", "mouse-wheel"], () => {
   		if (windyAPIInstance) {
     		const { latitude, longitude } = view.center;
-    		const windyZoom = Math.min(Math.max(view.zoom, 3), 12);
-    		windyAPIInstance.map.setView([latitude, longitude], windyZoom, { animate: false });
+    		const windyZoom = arcZoomToWindyZoom(view.zoom);
+			windyAPIInstance.map.setView([latitude, longitude], windyZoom, { animate: false });
   		}
 	});  
 
@@ -1196,9 +1206,10 @@ function initWindy(lat, lon, zoom) {
 
     // Sync with ArcGIS map center
     view.watch(["center", "zoom"], () => {
-      const { latitude, longitude } = view.center;
-      windyAPIInstance.map.setView([latitude, longitude], view.zoom);
-    });
+  	const { latitude, longitude } = view.center;
+  	const windyZoom = arcZoomToWindyZoom(view.zoom);
+  	windyAPIInstance.map.setView([latitude, longitude], windyZoom);
+	});
   });
 }
 // ✅ Toggle Windy overlay
