@@ -352,7 +352,7 @@ window.showCustommPopup = function(htmlContent) {
     `;
 
     // Start countdown
-    let countdown = 10;
+    let countdown = 5;
     const timerSpan = popup.querySelector("#countdownTimer");
     countdownInterval = setInterval(() => {
         countdown--;
