@@ -43,8 +43,6 @@ window.removeRoute = function() {
         view.graphics.remove(polylineGraphic);
         polylineGraphic = null; // Reset the polyline graphic
     }
-
-    console.log("Route removed and location updates stopped.");
 }    
 
 function htmlToRGBA(colorHTML, alpha) {
@@ -214,7 +212,6 @@ view.on("pointer-leave", cancelLongPress);
 	
 	
 function handleLongPress(event) {
-    console.log("Long press triggered");
     view.hitTest(event).then(function (response) {
         if (!response.results.length) {
             showCustommPopup("<p>No features clicked.</p>");
@@ -242,7 +239,6 @@ function handleLongPress(event) {
                     attributes	
                 });
             }
-		console.log(response.results);
         }
 	
         let popupContent = "";
@@ -731,10 +727,7 @@ if (!userGraphic.polylineGraphic) {
         const correctedRotation = 360 - heading;
         view.rotation = correctedRotation; // Rotate the map view
         view.center = userPoint; // Center map on user location
-	console.log(mainLineGraphic.geometry);
-	console.log(userGraphic.polylineGraphic);
-        const intersections = checkIntersectionWithPolygons(mainLineGraphic.geometry, userPoint);
-	console.log(intersections);    
+        const intersections = checkIntersectionWithPolygons(mainLineGraphic.geometry, userPoint);   
         WL.Execute("ClosingInn", JSON.stringify(intersections));
     }
 }
@@ -752,7 +745,6 @@ function checkIfInsidePolygon(userPoint) {
     });
 
     if (!insideAnyPolygon) {
-        console.log("User is not inside any polygon.");
     }
 }
     
@@ -953,7 +945,6 @@ function getToggledLayerName(event) {
 
     const layerName = layerMap[event.target.id];
     if (layerName) {
-        console.log(`Layer toggled: ${layerName}, Visible: ${event.target.checked}`);
         return layerName;
     }
     return null;
@@ -1123,13 +1114,11 @@ function loadWindyScript(callback) {
   }
 
   windyScriptLoaded = true;
-  console.log("🌬️ Loading Windy API script...");
 
   const script = document.createElement("script");
   script.src = "https://api.windy.com/assets/map-forecast/libBoot.js";
   script.async = true;
   script.onload = () => {
-    console.log("✅ Windy API script loaded");
     const check = setInterval(() => {
       if (typeof window.windyInit === "function") {
         clearInterval(check);
@@ -1152,8 +1141,6 @@ function arcZoomToWindyZoom(arcZoom) {
 
 // ✅ Wait until Windy is ready, then init
 function initWindy(lat, lon, zoom) {
-  console.log("🌬️ Initializing Windy overlay...");
-
   // Ensure the div exists
   const windyDiv = document.getElementById("windy");
   if (!windyDiv) {
@@ -1174,8 +1161,6 @@ function initWindy(lat, lon, zoom) {
       console.error("❌ Windy API failed to initialize");
       return;
     }
-
-    console.log("✅ Windy API initialized");
     windyAPIInstance = windyAPI;
 
 	windyAPIInstance.map.options.zoomAnimation = false;
@@ -1194,7 +1179,6 @@ function initWindy(lat, lon, zoom) {
   	const { latitude, longitude } = view.center;
   	windyAPIInstance.map.invalidateSize(); // force resize & repaint
   	windyAPIInstance.map.setView([latitude, longitude], view.zoom);
-  	console.log("🌀 Windy forced to refresh after init");
 	}, 500);
 
 	windyAPIInstance.store.set('overlay', 'wind');
@@ -1330,8 +1314,6 @@ view.on("click", (event) => {
                 const mapPoint = graphic.geometry;
                 
                 getFeaturesWithinRadius(mapPoint, (pointsWithinRadius) => {
-                    console.log("Points within radius:", pointsWithinRadius);
-
                     // Limit to 5 results
                     const limitedPoints = pointsWithinRadius.slice(0, 5);
 
@@ -1351,9 +1333,6 @@ view.on("click", (event) => {
                             </div>
                         `;
                     }).join("");
-
-                    console.log("Popup content:", content);
-
                     // Get screen position and show popup
                     const screenPoint = view.toScreen(mapPoint);
                     //showCustomPopup(content, screenPoint, limitedPoints);
@@ -1522,7 +1501,6 @@ draggableGraphicsLayer.add(textGraphic);
 
         // Attempt to zoom to the extent
         view.goTo(extent).then(() => {
-            console.log("Zoom to extent successful!");
         }).catch((error) => {
             console.error("Error zooming to extent:", error);
         });
@@ -1532,7 +1510,6 @@ draggableGraphicsLayer.add(textGraphic);
             center: [(start[0] + end[0]) / 2, (start[1] + end[1]) / 2], // Center the map at midpoint
             zoom: 6  // Set a reasonable zoom level for the flight path
         }).then(() => {
-            console.log("Direct zoom successful!");
         }).catch((error) => {
             console.error("Error with direct zoom:", error);
         });
@@ -1608,14 +1585,12 @@ function getFeaturesWithinRadius(mapPoint, callback) {
                 console.error("Error querying features:", error);
             });
         } else {
-            console.log(`Layer ${layer.title} is not visible, skipping query.`);
             return Promise.resolve(); // Skip query for invisible layers
         }
     });
 
     // Use Promise.all to wait for all layer queries to complete
     Promise.all(layerPromises).then(() => {
-        console.log("Points within radius:", pointsWithinRadius); // Log the points array
         callback(pointsWithinRadius); // Call the callback with the points
     }).catch((error) => {
         console.error("Error with layer queries:", error);
@@ -1823,8 +1798,6 @@ if (action === "start") {
                 // Create activeCircleGraphic
                 activeCircleGraphic = createCircle(mapPoint);
                 draggableGraphicsLayer.add(activeCircleGraphic);
-
-                console.log("Active circle graphic initialized on start:", activeCircleGraphic);
                 event.stopPropagation();
             }
         }
@@ -1846,8 +1819,6 @@ if (action === "start") {
             type: "polyline",
             paths: [...polylineCoordinates]
         };
-
-        console.log("Polyline updated:", polylineGraphic.geometry);
     }
 
     // Update the active circle graphic
@@ -1858,7 +1829,6 @@ if (action === "start") {
     event.stopPropagation();
 } else if (action === "end") {
     if (!isDraggingMarker) {
-        console.log("Map pan detected. No marker drag to process.");
         return; // Exit early if it was a map pan
     }
 
@@ -1874,8 +1844,6 @@ if (activeCircleGraphic && activeCircleGraphic.geometry) {
 
     // Use getFeaturesWithinRadius to get points within the circle radius
     getFeaturesWithinRadius(mapPoint, (pointsWithinRadius) => {
-        console.log("Points within radius:", pointsWithinRadius); // Debugging: Check the points passed
-
         // Limit the number of points to 5
         const limitedPoints = pointsWithinRadius.slice(0, 5);
 
@@ -1896,10 +1864,6 @@ if (activeCircleGraphic && activeCircleGraphic.geometry) {
         </div>
     `;
 }).join(""); // Combine all items into one string
-
-
-        console.log("Popup content:", content); // Debugging: Log the final content string
-
         // Get the screen position for the popup and display it
         const screenPoint = view.toScreen(mapPoint);
         showCustomPopup(content, screenPoint, limitedPoints); // Show popup with content
@@ -1913,16 +1877,12 @@ if (activeCircleGraphic && activeCircleGraphic.geometry) {
         draggableGraphicsLayer.remove(activeCircleGraphic);
         activeCircleGraphic = null;
     }
-
-    console.log("Drag ended. Dragged graphic:", view.draggedGraphic);
 }
 
     });
 
 customPopup.addEventListener("click", (event) => {
   if (event.target.classList.contains("delete-button")) {
-    console.log("Delete button clicked");
-
     if (view.draggedGraphic) {
       const index = markerGraphics.indexOf(view.draggedGraphic);
       if (index !== -1) {
@@ -1936,8 +1896,6 @@ customPopup.addEventListener("click", (event) => {
 
         // Remove the marker itself from the map
         draggableGraphicsLayer.remove(view.draggedGraphic);
-        console.log("Marker deleted:", view.draggedGraphic);
-
         // ✅ Remove old chevrons + labels
         const oldLegGraphics = draggableGraphicsLayer.graphics.filter(g => {
           if (g.symbol?.type === "text") return true;
@@ -2039,14 +1997,9 @@ customPopup.addEventListener("click", (event) => {
     // Event listener for Cancel button
 customPopup.addEventListener("click", (event) => {
   if (event.target.classList.contains("cancel")) {
-    console.log("Cancel button clicked");
-
     if (view.draggedGraphic && originalPositionMark) {
-      console.log("Resetting marker to:", originalPositionMark);
-
       // Reset marker position
       view.draggedGraphic.geometry = originalPositionMark.clone();
-
       // Force a refresh of the graphic
       draggableGraphicsLayer.remove(view.draggedGraphic);
       draggableGraphicsLayer.add(view.draggedGraphic);
@@ -2060,8 +2013,6 @@ customPopup.addEventListener("click", (event) => {
         ];
         polylineGraphic.geometry = { type: "polyline", paths: [...polylineCoordinates] };
         hitDetectionPolyline.geometry = { type: "polyline", paths: [...polylineCoordinates] };
-        console.log("Polyline reset");
-
         // ✅ Remove old chevrons + labels
         const oldLegGraphics = draggableGraphicsLayer.graphics.filter(g => {
           if (g.symbol?.type === "text") return true;
@@ -2072,7 +2023,6 @@ customPopup.addEventListener("click", (event) => {
           return false;
         });
         if (oldLegGraphics.length) draggableGraphicsLayer.removeMany(oldLegGraphics);
-
         // ✅ Redraw chevrons and text labels (same logic as Create)
         for (let i = 0; i < polylineCoordinates.length - 1; i++) {
           const [lon1, lat1] = polylineCoordinates[i];
@@ -2157,8 +2107,6 @@ customPopup.addEventListener("click", (event) => {
 
 customPopup.addEventListener("click", (event) => {
   if (event.target.tagName === "BUTTON" && event.target.textContent.trim() === "Create") {
-    console.log("Create button clicked");
-
     const waypointNameInput = customPopup.querySelector("input[placeholder='Enter waypoint name']");
     const identifierInput = customPopup.querySelector("input[placeholder='Enter identifier']");
 
@@ -2178,7 +2126,6 @@ customPopup.addEventListener("click", (event) => {
 
         // Persist its current position as the "original position"
         originalPositionMark = view.draggedGraphic.geometry.clone();
-        console.log("New position saved:", originalPositionMark);
 
         // Refresh marker on layer
         draggableGraphicsLayer.remove(view.draggedGraphic);
@@ -2193,7 +2140,6 @@ customPopup.addEventListener("click", (event) => {
           ];
           polylineGraphic.geometry = { type: "polyline", paths: [...polylineCoordinates] };
           hitDetectionPolyline.geometry = { type: "polyline", paths: [...polylineCoordinates] };
-          console.log("Polyline updated");
 
           // ✅ Remove old chevrons + labels
           const oldLegGraphics = draggableGraphicsLayer.graphics.filter(g => {
@@ -2293,7 +2239,6 @@ customPopup.addEventListener("click", (event) => {
 
 view.on("click", (event) => {
     if (customPopup.style.display === "block" && view.draggedGraphic && originalPositionMark) {
-        console.log("Map clicked: Resetting marker to original position");
 
         // Reset marker position
         view.draggedGraphic.geometry = originalPositionMark.clone();
@@ -2311,7 +2256,6 @@ view.on("click", (event) => {
              type: "polyline", 
             paths: [...polylineCoordinates] 
             };
-            console.log("Polyline reset");
         }
 
         // Hide the popup
