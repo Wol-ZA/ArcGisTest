@@ -346,7 +346,7 @@ window.showCustommPopup = function(htmlContent) {
                 top: 0;
                 font-size: 12px;
                 color: #999;
-            ">10s</span>
+            ">5s</span>
         </div>
         ${htmlContent}
     `;
