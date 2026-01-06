@@ -365,7 +365,7 @@ window.showCustommPopup = function(htmlContent) {
         popup.remove();
         popupTimeout = null;
         countdownInterval = null;
-    }, 10000);
+    }, 5000);
 }
 
 
